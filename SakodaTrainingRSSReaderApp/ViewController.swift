@@ -3,7 +3,7 @@
 //  SakodaTrainingRSSReaderApp
 //
 //  Created by sako0602 on 2024/06/10.
-//
+// feat develop
 
 import UIKit
 
@@ -13,7 +13,5 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
-
 }
 
