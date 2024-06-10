@@ -16,6 +16,11 @@
 		692E359B2C170CA000B14E0D /* SakodaTrainingRSSReaderAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E359A2C170CA000B14E0D /* SakodaTrainingRSSReaderAppTests.swift */; };
 		692E35A52C170CA000B14E0D /* SakodaTrainingRSSReaderAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35A42C170CA000B14E0D /* SakodaTrainingRSSReaderAppUITests.swift */; };
 		692E35A72C170CA000B14E0D /* SakodaTrainingRSSReaderAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35A62C170CA000B14E0D /* SakodaTrainingRSSReaderAppUITestsLaunchTests.swift */; };
+		692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35B32C17137300B14E0D /* YahooRSSFeedRepository.swift */; };
+		692E35B62C1713A100B14E0D /* RSSFeedFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35B52C1713A100B14E0D /* RSSFeedFetcher.swift */; };
+		692E35B92C1713DB00B14E0D /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 692E35B82C1713DB00B14E0D /* XMLCoder */; };
+		692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35BA2C17140600B14E0D /* RSSFeedEntity.swift */; };
+		692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35BE2C17147200B14E0D /* RSSFeedError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,10 @@
 		692E35A02C170CA000B14E0D /* SakodaTrainingRSSReaderAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SakodaTrainingRSSReaderAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		692E35A42C170CA000B14E0D /* SakodaTrainingRSSReaderAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SakodaTrainingRSSReaderAppUITests.swift; sourceTree = "<group>"; };
 		692E35A62C170CA000B14E0D /* SakodaTrainingRSSReaderAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SakodaTrainingRSSReaderAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		692E35B32C17137300B14E0D /* YahooRSSFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooRSSFeedRepository.swift; sourceTree = "<group>"; };
+		692E35B52C1713A100B14E0D /* RSSFeedFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedFetcher.swift; sourceTree = "<group>"; };
+		692E35BA2C17140600B14E0D /* RSSFeedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedEntity.swift; sourceTree = "<group>"; };
+		692E35BE2C17147200B14E0D /* RSSFeedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				692E35B92C1713DB00B14E0D /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +112,7 @@
 				692E35832C170C9F00B14E0D /* AppDelegate.swift */,
 				692E35852C170C9F00B14E0D /* SceneDelegate.swift */,
 				692E35872C170C9F00B14E0D /* ViewController.swift */,
+				692E35BD2C17144900B14E0D /* Model */,
 				692E35892C170C9F00B14E0D /* Main.storyboard */,
 				692E358C2C170CA000B14E0D /* Assets.xcassets */,
 				692E358E2C170CA000B14E0D /* LaunchScreen.storyboard */,
@@ -127,6 +138,25 @@
 			path = SakodaTrainingRSSReaderAppUITests;
 			sourceTree = "<group>";
 		};
+		692E35BC2C17142600B14E0D /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				692E35BA2C17140600B14E0D /* RSSFeedEntity.swift */,
+				692E35B52C1713A100B14E0D /* RSSFeedFetcher.swift */,
+				692E35B32C17137300B14E0D /* YahooRSSFeedRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		692E35BD2C17144900B14E0D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				692E35BE2C17147200B14E0D /* RSSFeedError.swift */,
+				692E35BC2C17142600B14E0D /* Data */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +173,9 @@
 			dependencies = (
 			);
 			name = SakodaTrainingRSSReaderApp;
+			packageProductDependencies = (
+				692E35B82C1713DB00B14E0D /* XMLCoder */,
+			);
 			productName = SakodaTrainingRSSReaderApp;
 			productReference = 692E35802C170C9F00B14E0D /* SakodaTrainingRSSReaderApp.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +248,9 @@
 				Base,
 			);
 			mainGroup = 692E35772C170C9F00B14E0D;
+			packageReferences = (
+				692E35B72C1713DB00B14E0D /* XCRemoteSwiftPackageReference "XMLCoder" */,
+			);
 			productRefGroup = 692E35812C170C9F00B14E0D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,8 +295,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				692E35882C170C9F00B14E0D /* ViewController.swift in Sources */,
+				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
+				692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */,
 				692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */,
 				692E35862C170C9F00B14E0D /* SceneDelegate.swift in Sources */,
+				692E35B62C1713A100B14E0D /* RSSFeedFetcher.swift in Sources */,
+				692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +647,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		692E35B72C1713DB00B14E0D /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CoreOffice/XMLCoder.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.17.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		692E35B82C1713DB00B14E0D /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 692E35B72C1713DB00B14E0D /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 692E35782C170C9F00B14E0D /* Project object */;
 }
