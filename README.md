@@ -2,9 +2,9 @@
 
 アプリ『RSSリーダーサンプルアプリ』
 
--__動作環境__:iOS 17.5以降
--__Swift_Version__:5.10
--__xcode_Version__:15.4
+- __動作環境__:iOS 17.5以降
+- __Swift_Version__:5.10
+- __xcode_Version__:15.4
 
 ## 概要
 - ログイン画面：Firebase(googleアカウントでのログイン)
