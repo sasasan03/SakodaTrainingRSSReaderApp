@@ -18,9 +18,9 @@
 		692E35A72C170CA000B14E0D /* SakodaTrainingRSSReaderAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35A62C170CA000B14E0D /* SakodaTrainingRSSReaderAppUITestsLaunchTests.swift */; };
 		692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35B32C17137300B14E0D /* YahooRSSFeedRepository.swift */; };
 		692E35B62C1713A100B14E0D /* RSSFeedFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35B52C1713A100B14E0D /* RSSFeedFetcher.swift */; };
-		692E35B92C1713DB00B14E0D /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 692E35B82C1713DB00B14E0D /* XMLCoder */; };
 		692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35BA2C17140600B14E0D /* RSSFeedEntity.swift */; };
 		692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35BE2C17147200B14E0D /* RSSFeedError.swift */; };
+		692E360B2C18787900B14E0D /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 692E360A2C18787900B14E0D /* XMLCoder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				692E35B92C1713DB00B14E0D /* XMLCoder in Frameworks */,
+				692E360B2C18787900B14E0D /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +174,7 @@
 			);
 			name = SakodaTrainingRSSReaderApp;
 			packageProductDependencies = (
-				692E35B82C1713DB00B14E0D /* XMLCoder */,
+				692E360A2C18787900B14E0D /* XMLCoder */,
 			);
 			productName = SakodaTrainingRSSReaderApp;
 			productReference = 692E35802C170C9F00B14E0D /* SakodaTrainingRSSReaderApp.app */;
@@ -249,7 +249,7 @@
 			);
 			mainGroup = 692E35772C170C9F00B14E0D;
 			packageReferences = (
-				692E35B72C1713DB00B14E0D /* XCRemoteSwiftPackageReference "XMLCoder" */,
+				692E36092C18787900B14E0D /* XCRemoteSwiftPackageReference "XMLCoder" */,
 			);
 			productRefGroup = 692E35812C170C9F00B14E0D /* Products */;
 			projectDirPath = "";
@@ -480,6 +480,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6NMWZ48XL4;
@@ -508,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6NMWZ48XL4;
@@ -649,7 +651,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		692E35B72C1713DB00B14E0D /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+		692E36092C18787900B14E0D /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CoreOffice/XMLCoder.git";
 			requirement = {
@@ -660,9 +662,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		692E35B82C1713DB00B14E0D /* XMLCoder */ = {
+		692E360A2C18787900B14E0D /* XMLCoder */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 692E35B72C1713DB00B14E0D /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			package = 692E36092C18787900B14E0D /* XCRemoteSwiftPackageReference "XMLCoder" */;
 			productName = XMLCoder;
 		};
 /* End XCSwiftPackageProductDependency section */
