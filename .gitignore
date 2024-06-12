@@ -46,6 +46,12 @@ playground.xcworkspace
 # hence it is not needed unless you have added a package configuration file to your project
 # .swiftpm
 
+# Firebaseの設定ファイル
+# iOS用
+GoogleService-Info.plist
+# Android用
+google-services.json
+
 .build/
 
 # CocoaPods
