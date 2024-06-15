@@ -119,9 +119,9 @@
 			children = (
 				692E35832C170C9F00B14E0D /* AppDelegate.swift */,
 				692E35852C170C9F00B14E0D /* SceneDelegate.swift */,
+				692E35892C170C9F00B14E0D /* Main.storyboard */,
 				692E35872C170C9F00B14E0D /* ViewController.swift */,
 				692E35BD2C17144900B14E0D /* Model */,
-				692E35892C170C9F00B14E0D /* Main.storyboard */,
 				692E358C2C170CA000B14E0D /* Assets.xcassets */,
 				692E358E2C170CA000B14E0D /* LaunchScreen.storyboard */,
 				692E35912C170CA000B14E0D /* Info.plist */,
