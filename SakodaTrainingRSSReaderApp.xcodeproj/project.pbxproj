@@ -22,9 +22,9 @@
 		692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35BE2C17147200B14E0D /* RSSFeedError.swift */; };
 		692E36112C18872E00B14E0D /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 692E36102C18872E00B14E0D /* XMLCoder */; };
 		692E36192C19B67200B14E0D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 692E36182C19B67200B14E0D /* FirebaseAuth */; };
-		692E361D2C1A5E0800B14E0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 692E361C2C1A5E0800B14E0D /* GoogleService-Info.plist */; };
 		692E361F2C1A5F1300B14E0D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 692E361E2C1A5F1300B14E0D /* FirebaseAnalytics */; };
 		692E36222C1A615F00B14E0D /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 692E36212C1A615F00B14E0D /* IQKeyboardManagerSwift */; };
+		692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 692E36C52C1D716600B14E0D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,7 @@
 		692E35B52C1713A100B14E0D /* RSSFeedFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedFetcher.swift; sourceTree = "<group>"; };
 		692E35BA2C17140600B14E0D /* RSSFeedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedEntity.swift; sourceTree = "<group>"; };
 		692E35BE2C17147200B14E0D /* RSSFeedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedError.swift; sourceTree = "<group>"; };
-		692E361C2C1A5E0800B14E0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		692E36C52C1D716600B14E0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +125,7 @@
 				692E358C2C170CA000B14E0D /* Assets.xcassets */,
 				692E358E2C170CA000B14E0D /* LaunchScreen.storyboard */,
 				692E35912C170CA000B14E0D /* Info.plist */,
-				692E361C2C1A5E0800B14E0D /* GoogleService-Info.plist */,
+				692E36C52C1D716600B14E0D /* GoogleService-Info.plist */,
 			);
 			path = SakodaTrainingRSSReaderApp;
 			sourceTree = "<group>";
@@ -282,7 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				692E358D2C170CA000B14E0D /* Assets.xcassets in Resources */,
-				692E361D2C1A5E0800B14E0D /* GoogleService-Info.plist in Resources */,
+				692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */,
 				692E35902C170CA000B14E0D /* Base in Resources */,
 				692E358B2C170C9F00B14E0D /* Base in Resources */,
 			);
