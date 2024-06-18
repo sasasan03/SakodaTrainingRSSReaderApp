@@ -8,7 +8,7 @@
 import UIKit
 
 class SuccessViewController: UIViewController {
-    static let storyboard = "SuccessView"
+    static let storyboardID = "SuccessView"
 
     override func viewDidLoad() {
         super.viewDidLoad()
