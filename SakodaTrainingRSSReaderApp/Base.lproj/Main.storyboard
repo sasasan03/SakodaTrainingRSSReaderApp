@@ -82,7 +82,7 @@
         <!--Success View Controller-->
         <scene sceneID="0Vy-t1-MEW">
             <objects>
-                <viewController id="IOz-4e-EOm" customClass="SuccessViewController" customModule="SakodaTrainingRSSReaderApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SuccessView" id="IOz-4e-EOm" customClass="SuccessViewController" customModule="SakodaTrainingRSSReaderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dht-Rw-BSx">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
