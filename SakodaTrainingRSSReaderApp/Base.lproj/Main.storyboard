@@ -98,10 +98,11 @@
                         <viewLayoutGuide key="safeArea" id="Hsv-yY-ZvY"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="uUL-cP-qJ9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyf-Ve-WSH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2017" y="-266"/>
+            <point key="canvasLocation" x="2942.7480916030531" y="-266.19718309859155"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dbo-xS-uIz">
@@ -120,6 +121,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VmT-A3-VSA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5.343511450381679" y="-2.1126760563380285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cUw-lZ-jyr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="boK-Qg-tta" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RT9-Bv-qmh">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IOz-4e-EOm" kind="relationship" relationship="rootViewController" id="Kdp-e4-0DZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qEP-q9-aY3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2016.030534351145" y="-266.19718309859155"/>
         </scene>
     </scenes>
     <resources>

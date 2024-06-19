@@ -26,7 +26,7 @@ class ViewController: UIViewController {
                     print("####",signInResult)
                     if signInResult {
                         guard let successView = self.storyboard?.instantiateViewController(withIdentifier: SuccessViewController.storyboardID) else { return print("#with Identifier miss") }
-                        self.present(successView, animated: true)
+                        self.navigationController?.pushViewController(successView, animated: true)
                     } else {
                         print("#signn  dissmiss")
                     }
