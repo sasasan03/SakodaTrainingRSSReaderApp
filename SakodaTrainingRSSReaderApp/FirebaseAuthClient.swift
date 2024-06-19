@@ -9,19 +9,16 @@ import Foundation
 import Firebase
 import GoogleSignIn
 
-
-class FirebaseClient{
-    
-    //-----------------------------------------------------------------------
+@MainActor
+class FirebaseAuthClient{
     func signIn() async throws -> Bool {
         guard let clientID = FirebaseApp.app()?.options.clientID else { throw FirebaseError.noID  }
-        // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
-        guard let windowScene = await UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = await windowScene.windows.first,
-              let rootViewController = await window.rootViewController else {
+        guard let windowScene =  UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window =  windowScene.windows.first,
+              let rootViewController =  window.rootViewController else {
             print("##There is no root view controller")
             return false
         }
