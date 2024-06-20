@@ -8,6 +8,7 @@
 import UIKit
 
 class SignUpViewController: UIViewController {
+    static let storyboardID = "SignUpView"
 
     override func viewDidLoad() {
         super.viewDidLoad()
