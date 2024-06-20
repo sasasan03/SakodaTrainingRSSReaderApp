@@ -9,10 +9,18 @@ import Foundation
 import Firebase
 import GoogleSignIn
 
+enum WindowsError: Error {
+    case noClientID
+    case noWindowScene
+    case noRootViewController
+//    case signInFailed(reason: String)
+}
+
 @MainActor
-class FirebaseAuthClient{
-    func signIn() async throws -> Bool {
-        guard let clientID = FirebaseApp.app()?.options.clientID else { throw FirebaseError.noID  }
+class GoogleSignInClient {
+    
+    func googleSignInResult() async throws -> GIDSignInResult {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { throw WindowsError.noClientID  }
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
@@ -20,11 +28,23 @@ class FirebaseAuthClient{
               let window =  windowScene.windows.first,
               let rootViewController =  window.rootViewController else {
             print("##There is no root view controller")
-            return false
+            throw WindowsError.noRootViewController
         }
         
+        return try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+    }
+    
+}
+
+
+@MainActor
+class FirebaseAuthClient{
+    //TODO: 書き換える。依存を解消させる。
+    let googleSignInClient = GoogleSignInClient()
+    
+    func signIn() async throws -> Bool {
         do {
-            let userAuthentication = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+            let userAuthentication = try await googleSignInClient.googleSignInResult()
             let user = userAuthentication.user
             guard let  idToken = user.idToken else {
                 throw FirebaseError.missTackID
