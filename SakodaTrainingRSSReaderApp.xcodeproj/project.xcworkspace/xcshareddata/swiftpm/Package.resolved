@@ -1,5 +1,5 @@
 {
-  "originHash" : "27448d0c4f1dcc435f33f0752d9e8eacc3bbf35f6114e93dbe60fb1f0366bac5",
+  "originHash" : "1065a7b1aa7fbb65d41051951f28ad515c6a0a6e246022a5b730e7f90c562a99",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "076b241a625e25eac22f8849be256dfb960fcdfe",
         "version" : "10.19.1"
+      }
+    },
+    {
+      "identity" : "appauth-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/openid/AppAuth-iOS.git",
+      "state" : {
+        "revision" : "c89ed571ae140f8eb1142735e6e23d7bb8c34cb2",
+        "version" : "1.7.5"
       }
     },
     {
@@ -47,6 +56,15 @@
       }
     },
     {
+      "identity" : "googlesignin-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GoogleSignIn-iOS.git",
+      "state" : {
+        "revision" : "a7965d134c5d3567026c523e0a8a583f73b62b0d",
+        "version" : "7.1.0"
+      }
+    },
+    {
       "identity" : "googleutilities",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/GoogleUtilities.git",
@@ -74,12 +92,30 @@
       }
     },
     {
+      "identity" : "gtmappauth",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/google/GTMAppAuth.git",
+      "state" : {
+        "revision" : "5d7d66f647400952b1758b230e019b07c0b4b22a",
+        "version" : "4.1.1"
+      }
+    },
+    {
       "identity" : "interop-ios-for-google-sdks",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/interop-ios-for-google-sdks.git",
       "state" : {
         "revision" : "2d12673670417654f08f5f90fdd62926dc3a2648",
         "version" : "100.0.0"
+      }
+    },
+    {
+      "identity" : "iqkeyboardmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hackiftekhar/IQKeyboardManager",
+      "state" : {
+        "revision" : "19e111f9246b3407fe0c334dc78fa890c40d8c67",
+        "version" : "7.0.3"
       }
     },
     {
