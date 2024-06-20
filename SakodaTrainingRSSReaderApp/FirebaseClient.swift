@@ -31,7 +31,7 @@ class FirebaseClient{
             return true
         }
         catch {
-            print("#サインインエラー",error.localizedDescription)
+            print("##sign in error",error.localizedDescription)
             return false
         }
     }
@@ -41,7 +41,7 @@ class FirebaseClient{
             try Auth.auth().signOut()
         }
         catch {
-            print("##")
+            print("##sign out error")
         }
     }
     
