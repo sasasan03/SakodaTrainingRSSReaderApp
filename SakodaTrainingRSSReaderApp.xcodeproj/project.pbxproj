@@ -30,6 +30,8 @@
 		69D558592C218D5200684373 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558582C218D5100684373 /* SuccessViewController.swift */; };
 		69D5585B2C218D5E00684373 /* FailureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D5585A2C218D5E00684373 /* FailureViewController.swift */; };
 		69D558622C219E4D00684373 /* FirebaseAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558612C219E4D00684373 /* FirebaseAuthClient.swift */; };
+		69D558642C22F57F00684373 /* SignUpView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69D558632C22F57F00684373 /* SignUpView.storyboard */; };
+		69D558662C22F5CF00684373 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558652C22F5CF00684373 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		69D558582C218D5100684373 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
 		69D5585A2C218D5E00684373 /* FailureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureViewController.swift; sourceTree = "<group>"; };
 		69D558612C219E4D00684373 /* FirebaseAuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthClient.swift; sourceTree = "<group>"; };
+		69D558632C22F57F00684373 /* SignUpView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpView.storyboard; sourceTree = "<group>"; };
+		69D558652C22F5CF00684373 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,8 @@
 				692E35832C170C9F00B14E0D /* AppDelegate.swift */,
 				692E35852C170C9F00B14E0D /* SceneDelegate.swift */,
 				692E35892C170C9F00B14E0D /* Main.storyboard */,
+				69D558632C22F57F00684373 /* SignUpView.storyboard */,
+				69D558652C22F5CF00684373 /* SignUpViewController.swift */,
 				69D5585C2C218E1500684373 /* LoginTestVIewControllers */,
 				692E35872C170C9F00B14E0D /* ViewController.swift */,
 				69D558612C219E4D00684373 /* FirebaseAuthClient.swift */,
@@ -307,6 +313,7 @@
 			files = (
 				692E358D2C170CA000B14E0D /* Assets.xcassets in Resources */,
 				692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */,
+				69D558642C22F57F00684373 /* SignUpView.storyboard in Resources */,
 				692E35902C170CA000B14E0D /* Base in Resources */,
 				692E358B2C170C9F00B14E0D /* Base in Resources */,
 			);
@@ -333,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D558662C22F5CF00684373 /* SignUpViewController.swift in Sources */,
 				692E35882C170C9F00B14E0D /* ViewController.swift in Sources */,
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
 				692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */,

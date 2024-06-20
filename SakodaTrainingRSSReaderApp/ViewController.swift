@@ -23,7 +23,6 @@ class ViewController: UIViewController {
             Task {
                 do {
                     let signInResult = try await client.signIn()
-                    print("####",signInResult)
                     if signInResult {
                         guard let successView = self.storyboard?.instantiateViewController(withIdentifier: SuccessViewController.storyboardID) else { return print("#with Identifier miss") }
                         self.navigationController?.pushViewController(successView, animated: true)
