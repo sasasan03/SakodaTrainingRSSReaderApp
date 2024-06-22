@@ -33,6 +33,7 @@
 		69D558642C22F57F00684373 /* SignUpView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69D558632C22F57F00684373 /* SignUpView.storyboard */; };
 		69D558662C22F5CF00684373 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558652C22F5CF00684373 /* SignUpViewController.swift */; };
 		69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558672C2448EA00684373 /* GoogleSignInClient.swift */; };
+		69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558692C26C32200684373 /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		69D558632C22F57F00684373 /* SignUpView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpView.storyboard; sourceTree = "<group>"; };
 		69D558652C22F5CF00684373 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		69D558672C2448EA00684373 /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
+		69D558692C26C32200684373 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				692E35872C170C9F00B14E0D /* ViewController.swift */,
 				69D558612C219E4D00684373 /* FirebaseClient.swift */,
 				69D558672C2448EA00684373 /* GoogleSignInClient.swift */,
+				69D558692C26C32200684373 /* UserDefaultsManager.swift */,
 				692E35BD2C17144900B14E0D /* Model */,
 				692E358C2C170CA000B14E0D /* Assets.xcassets */,
 				692E358E2C170CA000B14E0D /* LaunchScreen.storyboard */,
@@ -346,6 +349,7 @@
 				69D558662C22F5CF00684373 /* SignUpViewController.swift in Sources */,
 				692E35882C170C9F00B14E0D /* ViewController.swift in Sources */,
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
+				69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */,
 				692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */,
 				69D5585B2C218D5E00684373 /* FailureViewController.swift in Sources */,
 				692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */,
