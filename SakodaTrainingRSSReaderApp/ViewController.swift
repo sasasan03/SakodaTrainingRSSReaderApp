@@ -15,6 +15,7 @@ enum FirebaseError: Error {
 }
 
 class ViewController: UIViewController {
+    static let storyBoardID = "Main"
     
     override func viewDidLoad() {
         super.viewDidLoad()
