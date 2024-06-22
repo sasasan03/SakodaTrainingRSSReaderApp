@@ -9,10 +9,42 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
+enum AuthenticationState {
+  case unauthenticated
+  case authenticating
+  case authenticated
+}
+
+enum AuthenticationFlow {
+  case login
+  case signUp
+}
+
 @MainActor
 class FirebaseClient{
     //TODO: 書き換える。依存を解消させる。
     let googleSignInClient = GoogleSignInClient()
+    
+    var flow: AuthenticationFlow = .login
+    var authenticationState: AuthenticationState = .unauthenticated
+    
+    private var authStateHandler: AuthStateDidChangeListenerHandle?
+
+    func registerAuthStateHandler() {
+      if authStateHandler == nil {
+        // （addStateDidChangeListener）認証の状態変更を監視。認証状態が変わるたびに呼び出される。
+        authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
+            print("#user", user?.description)
+          self.authenticationState = user == nil ? .unauthenticated : .authenticated
+//          self.displayName = user?.email ?? ""
+            print("#authStateHandler",self.authStateHandler?.description)
+            print("#authenticationState",self.authenticationState)
+        }
+      } else {
+          print("# authStateHandlerは値を保持しています")
+      }
+    }
+
     
     func signIn() async throws -> Bool {
         do {
@@ -28,7 +60,7 @@ class FirebaseClient{
             )
             let result = try await Auth.auth().signIn(with: credential)
             let firebaseUser = result.user
-            print("##user\(firebaseUser.uid) signed in with email \(firebaseUser.email ?? "unknown")")
+            print("##user『\(firebaseUser.uid)』 signed in with email 『\(firebaseUser.email ?? "unknown")』")
             return true
         }
         catch {

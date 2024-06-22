@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let client = FirebaseClient()
+        client.registerAuthStateHandler()
         GoogleSignInButton.addAction(UIAction { _ in
             Task {
                 do {
