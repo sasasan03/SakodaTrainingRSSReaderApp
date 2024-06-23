@@ -16,7 +16,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            print("#")
             if client.authenticationState == .authenticated {
                 // ログインしている場合、successViewをルートビューコントローラとして設定
                 let successViewController = storyboard.instantiateViewController(identifier: SuccessViewController.storyboardID)
@@ -26,10 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let mainViewController = storyboard.instantiateViewController(identifier: ViewController.storyBoardID)
                 window.rootViewController = mainViewController
             }
-            print("#window1")
             self.window = window
             window.makeKeyAndVisible()
-            print("#window2")
         }
     }
     

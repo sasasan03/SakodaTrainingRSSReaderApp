@@ -8,20 +8,17 @@
 import Foundation
 
 struct UserDefaultsManager {
-     static let key = "key"
+    static let key = "key"
+    let userDefaults = UserDefaults.standard
     
-    func save(text: String) throws {
-        let jsonData = try JSONEncoder().encode(text)
-        UserDefaults.standard.set(jsonData, forKey: UserDefaultsManager.key)
+    func primitiveSave(userID: String) {
+        userDefaults.set(userID, forKey: UserDefaultsManager.key)
     }
     
-    func load() throws -> String {
-        let userDefaults = UserDefaults.standard
-        guard let jsonData = userDefaults.data(forKey: UserDefaultsManager.key) else {
-            return "jsonData is nil"
+    func primitiveLoad() -> String {
+        guard let userID = userDefaults.string(forKey: UserDefaultsManager.key) else {
+            return "not found userID"
         }
-        let text = try JSONDecoder().decode(String.self, from: jsonData)
-        return text
+        return userID
     }
 }
-

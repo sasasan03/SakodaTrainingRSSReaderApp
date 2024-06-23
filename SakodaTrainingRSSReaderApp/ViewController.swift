@@ -28,6 +28,7 @@ class ViewController: UIViewController {
                     if signInResult {
                         guard let successView = self.storyboard?.instantiateViewController(withIdentifier: SuccessViewController.storyboardID) else { return print("#with Identifier miss") }
                         self.navigationController?.pushViewController(successView, animated: true)
+                        //TODO: ここに保存処理を記述したい。
                     } else {
                         print("#signn  dissmiss")
                     }
