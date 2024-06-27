@@ -17,14 +17,19 @@ enum FirebaseError: Error {
 class ViewController: UIViewController {
     static let storyBoardID = "Main"
     let client = FirebaseClient()
+    let userDefaultsManager = UserDefaultsManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("#",client.authenticationState)
-        if client.authenticationState == .unauthenticated {
-            navigateToLoginViewController()
-        } else {
-            navigateToSuccessViewController()
+        do {
+            let authenticationState = try userDefaultsManager.load()
+            if authenticationState == .authenticated {
+                navigateToSuccessViewController()
+            } else {
+                navigateToLoginViewController()
+            }
+        } catch {
+            
         }
     }
     
