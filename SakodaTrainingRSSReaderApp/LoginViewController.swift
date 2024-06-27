@@ -12,6 +12,7 @@ import Firebase
 class LoginViewController: UIViewController {
     static let storyboardID = "LoginView"
     let client = FirebaseClient()
+    let userDefaultsManager = UserDefaultsManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +30,8 @@ class LoginViewController: UIViewController {
                     if signInResult {
                         guard let successView = self.storyboard?.instantiateViewController(withIdentifier: SuccessViewController.storyboardID) else { return print("#with Identifier miss") }
                         self.navigationController?.pushViewController(successView, animated: true)
-                        //TODO: ここに保存処理を記述したい。
+                        // UserDefaultsを使って保存処理を実装。
+                        try self.userDefaultsManager.save(authenticationState: .authenticated)
                     } else {
                         print("#signn  dissmiss")
                     }
