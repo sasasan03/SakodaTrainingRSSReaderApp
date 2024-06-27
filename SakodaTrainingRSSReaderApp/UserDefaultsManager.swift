@@ -11,14 +11,28 @@ struct UserDefaultsManager {
     static let key = "key"
     let userDefaults = UserDefaults.standard
     
-    func primitiveSave(userID: String) {
-        userDefaults.set(userID, forKey: UserDefaultsManager.key)
+//    func primitiveSave(userID: String) {
+//        userDefaults.set(userID, forKey: UserDefaultsManager.key)
+//    }
+//
+//    func primitiveLoad() -> String {
+//        guard let userID = userDefaults.string(forKey: UserDefaultsManager.key) else {
+//            return "not found userID"
+//        }
+//        return userID
+//    }
+    
+    func save(authenticationState: AuthenticationState) throws {
+        let jsonData = try JSONEncoder().encode(authenticationState)
+        userDefaults.set(jsonData, forKey: UserDefaultsManager.key)
     }
     
-    func primitiveLoad() -> String {
-        guard let userID = userDefaults.string(forKey: UserDefaultsManager.key) else {
-            return "not found userID"
+    func load() throws -> AuthenticationState {
+        guard let jsonData = userDefaults.data(forKey: UserDefaultsManager.key) else {
+            return AuthenticationState.unknown
         }
-        return userID
+        let data = try JSONDecoder().decode(AuthenticationState.self, from: jsonData)
+        return data
     }
+    
 }
