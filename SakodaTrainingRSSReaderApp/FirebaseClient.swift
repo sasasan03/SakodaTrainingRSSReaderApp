@@ -9,10 +9,11 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
-enum AuthenticationState {
-  case unauthenticated
-  case authenticating
-  case authenticated
+enum AuthenticationState: String, Codable {
+    case unauthenticated
+    case authenticating
+    case authenticated
+    case unknown
 }
 
 enum AuthenticationFlow {
@@ -34,11 +35,11 @@ class FirebaseClient{
       if authStateHandler == nil {
         // （addStateDidChangeListener）認証の状態変更を監視。認証状態が変わるたびに呼び出される。
         authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
-            print("#user", user?.description)
+//            print("#user", user?.description)
           self.authenticationState = user == nil ? .unauthenticated : .authenticated
 //          self.displayName = user?.email ?? ""
-            print("#authStateHandler",self.authStateHandler?.description)
-            print("#authenticationState",self.authenticationState)
+//            print("#authStateHandler",self.authStateHandler?.description)
+//            print("#authenticationState",self.authenticationState)
         }
       } else {
           print("# authStateHandlerは値を保持しています")
