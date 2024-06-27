@@ -16,29 +16,41 @@ enum FirebaseError: Error {
 
 class ViewController: UIViewController {
     static let storyBoardID = "Main"
+    let client = FirebaseClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let client = FirebaseClient()
-        client.registerAuthStateHandler()
-        GoogleSignInButton.addAction(UIAction { _ in
-            Task {
-                do {
-                    let signInResult = try await client.signIn()
-                    if signInResult {
-                        guard let successView = self.storyboard?.instantiateViewController(withIdentifier: SuccessViewController.storyboardID) else { return print("#with Identifier miss") }
-                        self.navigationController?.pushViewController(successView, animated: true)
-                        //TODO: ここに保存処理を記述したい。
-                    } else {
-                        print("#signn  dissmiss")
-                    }
-                } catch {
-                    print("#error#", error.localizedDescription)
-                }
-            }
-        }, for: .touchUpInside)
+        print("#",client.authenticationState)
+        if client.authenticationState == .unauthenticated {
+            navigateToLoginViewController()
+        } else {
+            navigateToSuccessViewController()
+        }
     }
     
-    @IBOutlet weak var GoogleSignInButton: UIButton!
+    private let storyboardInstance = UIStoryboard(name: "Main", bundle: nil)
+    
+    private func navigateToSuccessViewController(){
+        if let successViewController = storyboardInstance.instantiateViewController(withIdentifier: SuccessViewController.storyboardID) as? SuccessViewController {
+            let navigationController =  UINavigationController(rootViewController: successViewController)
+            setRootViewController(navigationController)
+        }
+    }
+    
+    private func navigateToLoginViewController(){
+        if let loginViewController = storyboardInstance.instantiateViewController(withIdentifier: LoginViewController.storyboardID) as? LoginViewController {
+            let navigationController =  UINavigationController(rootViewController: loginViewController)
+            setRootViewController(navigationController)
+        }
+    }
+    
+    private func setRootViewController(_ viewController: UIViewController) {
+        guard let windowScene = (UIApplication.shared.connectedScenes.first as? UIWindowScene),
+              let window = windowScene.windows.first else {
+            return
+        }
         
+        window.rootViewController = viewController
+        window.makeKeyAndVisible()
+    }
 }
