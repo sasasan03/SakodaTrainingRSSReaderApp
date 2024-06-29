@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
                     if signInResult {
                         guard let successView = self.storyboard?.instantiateViewController(withIdentifier: SuccessViewController.storyboardID) else { return print("#with Identifier miss") }
                         self.navigationController?.pushViewController(successView, animated: true)
-                        // UserDefaultsを使って保存処理を実装。
+                        // ログイン情報を保存
                         try self.userDefaultsManager.save(authenticationState: .authenticated)
                     } else {
                         print("#signn  dissmiss")

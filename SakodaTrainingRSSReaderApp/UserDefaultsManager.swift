@@ -35,4 +35,8 @@ struct UserDefaultsManager {
         return data
     }
     
+    func delete() {
+        userDefaults.removeObject(forKey: UserDefaultsManager.key)
+    }
+    
 }
