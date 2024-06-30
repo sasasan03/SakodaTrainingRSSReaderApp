@@ -3,7 +3,7 @@
 //  SakodaTrainingRSSReaderApp
 //
 //  Created by sako0602 on 2024/06/10.
-// feat develop
+//  feat develop
 
 import UIKit
 import GoogleSignIn
@@ -21,8 +21,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        client.registerAuthStateHandler()
+        setupGoogleSignInButton()
         do {
-            let authenticationState = try userDefaultsManager.load()
+            let authenticationState = try userDefaultsManager.loadCredentials()
             if authenticationState == .authenticated {
                 navigateToSuccessViewController()
             } else {
@@ -32,6 +34,29 @@ class ViewController: UIViewController {
             
         }
     }
+    
+    @IBOutlet weak var GoogleSignInButton: UIButton!
+    
+    private func setupGoogleSignInButton(){
+        GoogleSignInButton.addAction(UIAction { _ in
+            Task {
+                do {
+                    let signInResult = try await self.client.signIn()
+                    if signInResult {
+                        guard let successView = self.storyboard?.instantiateViewController(withIdentifier: SuccessViewController.storyboardID) else { return print("#with Identifier miss") }
+                        self.navigationController?.pushViewController(successView, animated: true)
+                        // ログイン情報を保存
+                        try self.userDefaultsManager.saveCredentials(authenticationState: .authenticated)
+                    } else {
+                        print("#signn  dissmiss")
+                    }
+                } catch {
+                    print("#error#", error.localizedDescription)
+                }
+            }
+        }, for: .touchUpInside)
+    }
+
     
     private let storyboardInstance = UIStoryboard(name: "Main", bundle: nil)
     

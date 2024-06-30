@@ -22,12 +22,12 @@ struct UserDefaultsManager {
 //        return userID
 //    }
     
-    func save(authenticationState: AuthenticationState) throws {
+    func saveCredentials(authenticationState: AuthenticationState) throws {
         let jsonData = try JSONEncoder().encode(authenticationState)
         userDefaults.set(jsonData, forKey: UserDefaultsManager.key)
     }
     
-    func load() throws -> AuthenticationState {
+    func loadCredentials() throws -> AuthenticationState {
         guard let jsonData = userDefaults.data(forKey: UserDefaultsManager.key) else {
             return AuthenticationState.unknown
         }
