@@ -30,17 +30,20 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Googleでログイン"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="新規登録は" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAi-FK-qiI">
-                                <rect key="frame" x="92" y="495" width="80" height="21"/>
+                                <rect key="frame" x="126" y="609" width="80" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zcy-dk-ep0">
-                                <rect key="frame" x="205" y="488" width="72" height="35"/>
+                                <rect key="frame" x="214" y="601" width="72" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="こちら"/>
+                                <connections>
+                                    <action selector="didTapToSignViewButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uXz-VI-40I"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -78,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyf-Ve-WSH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2552" y="-2"/>
+            <point key="canvasLocation" x="5222" y="-2"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dbo-xS-uIz">
@@ -98,6 +101,31 @@
             </objects>
             <point key="canvasLocation" x="5.343511450381679" y="-2.1126760563380285"/>
         </scene>
+        <!--User Sign Up View Controller-->
+        <scene sceneID="nm3-gD-tqV">
+            <objects>
+                <viewController storyboardIdentifier="aaa" id="mEu-mB-8ev" customClass="UserSignUpViewController" customModule="SakodaTrainingRSSReaderApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="trz-xq-C6K">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign Up View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbQ-Z7-fC0">
+                                <rect key="frame" x="145" y="124" width="102" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="buk-fP-FME"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cpX-QU-Jo2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ig-aV-V60" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3073" y="472"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="cUw-lZ-jyr">
             <objects>
@@ -114,7 +142,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qEP-q9-aY3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1764" y="-2"/>
+            <point key="canvasLocation" x="4329" y="-2"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jZR-ia-H09">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bJK-bV-4JD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nVW-kj-aXy">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mEu-mB-8ev" kind="relationship" relationship="rootViewController" id="fdF-3k-oPd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SHK-aP-Lbo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2166" y="472"/>
         </scene>
     </scenes>
     <resources>

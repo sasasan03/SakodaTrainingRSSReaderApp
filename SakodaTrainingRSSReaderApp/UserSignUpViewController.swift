@@ -1,14 +1,13 @@
 //
-//  FailureViewController.swift
+//  UserSignUpViewController.swift
 //  SakodaTrainingRSSReaderApp
 //
-//  Created by sako0602 on 2024/06/16.
+//  Created by sako0602 on 2024/07/01.
 //
 
 import UIKit
 
-class FailureViewController: UIViewController {
-    static let storyboardID = "FailureView"
+class UserSignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

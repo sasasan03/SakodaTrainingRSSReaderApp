@@ -29,7 +29,7 @@ struct UserDefaultsManager {
     
     func loadCredentials() throws -> AuthenticationState {
         guard let jsonData = userDefaults.data(forKey: UserDefaultsManager.key) else {
-            return AuthenticationState.unknown
+            return AuthenticationState.unauthenticated
         }
         let data = try JSONDecoder().decode(AuthenticationState.self, from: jsonData)
         return data

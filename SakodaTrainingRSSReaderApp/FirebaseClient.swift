@@ -11,9 +11,7 @@ import FirebaseAuth
 
 enum AuthenticationState: String, Codable {
     case unauthenticated
-    case authenticating
     case authenticated
-    case unknown
 }
 
 enum AuthenticationFlow {
