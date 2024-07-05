@@ -73,6 +73,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UKT-0z-Lgd">
+                                <rect key="frame" x="137" y="505" width="120" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="サインアウト"/>
+                                <connections>
+                                    <action selector="signOut:" destination="IOz-4e-EOm" eventType="touchUpInside" id="7LS-H2-nXk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Hsv-yY-ZvY"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
@@ -104,7 +113,7 @@
         <!--User Sign Up View Controller-->
         <scene sceneID="nm3-gD-tqV">
             <objects>
-                <viewController storyboardIdentifier="aaa" id="mEu-mB-8ev" customClass="UserSignUpViewController" customModule="SakodaTrainingRSSReaderApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserSignUpView" id="mEu-mB-8ev" customClass="UserSignUpViewController" customModule="SakodaTrainingRSSReaderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="trz-xq-C6K">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ig-aV-V60" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3073" y="472"/>
+            <point key="canvasLocation" x="3072.5190839694656" y="471.83098591549299"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cUw-lZ-jyr">

@@ -86,8 +86,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didTapToSignViewButton(_ sender: Any) {
-        let aaa = self.storyboard?.instantiateViewController(withIdentifier: "aaa") as! UserSignUpViewController
-        self.navigationController?.pushViewController(aaa, animated: true)
+        let userSignUpViewController = self.storyboard?.instantiateViewController(withIdentifier: UserSignUpViewController.storyboardID) as! UserSignUpViewController
+        self.navigationController?.pushViewController(userSignUpViewController, animated: true)
     }
     
     
