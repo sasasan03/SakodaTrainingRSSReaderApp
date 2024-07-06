@@ -66,13 +66,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ログイン成功" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHv-Jt-ZiQ">
-                                <rect key="frame" x="148" y="375" width="96" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UKT-0z-Lgd">
                                 <rect key="frame" x="137" y="505" width="120" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -82,6 +75,13 @@
                                     <action selector="signOut:" destination="IOz-4e-EOm" eventType="touchUpInside" id="7LS-H2-nXk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="showRSSFeedScreen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHv-Jt-ZiQ">
+                                <rect key="frame" x="115" y="375" width="163" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Hsv-yY-ZvY"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
@@ -90,7 +90,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyf-Ve-WSH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5222" y="-2"/>
+            <point key="canvasLocation" x="5007" y="-2"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dbo-xS-uIz">
@@ -110,31 +110,6 @@
             </objects>
             <point key="canvasLocation" x="5.343511450381679" y="-2.1126760563380285"/>
         </scene>
-        <!--User Sign Up View Controller-->
-        <scene sceneID="nm3-gD-tqV">
-            <objects>
-                <viewController storyboardIdentifier="UserSignUpView" id="mEu-mB-8ev" customClass="UserSignUpViewController" customModule="SakodaTrainingRSSReaderApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="trz-xq-C6K">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign Up View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbQ-Z7-fC0">
-                                <rect key="frame" x="145" y="124" width="102" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="buk-fP-FME"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="cpX-QU-Jo2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3ig-aV-V60" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3072.5190839694656" y="471.83098591549299"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="cUw-lZ-jyr">
             <objects>
@@ -151,25 +126,15 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qEP-q9-aY3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4329" y="-2"/>
+            <point key="canvasLocation" x="4208" y="-2"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="jZR-ia-H09">
+        <!--RSSFeedSelectionView-->
+        <scene sceneID="9ni-5R-iTw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bJK-bV-4JD" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nVW-kj-aXy">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="mEu-mB-8ev" kind="relationship" relationship="rootViewController" id="fdF-3k-oPd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SHK-aP-Lbo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardIdentifier="RSSFeedSelectionView" storyboardName="RSSFeedSelectionView" referencedIdentifier="RSSFeedSelectionView" id="FtF-tx-oTE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mvo-0V-TqO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2166" y="472"/>
+            <point key="canvasLocation" x="1661" y="-2"/>
         </scene>
     </scenes>
     <resources>
