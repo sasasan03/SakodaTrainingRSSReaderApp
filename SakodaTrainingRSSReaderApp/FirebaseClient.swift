@@ -23,27 +23,42 @@ enum AuthenticationFlow {
 class FirebaseClient{
     //TODO: 書き換える。依存を解消させる。
     let googleSignInClient = GoogleSignInClient()
-    
-    var flow: AuthenticationFlow = .login
+    let userDefaultsMangaer = UserDefaultsManager()
     var authenticationState: AuthenticationState = .unauthenticated
-    
     private var authStateHandler: AuthStateDidChangeListenerHandle?
-
+    
+    /// ユーザーの認証状態が変わるたびに呼び出される。
+    /// ユーザが現在ログインしているかログアウトしているかがわかる。
+    /// ログアウトしていれば　『user』はnilを返す。
+    /// 一度このメソッドを呼び出すと、authStateHandlerが登録され、明示的に解除しない限り、監視し続ける。
     func registerAuthStateHandler() {
-      if authStateHandler == nil {
-        // （addStateDidChangeListener）認証の状態変更を監視。認証状態が変わるたびに呼び出される。
-        authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
-//            print("#user", user?.description)
-          self.authenticationState = user == nil ? .unauthenticated : .authenticated
-//          self.displayName = user?.email ?? ""
-//            print("#authStateHandler",self.authStateHandler?.description)
-//            print("#authenticationState",self.authenticationState)
+        if authStateHandler == nil {
+            authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
+                guard let user = user else { return print("?A? this user is not logged in") }
+                let uid = user.uid
+                self.userDefaultsMangaer.userIDSave(userID: uid)
+                //          self.authenticationState = user == nil ? .unauthenticated : .authenticated
+            }
+        } else {
+            print("# authStateHandlerは値を保持しています")
         }
-      } else {
-          print("# authStateHandlerは値を保持しています")
-      }
     }
-
+    
+    /// 認証状態の変更を監視するリスナーを削除する関数。
+    func unregisterAuthStateHandler() {
+        if let authStateHandler = authStateHandler {
+            Auth.auth().removeStateDidChangeListener(authStateHandler)
+            self.authStateHandler = nil
+            print("# authStateHandlerを削除しました")
+        } else {
+            print("# authStateHandlerは登録されていません")
+        }
+    }
+    
+    func hasUserEverSignedIn() -> Bool {
+        
+        return false
+    }
     
     func signIn() async throws -> Bool {
         do {
