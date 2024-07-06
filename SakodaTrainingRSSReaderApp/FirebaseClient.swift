@@ -73,8 +73,11 @@ class FirebaseClient{
                 accessToken: accessToken.tokenString
             )
             let result = try await Auth.auth().signIn(with: credential)
-            let firebaseUser = result.user
-            print("##user『\(firebaseUser.uid)』 signed in with email 『\(firebaseUser.email ?? "unknown")』")
+            let fUser = result.user
+            let userID = fUser.uid
+            //TODO: 後に書き換え。ここでIDを保存
+            userDefaultsMangaer.userIDSave(userID: userID)
+            print("##user『\(userID)』 signed in with email 『\(userID ?? "unknown")』")
             return true
         }
         catch {
