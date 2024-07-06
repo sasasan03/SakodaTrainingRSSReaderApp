@@ -11,16 +11,13 @@ struct UserDefaultsManager {
     static let key = "key"
     let userDefaults = UserDefaults.standard
     
-//    func primitiveSave(userID: String) {
-//        userDefaults.set(userID, forKey: UserDefaultsManager.key)
-//    }
-//
-//    func primitiveLoad() -> String {
-//        guard let userID = userDefaults.string(forKey: UserDefaultsManager.key) else {
-//            return "not found userID"
-//        }
-//        return userID
-//    }
+    func userIDSave(userID: String) {
+        userDefaults.set(userID, forKey: UserDefaultsManager.key)
+    }
+
+    func userIDLoad() -> String? {
+        return userDefaults.string(forKey: UserDefaultsManager.key)
+    }
     
     func saveCredentials(authenticationState: AuthenticationState) throws {
         let jsonData = try JSONEncoder().encode(authenticationState)
