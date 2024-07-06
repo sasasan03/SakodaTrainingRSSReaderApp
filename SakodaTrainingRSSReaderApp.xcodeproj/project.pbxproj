@@ -135,10 +135,8 @@
 			children = (
 				692E35832C170C9F00B14E0D /* AppDelegate.swift */,
 				692E35852C170C9F00B14E0D /* SceneDelegate.swift */,
-				692E35892C170C9F00B14E0D /* Main.storyboard */,
-				692E35872C170C9F00B14E0D /* ViewController.swift */,
-				69EA40772C391E97000EBB0C /* RSSFeedSelectionView.storyboard */,
-				69EA406A2C3916B9000EBB0C /* RSSFeedSelectionViewController.swift */,
+				69EA407A2C3932DC000EBB0C /* LoginVIew */,
+				69EA407B2C3932F4000EBB0C /* RSSFeedSelectionView */,
 				69D558582C218D5100684373 /* SuccessViewController.swift */,
 				69D558612C219E4D00684373 /* FirebaseClient.swift */,
 				69D558672C2448EA00684373 /* GoogleSignInClient.swift */,
@@ -186,6 +184,24 @@
 				692E35BC2C17142600B14E0D /* Data */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		69EA407A2C3932DC000EBB0C /* LoginVIew */ = {
+			isa = PBXGroup;
+			children = (
+				692E35892C170C9F00B14E0D /* Main.storyboard */,
+				692E35872C170C9F00B14E0D /* ViewController.swift */,
+			);
+			path = LoginVIew;
+			sourceTree = "<group>";
+		};
+		69EA407B2C3932F4000EBB0C /* RSSFeedSelectionView */ = {
+			isa = PBXGroup;
+			children = (
+				69EA40772C391E97000EBB0C /* RSSFeedSelectionView.storyboard */,
+				69EA406A2C3916B9000EBB0C /* RSSFeedSelectionViewController.swift */,
+			);
+			path = RSSFeedSelectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
