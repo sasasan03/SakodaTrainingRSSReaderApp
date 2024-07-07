@@ -31,8 +31,8 @@
 		69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558612C219E4D00684373 /* FirebaseClient.swift */; };
 		69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558672C2448EA00684373 /* GoogleSignInClient.swift */; };
 		69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558692C26C32200684373 /* UserDefaultsManager.swift */; };
-		69EA406D2C3916B9000EBB0C /* RSSFeedSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA406A2C3916B9000EBB0C /* RSSFeedSelectionViewController.swift */; };
-		69EA40792C391E97000EBB0C /* RSSFeedSelectionView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40772C391E97000EBB0C /* RSSFeedSelectionView.storyboard */; };
+		69EA40862C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */; };
+		69EA40872C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40842C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +75,8 @@
 		69D558612C219E4D00684373 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		69D558672C2448EA00684373 /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
 		69D558692C26C32200684373 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
-		69EA406A2C3916B9000EBB0C /* RSSFeedSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSelectionViewController.swift; sourceTree = "<group>"; };
-		69EA40782C391E97000EBB0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SakodaTrainingRSSReaderApp/Base.lproj/RSSFeedSelectionView.storyboard; sourceTree = "<group>"; };
+		69EA40842C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSelectionViewController.swift; sourceTree = "<group>"; };
+		69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSFeedSelectionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,8 +198,8 @@
 		69EA407B2C3932F4000EBB0C /* RSSFeedSelectionView */ = {
 			isa = PBXGroup;
 			children = (
-				69EA40772C391E97000EBB0C /* RSSFeedSelectionView.storyboard */,
-				69EA406A2C3916B9000EBB0C /* RSSFeedSelectionViewController.swift */,
+				69EA40842C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift */,
+				69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */,
 			);
 			path = RSSFeedSelectionView;
 			sourceTree = "<group>";
@@ -322,9 +322,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69EA40862C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib in Resources */,
 				692E358D2C170CA000B14E0D /* Assets.xcassets in Resources */,
 				692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */,
-				69EA40792C391E97000EBB0C /* RSSFeedSelectionView.storyboard in Resources */,
 				692E35902C170CA000B14E0D /* Base in Resources */,
 				692E358B2C170C9F00B14E0D /* Base in Resources */,
 			);
@@ -351,11 +351,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69EA40872C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift in Sources */,
 				692E35882C170C9F00B14E0D /* ViewController.swift in Sources */,
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
 				69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */,
 				692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */,
-				69EA406D2C3916B9000EBB0C /* RSSFeedSelectionViewController.swift in Sources */,
 				692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */,
 				692E35862C170C9F00B14E0D /* SceneDelegate.swift in Sources */,
 				692E35B62C1713A100B14E0D /* RSSFeedFetcher.swift in Sources */,
@@ -413,14 +413,6 @@
 				692E358F2C170CA000B14E0D /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		69EA40772C391E97000EBB0C /* RSSFeedSelectionView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				69EA40782C391E97000EBB0C /* Base */,
-			);
-			name = RSSFeedSelectionView.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

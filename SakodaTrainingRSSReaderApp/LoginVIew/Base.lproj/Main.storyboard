@@ -41,9 +41,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="こちら"/>
-                                <connections>
-                                    <action selector="didTapToSignViewButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uXz-VI-40I"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -127,14 +124,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qEP-q9-aY3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4208" y="-2"/>
-        </scene>
-        <!--RSSFeedSelectionView-->
-        <scene sceneID="9ni-5R-iTw">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="RSSFeedSelectionView" storyboardName="RSSFeedSelectionView" referencedIdentifier="RSSFeedSelectionView" id="FtF-tx-oTE" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mvo-0V-TqO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1661" y="-2"/>
         </scene>
     </scenes>
     <resources>

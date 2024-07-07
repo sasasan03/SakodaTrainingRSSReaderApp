@@ -42,10 +42,7 @@ class ViewController: UIViewController {
                             }
                             self.navigationController?.pushViewController(successView, animated: true)
                         } else {
-                            guard let rssFeedSelectionVC = self.storyboard?.instantiateViewController(
-                                withIdentifier: RSSFeedSelectionViewController.storyboardID) else {
-                                return print("?? The specified Storyboard cannot be found.(UserSignUpViewController.storyboardID)")
-                            }
+                            let rssFeedSelectionVC = RSSFeedSelectionViewController()
                             self.navigationController?.pushViewController(rssFeedSelectionVC, animated: true)
                         }
                     } else {
