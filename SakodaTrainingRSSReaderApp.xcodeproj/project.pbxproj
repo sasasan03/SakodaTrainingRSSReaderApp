@@ -33,6 +33,8 @@
 		69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558692C26C32200684373 /* UserDefaultsManager.swift */; };
 		69EA40862C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */; };
 		69EA40872C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40842C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift */; };
+		69EA408E2C3A90A5000EBB0C /* MailAndPassworViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA408D2C3A90A5000EBB0C /* MailAndPassworViewController.xib */; };
+		69EA408F2C3A90A5000EBB0C /* MailAndPassworViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA408C2C3A90A5000EBB0C /* MailAndPassworViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		69D558692C26C32200684373 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		69EA40842C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSelectionViewController.swift; sourceTree = "<group>"; };
 		69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSFeedSelectionViewController.xib; sourceTree = "<group>"; };
+		69EA408C2C3A90A5000EBB0C /* MailAndPassworViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailAndPassworViewController.swift; sourceTree = "<group>"; };
+		69EA408D2C3A90A5000EBB0C /* MailAndPassworViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailAndPassworViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 				692E35852C170C9F00B14E0D /* SceneDelegate.swift */,
 				69EA407A2C3932DC000EBB0C /* LoginVIew */,
 				69EA407B2C3932F4000EBB0C /* RSSFeedSelectionView */,
+				69EA408B2C3A9065000EBB0C /* MailAndPasswordLoginView */,
 				69D558582C218D5100684373 /* SuccessViewController.swift */,
 				69D558612C219E4D00684373 /* FirebaseClient.swift */,
 				69D558672C2448EA00684373 /* GoogleSignInClient.swift */,
@@ -202,6 +207,15 @@
 				69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */,
 			);
 			path = RSSFeedSelectionView;
+			sourceTree = "<group>";
+		};
+		69EA408B2C3A9065000EBB0C /* MailAndPasswordLoginView */ = {
+			isa = PBXGroup;
+			children = (
+				69EA408C2C3A90A5000EBB0C /* MailAndPassworViewController.swift */,
+				69EA408D2C3A90A5000EBB0C /* MailAndPassworViewController.xib */,
+			);
+			path = MailAndPasswordLoginView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,6 +340,7 @@
 				692E358D2C170CA000B14E0D /* Assets.xcassets in Resources */,
 				692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */,
 				692E35902C170CA000B14E0D /* Base in Resources */,
+				69EA408E2C3A90A5000EBB0C /* MailAndPassworViewController.xib in Resources */,
 				692E358B2C170C9F00B14E0D /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69EA408F2C3A90A5000EBB0C /* MailAndPassworViewController.swift in Sources */,
 				69EA40872C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift in Sources */,
 				692E35882C170C9F00B14E0D /* ViewController.swift in Sources */,
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
