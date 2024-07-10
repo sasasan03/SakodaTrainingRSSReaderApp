@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 enum AuthenticationState: String, Codable {
     case unauthenticated
@@ -55,7 +56,7 @@ class FirebaseClient{
         }
     }
     
-    func signIn() async throws -> Bool {
+    func googleSignIn() async throws -> Bool {
         do {
             let userAuthentication = try await googleSignInClient.googleSignInResult()
             let user = userAuthentication.user
@@ -79,6 +80,16 @@ class FirebaseClient{
             print("##sign in error",error.localizedDescription)
             return false
         }
+    }
+    
+    func mailSignUp(email: String?, password: String?){
+        guard let email else {
+            return print("#mail text field is nil")
+        }
+        guard let password else {
+            return print("#password text field is nil ")
+        }
+        Auth.auth().createUser(withEmail: email, password: password)
     }
     
     func signOut(){

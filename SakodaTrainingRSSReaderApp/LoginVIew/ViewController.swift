@@ -37,7 +37,7 @@ class ViewController: UIViewController {
             self.showActivityIndicator()
             Task {
                 do {
-                    let signInResult = try await self.client.signIn()
+                    let signInResult = try await self.client.googleSignIn()
                     if signInResult {
                         // 初回ログイン時とそれ以降のログインの遷移を管理。
                         if self.userID != nil {
