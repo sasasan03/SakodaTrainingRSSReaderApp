@@ -35,13 +35,13 @@ class FirebaseClient{
     func registerAuthStateHandler() {
         if authStateHandler == nil {
             authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
-                guard let user = user else { return print("?A? this user is not logged in") }
+                guard let user = user else { return print("🍹 this user is not logged in") }
                 let uid = user.uid
                 self.userDefaultsMangaer.userIDSave(userID: uid)
                 //          self.authenticationState = user == nil ? .unauthenticated : .authenticated
             }
         } else {
-            print("# authStateHandlerは値を保持しています")
+            print("# authStateHandler has Listener")
         }
     }
     
@@ -50,9 +50,9 @@ class FirebaseClient{
         if let authStateHandler = authStateHandler {
             Auth.auth().removeStateDidChangeListener(authStateHandler)
             self.authStateHandler = nil
-            print("# authStateHandlerを削除しました")
+            print("# delete authStateHandler")
         } else {
-            print("# authStateHandlerは登録されていません")
+            print("# has no authStateHandler")
         }
     }
     
@@ -82,22 +82,44 @@ class FirebaseClient{
         }
     }
     
-    func mailSignUp(email: String?, password: String?){
-        guard let email else {
-            return print("#mail text field is nil")
+    func mailPasswordSingIn(mail: String?, password: String?) async throws -> Bool {
+        // TODO: エラー処理の記述を行う
+        guard let mail else {
+            return false
         }
         guard let password else {
-            return print("#password text field is nil ")
+            return false
+        }
+        
+        do {
+            let authDataResult = try await Auth.auth().signIn(withEmail: mail, password: password)
+            //🍔uidを保持しているか、いないかでBoolを返す
+//            let uid = authDataResult.user.uid
+            return true
+        }
+        catch {
+            print("🍹 Sign in method failed")
+            return false
+        }
+    }
+    
+    func mailPasswordSignUp(email: String?, password: String?){
+        guard let email else {
+            return print("🍹 mail is nil")
+        }
+        guard let password else {
+            return print("#🍹 password is nil ")
         }
         Auth.auth().createUser(withEmail: email, password: password)
     }
+    
     
     func signOut(){
         do {
             try Auth.auth().signOut()
         }
         catch {
-            print("##sign out error")
+            print("🍹 sign out error")
         }
     }
     

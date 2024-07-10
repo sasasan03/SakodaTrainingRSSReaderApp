@@ -21,6 +21,9 @@ class ViewController: UIViewController {
     let activityIndicator = UIActivityIndicatorView(style: .large)
     var userID: String?
     
+    @IBOutlet weak var inputMailTextField: UITextField!
+    @IBOutlet weak var inputPasswordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userID = userDefaultsManager.userIDLoad()
@@ -29,6 +32,26 @@ class ViewController: UIViewController {
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
     }
+    
+    @IBAction func didTapMailPasswordSignInButton(_ sender: Any) {
+        Task {
+            do {
+                let signInResult = try await client.mailPasswordSingIn(
+                    mail: inputMailTextField.text,
+                    password: inputPasswordTextField.text
+                )
+                if signInResult {
+                    
+                } else {
+                    print("# ")
+                }
+            }
+            catch {
+                print("🍹The email or password is incorrect.")
+            }
+        }
+    }
+    
     
     @IBOutlet weak var GoogleSignInButton: UIButton!
     
@@ -61,7 +84,6 @@ class ViewController: UIViewController {
             }
         }, for: .touchUpInside)
     }
-    
     
     @IBAction func didTapMailSignUpViewButton(_ sender: Any) {
         let mailSignUpVC = MailSingUpViewController()

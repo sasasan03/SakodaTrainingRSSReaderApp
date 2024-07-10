@@ -19,7 +19,7 @@ class MailSingUpViewController: UIViewController {
     }
     
     @IBAction func didTapCreatUserButton(_ sender: Any) {
-        firebaseClient.mailSignUp(email: inputMailTextField.text, password: inputPasswordTextField.text)
+        firebaseClient.mailPasswordSignUp(email: inputMailTextField.text, password: inputPasswordTextField.text)
         self.dismiss(animated: true, completion: nil)
     }
 }
