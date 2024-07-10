@@ -55,11 +55,6 @@ class FirebaseClient{
         }
     }
     
-    func hasUserEverSignedIn() -> Bool {
-        
-        return false
-    }
-    
     func signIn() async throws -> Bool {
         do {
             let userAuthentication = try await googleSignInClient.googleSignInResult()

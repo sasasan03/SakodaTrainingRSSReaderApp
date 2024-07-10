@@ -40,7 +40,7 @@ class ViewController: UIViewController {
                     let signInResult = try await self.client.signIn()
                     if signInResult {
                         // 初回ログイン時とそれ以降のログインの遷移を管理。
-                        if self.userID == nil {
+                        if self.userID != nil {
                             guard let successView = self.storyboard?.instantiateViewController(
                                 withIdentifier: SuccessViewController.storyboardID) else {
                                 return print("?? The specified Storyboard cannot be found.(SuccessViewController.storyboardID)")
