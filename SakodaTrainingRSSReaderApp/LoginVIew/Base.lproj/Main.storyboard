@@ -41,6 +41,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="こちら"/>
+                                <connections>
+                                    <action selector="didTapMailSignUpViewButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ydH-S0-ETq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

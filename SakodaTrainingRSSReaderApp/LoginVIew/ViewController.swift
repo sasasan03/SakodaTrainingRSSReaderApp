@@ -62,6 +62,12 @@ class ViewController: UIViewController {
         }, for: .touchUpInside)
     }
     
+    
+    @IBAction func didTapMailSignUpViewButton(_ sender: Any) {
+        let mailSignUpVC = MailSingUpViewController()
+        self.present(mailSignUpVC, animated: true)
+    }
+    
     // インジケーターを表示にする
     private func showActivityIndicator() {
         activityIndicator.startAnimating()
