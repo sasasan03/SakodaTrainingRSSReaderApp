@@ -103,16 +103,10 @@ class FirebaseClient{
         }
     }
     
-    func mailPasswordSignUp(email: String?, password: String?){
-        guard let email else {
-            return print("🍹 mail is nil")
-        }
-        guard let password else {
-            return print("#🍹 password is nil ")
-        }
-        Auth.auth().createUser(withEmail: email, password: password)
+    func mailPasswordSignUp(mail: String, password: String, completion: () -> Void){
+        Auth.auth().createUser(withEmail: mail, password: password)
+        completion()
     }
-    
     
     func signOut(){
         do {

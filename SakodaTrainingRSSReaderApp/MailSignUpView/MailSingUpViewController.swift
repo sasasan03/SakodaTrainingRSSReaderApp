@@ -19,7 +19,14 @@ class MailSingUpViewController: UIViewController {
     }
     
     @IBAction func didTapCreatUserButton(_ sender: Any) {
-        firebaseClient.mailPasswordSignUp(email: inputMailTextField.text, password: inputPasswordTextField.text)
-        self.dismiss(animated: true, completion: nil)
+        guard let mail = inputMailTextField.text,
+              let password = inputPasswordTextField.text,
+              !mail.isEmpty && !password.isEmpty else {
+            //TODO: エラー処理を追加
+            return print("🍹mail and password is invalid value.")
+        }
+        firebaseClient.mailPasswordSignUp(mail: mail, password: password) {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
