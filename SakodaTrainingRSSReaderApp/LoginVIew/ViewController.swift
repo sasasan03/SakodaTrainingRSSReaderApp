@@ -52,39 +52,8 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBOutlet weak var GoogleSignInButton: UIButton!
-    
-    private func setupGoogleSignInButton(){
-        GoogleSignInButton.addAction(UIAction { _ in
-            self.showActivityIndicator()
-            Task {
-                do {
-                    let signInResult = try await self.client.googleSignIn()
-                    if signInResult {
-                        // 初回ログイン時とそれ以降のログインの遷移を管理。
-                        if self.userID != nil {
-                            guard let successView = self.storyboard?.instantiateViewController(
-                                withIdentifier: SuccessViewController.storyboardID) else {
-                                return print("?? The specified Storyboard cannot be found.(SuccessViewController.storyboardID)")
-                            }
-                            self.hideActivityIndicator()
-                            self.navigationController?.pushViewController(successView, animated: true)
-                        } else {
-                            let rssFeedSelectionVC = RSSFeedSelectionViewController()
-                            self.hideActivityIndicator()
-                            self.navigationController?.pushViewController(rssFeedSelectionVC, animated: true)
-                        }
-                    } else {
-                        print("#signn  dissmiss")
-                    }
-                } catch {
-                    print("#error#", error.localizedDescription)
-                }
-            }
-        }, for: .touchUpInside)
-    }
-    
+        
     @IBAction func didTapMailSignUpViewButton(_ sender: Any) {
         let mailSignUpVC = MailSingUpViewController()
         self.present(mailSignUpVC, animated: true)
@@ -102,5 +71,36 @@ extension ViewController {
     private func hideActivityIndicator() {
         activityIndicator.stopAnimating()
         view.isUserInteractionEnabled = true
+    }
+    // Googleアカウントでログイン
+    // サインアップの場合はRSSFeedを選択する画面へ
+    // ２回目以降のログインの場合はRSSFeed一覧画面へ遷移する
+    private func setupGoogleSignInButton(){
+        GoogleSignInButton.addAction(UIAction { _ in
+            self.showActivityIndicator()
+            Task {
+                do {
+                    let signInResult = try await self.client.googleSignIn()
+                    if signInResult {
+                        if self.userID != nil { // サインアップ時の遷移
+                            guard let successView = self.storyboard?.instantiateViewController(
+                                withIdentifier: SuccessViewController.storyboardID) else {
+                                return print("?? The specified Storyboard cannot be found.(SuccessViewController.storyboardID)")
+                            }
+                            self.hideActivityIndicator()
+                            self.navigationController?.pushViewController(successView, animated: true)
+                        } else { // ログイン時の遷移
+                            let rssFeedSelectionVC = RSSFeedSelectionViewController()
+                            self.hideActivityIndicator()
+                            self.navigationController?.pushViewController(rssFeedSelectionVC, animated: true)
+                        }
+                    } else {
+                        print("#signn  dissmiss")
+                    }
+                } catch {
+                    print("#error#", error.localizedDescription)
+                }
+            }
+        }, for: .touchUpInside)
     }
 }
