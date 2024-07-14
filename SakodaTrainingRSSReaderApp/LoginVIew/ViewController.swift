@@ -89,7 +89,9 @@ class ViewController: UIViewController {
         let mailSignUpVC = MailSingUpViewController()
         self.present(mailSignUpVC, animated: true)
     }
-    
+}
+
+extension ViewController {
     // インジケーターを表示にする
     private func showActivityIndicator() {
         activityIndicator.startAnimating()
@@ -101,5 +103,4 @@ class ViewController: UIViewController {
         activityIndicator.stopAnimating()
         view.isUserInteractionEnabled = true
     }
-    
 }
