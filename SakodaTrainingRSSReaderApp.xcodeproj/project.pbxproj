@@ -37,6 +37,14 @@
 		69EA40932C3A956C000EBB0C /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 69EA40922C3A956C000EBB0C /* FirebaseFirestoreSwift */; };
 		69EA40962C3E84B5000EBB0C /* MailSingUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40952C3E84B5000EBB0C /* MailSingUpViewController.xib */; };
 		69EA40972C3E84B5000EBB0C /* MailSingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40942C3E84B5000EBB0C /* MailSingUpViewController.swift */; };
+		69EA409B2C43A0F4000EBB0C /* FeedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40992C43A0F4000EBB0C /* FeedListViewController.swift */; };
+		69EA409C2C43A0F4000EBB0C /* FeedListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA409A2C43A0F4000EBB0C /* FeedListViewController.xib */; };
+		69EA40A22C43A15F000EBB0C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40A02C43A15F000EBB0C /* SettingsViewController.swift */; };
+		69EA40A32C43A15F000EBB0C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40A12C43A15F000EBB0C /* SettingsViewController.xib */; };
+		69EA40A62C43A199000EBB0C /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40A42C43A199000EBB0C /* SettingsDetailViewController.swift */; };
+		69EA40A72C43A199000EBB0C /* SettingsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40A52C43A199000EBB0C /* SettingsDetailViewController.xib */; };
+		69EA40AB2C43A1C7000EBB0C /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40A92C43A1C7000EBB0C /* ArticleViewController.swift */; };
+		69EA40AC2C43A1C7000EBB0C /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40AA2C43A1C7000EBB0C /* ArticleViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +91,14 @@
 		69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSFeedSelectionViewController.xib; sourceTree = "<group>"; };
 		69EA40942C3E84B5000EBB0C /* MailSingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailSingUpViewController.swift; sourceTree = "<group>"; };
 		69EA40952C3E84B5000EBB0C /* MailSingUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MailSingUpViewController.xib; sourceTree = "<group>"; };
+		69EA40992C43A0F4000EBB0C /* FeedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListViewController.swift; sourceTree = "<group>"; };
+		69EA409A2C43A0F4000EBB0C /* FeedListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedListViewController.xib; sourceTree = "<group>"; };
+		69EA40A02C43A15F000EBB0C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		69EA40A12C43A15F000EBB0C /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		69EA40A42C43A199000EBB0C /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewController.swift; sourceTree = "<group>"; };
+		69EA40A52C43A199000EBB0C /* SettingsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsDetailViewController.xib; sourceTree = "<group>"; };
+		69EA40A92C43A1C7000EBB0C /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		69EA40AA2C43A1C7000EBB0C /* ArticleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,10 +160,14 @@
 				692E35832C170C9F00B14E0D /* AppDelegate.swift */,
 				692E35852C170C9F00B14E0D /* SceneDelegate.swift */,
 				69EA407A2C3932DC000EBB0C /* LoginVIew */,
-				69EA407B2C3932F4000EBB0C /* RSSFeedSelectionView */,
 				69EA40982C3E84C4000EBB0C /* MailSignUpView */,
-				69D558582C218D5100684373 /* SuccessViewController.swift */,
+				69EA407B2C3932F4000EBB0C /* RSSFeedSelectionView */,
+				69EA409D2C43A0FB000EBB0C /* FeedListView */,
+				69EA40A82C43A1AA000EBB0C /* ArticleView */,
+				69EA409E2C43A129000EBB0C /* SettingsView */,
+				69EA409F2C43A13A000EBB0C /* SettingsDetailView */,
 				69D558612C219E4D00684373 /* FirebaseClient.swift */,
+				69D558582C218D5100684373 /* SuccessViewController.swift */,
 				69D558672C2448EA00684373 /* GoogleSignInClient.swift */,
 				69D558692C26C32200684373 /* UserDefaultsManager.swift */,
 				692E35BD2C17144900B14E0D /* Model */,
@@ -220,6 +240,42 @@
 				69EA40952C3E84B5000EBB0C /* MailSingUpViewController.xib */,
 			);
 			path = MailSignUpView;
+			sourceTree = "<group>";
+		};
+		69EA409D2C43A0FB000EBB0C /* FeedListView */ = {
+			isa = PBXGroup;
+			children = (
+				69EA40992C43A0F4000EBB0C /* FeedListViewController.swift */,
+				69EA409A2C43A0F4000EBB0C /* FeedListViewController.xib */,
+			);
+			path = FeedListView;
+			sourceTree = "<group>";
+		};
+		69EA409E2C43A129000EBB0C /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				69EA40A02C43A15F000EBB0C /* SettingsViewController.swift */,
+				69EA40A12C43A15F000EBB0C /* SettingsViewController.xib */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		69EA409F2C43A13A000EBB0C /* SettingsDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				69EA40A42C43A199000EBB0C /* SettingsDetailViewController.swift */,
+				69EA40A52C43A199000EBB0C /* SettingsDetailViewController.xib */,
+			);
+			path = SettingsDetailView;
+			sourceTree = "<group>";
+		};
+		69EA40A82C43A1AA000EBB0C /* ArticleView */ = {
+			isa = PBXGroup;
+			children = (
+				69EA40A92C43A1C7000EBB0C /* ArticleViewController.swift */,
+				69EA40AA2C43A1C7000EBB0C /* ArticleViewController.xib */,
+			);
+			path = ArticleView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,8 +400,12 @@
 			files = (
 				69EA40862C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib in Resources */,
 				692E358D2C170CA000B14E0D /* Assets.xcassets in Resources */,
+				69EA409C2C43A0F4000EBB0C /* FeedListViewController.xib in Resources */,
+				69EA40A72C43A199000EBB0C /* SettingsDetailViewController.xib in Resources */,
+				69EA40A32C43A15F000EBB0C /* SettingsViewController.xib in Resources */,
 				692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */,
 				69EA40962C3E84B5000EBB0C /* MailSingUpViewController.xib in Resources */,
+				69EA40AC2C43A1C7000EBB0C /* ArticleViewController.xib in Resources */,
 				692E35902C170CA000B14E0D /* Base in Resources */,
 				692E358B2C170C9F00B14E0D /* Base in Resources */,
 			);
@@ -372,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69EA40A62C43A199000EBB0C /* SettingsDetailViewController.swift in Sources */,
 				69EA40872C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift in Sources */,
 				692E35882C170C9F00B14E0D /* ViewController.swift in Sources */,
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
@@ -380,10 +441,13 @@
 				69EA40972C3E84B5000EBB0C /* MailSingUpViewController.swift in Sources */,
 				692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */,
 				692E35862C170C9F00B14E0D /* SceneDelegate.swift in Sources */,
+				69EA40A22C43A15F000EBB0C /* SettingsViewController.swift in Sources */,
 				692E35B62C1713A100B14E0D /* RSSFeedFetcher.swift in Sources */,
+				69EA40AB2C43A1C7000EBB0C /* ArticleViewController.swift in Sources */,
 				69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */,
 				69D558592C218D5200684373 /* SuccessViewController.swift in Sources */,
 				692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */,
+				69EA409B2C43A0F4000EBB0C /* FeedListViewController.swift in Sources */,
 				69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
