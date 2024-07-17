@@ -56,7 +56,9 @@ class ViewController: UIViewController {
         
     @IBAction func didTapMailSignUpViewButton(_ sender: Any) {
         let mailSignUpVC = MailSingUpViewController()
-        self.present(mailSignUpVC, animated: true)
+        let navigationViewController = UINavigationController(rootViewController: mailSignUpVC)
+        navigationViewController.modalPresentationStyle = .automatic
+        self.present(navigationViewController, animated: true)
     }
 }
 
