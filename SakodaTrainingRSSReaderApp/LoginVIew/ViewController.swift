@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userID = userDefaultsManager.userIDLoad()
+        userID = userDefaultsManager.loadUserId()
         setupGoogleSignInButton()
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true

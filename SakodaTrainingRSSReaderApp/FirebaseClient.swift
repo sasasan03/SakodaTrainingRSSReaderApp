@@ -37,7 +37,7 @@ class FirebaseClient{
             authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
                 guard let user = user else { return print("🍹 this user is not logged in") }
                 let uid = user.uid
-                self.userDefaultsMangaer.userIDSave(userID: uid)
+                self.userDefaultsMangaer.saveUserId(userID: uid)
                 //          self.authenticationState = user == nil ? .unauthenticated : .authenticated
             }
         } else {
@@ -72,7 +72,7 @@ class FirebaseClient{
             let fUser = result.user
             let userID = fUser.uid
             //TODO: 後に書き換え。ここでIDを保存
-            userDefaultsMangaer.userIDSave(userID: userID)
+            userDefaultsMangaer.saveUserId(userID: userID)
             print("##user『\(userID)』 signed in with email 『\(userID ?? "unknown")』")
             return true
         }
