@@ -9,9 +9,10 @@ import UIKit
 
 class RSSFeedSelectionViewController: UIViewController {
     
+    let rssFeedTopicsData = RSSFeedTopicsData()
+    var dataSource:[Topic] = []
+    var selectedTopics: [Topic] = []
     @IBOutlet weak var rssFeedTopicsTableView: UITableView!
-    
-    let dataSource = ["りんご","ぶどう","なし","みかん"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,8 @@ class RSSFeedSelectionViewController: UIViewController {
             UINib(nibName: RSSFeedSelectionTableViewCell.cellNibName, bundle: nil),
             forCellReuseIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier
         )
+        dataSource = rssFeedTopicsData.topicsData
+        rssFeedTopicsTableView.reloadData()
     }
 }
 
@@ -31,9 +34,21 @@ extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier, for: indexPath) as! RSSFeedSelectionTableViewCell
-        cell.configureCellContent()
+        cell.configureCellContent(title: dataSource[indexPath.row].title)
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let selectedTopic = dataSource[indexPath.row]
+            
+            if let index = selectedTopics.firstIndex(of: selectedTopic) {
+                selectedTopics.remove(at: index)
+            } else {
+                selectedTopics.append(selectedTopic)
+            }
+            for topic in selectedTopics {
+                print("----------------")
+                print("Selected Topic: \(topic.title)")
+            }
+        }
 }

@@ -29,6 +29,7 @@
 		692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 692E36C52C1D716600B14E0D /* GoogleService-Info.plist */; };
 		692E36C92C1D758B00B14E0D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 692E36C82C1D758B00B14E0D /* GoogleSignIn */; };
 		692E36CB2C1D758B00B14E0D /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 692E36CA2C1D758B00B14E0D /* GoogleSignInSwift */; };
+		696669DE2C4E6BDC00AE028A /* RSSFeedTopicsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696669DD2C4E6BDC00AE028A /* RSSFeedTopicsData.swift */; };
 		69D558592C218D5200684373 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558582C218D5100684373 /* SuccessViewController.swift */; };
 		69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558612C219E4D00684373 /* FirebaseClient.swift */; };
 		69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558672C2448EA00684373 /* GoogleSignInClient.swift */; };
@@ -87,6 +88,7 @@
 		692E35BA2C17140600B14E0D /* RSSFeedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedEntity.swift; sourceTree = "<group>"; };
 		692E35BE2C17147200B14E0D /* RSSFeedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedError.swift; sourceTree = "<group>"; };
 		692E36C52C1D716600B14E0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		696669DD2C4E6BDC00AE028A /* RSSFeedTopicsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedTopicsData.swift; sourceTree = "<group>"; };
 		69D558582C218D5100684373 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
 		69D558612C219E4D00684373 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		69D558672C2448EA00684373 /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */,
 				6915A7532C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift */,
 				6915A7542C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib */,
+				696669DD2C4E6BDC00AE028A /* RSSFeedTopicsData.swift */,
 			);
 			path = RSSFeedSelectionView;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
 				69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */,
 				692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */,
+				696669DE2C4E6BDC00AE028A /* RSSFeedTopicsData.swift in Sources */,
 				69EA40972C3E84B5000EBB0C /* MailSingUpViewController.swift in Sources */,
 				692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */,
 				692E35862C170C9F00B14E0D /* SceneDelegate.swift in Sources */,
