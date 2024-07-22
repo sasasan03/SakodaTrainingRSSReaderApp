@@ -8,8 +8,9 @@
 import Foundation
 
 struct UserDefaultsManager {
+    static let shared = UserDefaultsManager()
     static let key = "key"
-    let userDefaults = UserDefaults.standard
+    private let userDefaults = UserDefaults.standard
     
     func saveUserId(userID: String) {
         userDefaults.set(userID, forKey: UserDefaultsManager.key)
