@@ -11,20 +11,28 @@ class RSSFeedSelectionViewController: UIViewController {
     
     @IBOutlet weak var rssFeedTopicsTableView: UITableView!
     
+    let dataSource = ["りんご","ぶどう","なし","みかん"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         rssFeedTopicsTableView.dataSource = self
         rssFeedTopicsTableView.delegate = self
+        rssFeedTopicsTableView.register(
+            UINib(nibName: RSSFeedSelectionTableViewCell.cellNibName, bundle: nil),
+            forCellReuseIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier
+        )
     }
 }
 
 extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier, for: indexPath) as! RSSFeedSelectionTableViewCell
+        cell.configureCellContent()
+        return cell
     }
     
     
