@@ -8,23 +8,24 @@
 import Foundation
 
 struct UserDefaultsManager {
+    static let shared = UserDefaultsManager()
     static let key = "key"
-    let userDefaults = UserDefaults.standard
+    private let userDefaults = UserDefaults.standard
     
-    func userIDSave(userID: String) {
+    func saveUserId(userID: String) {
         userDefaults.set(userID, forKey: UserDefaultsManager.key)
     }
 
-    func userIDLoad() -> String? {
+    func loadUserId() -> String? {
         return userDefaults.string(forKey: UserDefaultsManager.key)
     }
     
-    func saveCredentials(authenticationState: AuthenticationState) throws {
+    func saveAuthState(authenticationState: AuthenticationState) throws {
         let jsonData = try JSONEncoder().encode(authenticationState)
         userDefaults.set(jsonData, forKey: UserDefaultsManager.key)
     }
     
-    func loadCredentials() throws -> AuthenticationState {
+    func loadAuthState() throws -> AuthenticationState {
         guard let jsonData = userDefaults.data(forKey: UserDefaultsManager.key) else {
             return AuthenticationState.unauthenticated
         }
