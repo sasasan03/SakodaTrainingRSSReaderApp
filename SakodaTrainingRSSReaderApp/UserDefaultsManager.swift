@@ -20,6 +20,19 @@ struct UserDefaultsManager {
         return userDefaults.string(forKey: UserDefaultsManager.key)
     }
     
+    func register(topic: [Topic]) {
+        if let encoded = try? JSONEncoder().encode(topic) {
+            userDefaults.set(encoded, forKey: UserDefaultsManager.key)
+        }
+    }
+    
+    var registeredTopics: [Topic]? {
+        if let savedUserData = userDefaults.object(forKey: UserDefaultsManager.key) as? Data {
+            return try? JSONDecoder().decode([Topic].self, from: savedUserData)
+        }
+            return nil
+    }
+    
     func saveAuthState(authenticationState: AuthenticationState) throws {
         let jsonData = try JSONEncoder().encode(authenticationState)
         userDefaults.set(jsonData, forKey: UserDefaultsManager.key)
