@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6915A7552C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6915A7542C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib */; };
+		6915A7562C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6915A7532C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift */; };
 		692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35832C170C9F00B14E0D /* AppDelegate.swift */; };
 		692E35862C170C9F00B14E0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35852C170C9F00B14E0D /* SceneDelegate.swift */; };
 		692E35882C170C9F00B14E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35872C170C9F00B14E0D /* ViewController.swift */; };
@@ -66,6 +68,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6915A7532C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		6915A7542C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSFeedSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		692E35802C170C9F00B14E0D /* SakodaTrainingRSSReaderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SakodaTrainingRSSReaderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		692E35832C170C9F00B14E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		692E35852C170C9F00B14E0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +236,9 @@
 			children = (
 				69EA40842C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift */,
 				69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */,
+				6915A7532C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift */,
+				6915A7542C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib */,
+				696669DD2C4E6BDC00AE028A /* RSSFeedTopicsData.swift */,
 			);
 			path = RSSFeedSelectionView;
 			sourceTree = "<group>";
@@ -411,6 +418,7 @@
 				69EA40AC2C43A1C7000EBB0C /* ArticleViewController.xib in Resources */,
 				692E35902C170CA000B14E0D /* Base in Resources */,
 				692E358B2C170C9F00B14E0D /* Base in Resources */,
+				6915A7552C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +449,7 @@
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
 				69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */,
 				692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */,
+				696669DE2C4E6BDC00AE028A /* RSSFeedTopicsData.swift in Sources */,
 				69EA40972C3E84B5000EBB0C /* MailSingUpViewController.swift in Sources */,
 				692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */,
 				696669E02C4FBD2000AE028A /* TopicEntity.swift in Sources */,
@@ -449,6 +458,7 @@
 				692E35B62C1713A100B14E0D /* RSSFeedFetcher.swift in Sources */,
 				69EA40AB2C43A1C7000EBB0C /* ArticleViewController.swift in Sources */,
 				69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */,
+				6915A7562C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift in Sources */,
 				69D558592C218D5200684373 /* SuccessViewController.swift in Sources */,
 				692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */,
 				69EA409B2C43A0F4000EBB0C /* FeedListViewController.swift in Sources */,
