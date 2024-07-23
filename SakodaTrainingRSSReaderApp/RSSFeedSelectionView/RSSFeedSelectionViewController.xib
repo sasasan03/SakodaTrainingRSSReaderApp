@@ -29,7 +29,11 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <items>
                         <navigationItem title="News feed selection screen" id="vTA-jK-whp">
-                            <barButtonItem key="rightBarButtonItem" systemItem="save" id="bP7-AU-k8Z"/>
+                            <barButtonItem key="rightBarButtonItem" systemItem="save" id="bP7-AU-k8Z">
+                                <connections>
+                                    <action selector="didTapSelectNewsFeedSave:" destination="-1" id="mih-46-YFA"/>
+                                </connections>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>

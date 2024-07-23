@@ -14,6 +14,9 @@ class RSSFeedSelectionViewController: UIViewController {
     var selectedTopics: [Topic] = []
     @IBOutlet weak var rssFeedTopicsTableView: UITableView!
     
+    @IBAction func didTapSelectNewsFeedSave(_ sender: Any) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         rssFeedTopicsTableView.dataSource = self
