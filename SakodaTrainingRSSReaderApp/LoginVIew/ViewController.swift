@@ -56,7 +56,10 @@ class ViewController: UIViewController {
         
     @IBAction func didTapMailSignUpViewButton(_ sender: Any) {
         let mailSignUpVC = MailSingUpViewController()
-        self.present(mailSignUpVC, animated: true)
+        mailSignUpVC.title = "新規登録画面"
+        let navigationViewController = UINavigationController(rootViewController: mailSignUpVC)
+        navigationViewController.modalPresentationStyle = .automatic
+        self.present(navigationViewController, animated: true)
     }
 }
 

@@ -218,8 +218,8 @@
 		69EA407A2C3932DC000EBB0C /* LoginVIew */ = {
 			isa = PBXGroup;
 			children = (
-				692E35892C170C9F00B14E0D /* Main.storyboard */,
 				692E35872C170C9F00B14E0D /* ViewController.swift */,
+				692E35892C170C9F00B14E0D /* Main.storyboard */,
 			);
 			path = LoginVIew;
 			sourceTree = "<group>";
