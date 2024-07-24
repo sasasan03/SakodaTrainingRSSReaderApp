@@ -15,7 +15,10 @@ class RSSFeedSelectionViewController: UIViewController {
     @IBOutlet weak var rssFeedTopicsTableView: UITableView!
     
     @IBAction func didTapSelectNewsFeedSave(_ sender: Any) {
-        
+        let feedListVC = FeedListViewController()
+        feedListVC.title = "YahooNewsFeed一覧"
+        let navigationViewController = UINavigationController(rootViewController: feedListVC)
+        navigationViewController.pushViewController(navigationViewController, animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
