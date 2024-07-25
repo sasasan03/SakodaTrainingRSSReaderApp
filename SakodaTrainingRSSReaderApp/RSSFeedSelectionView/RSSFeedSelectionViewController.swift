@@ -43,11 +43,14 @@ extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier, for: indexPath) as! RSSFeedSelectionTableViewCell
-        cell.configureCellContent(title: dataSource[indexPath.row].title)
+        cell.configureCellContent(topic: dataSource[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dataSource[indexPath.row].isChecked.toggle()
+        rssFeedTopicsTableView.reloadRows(at: [indexPath], with: .automatic)
+        
         let selectedTopic = dataSource[indexPath.row]
         
         if let index = selectedTopics.firstIndex(of: selectedTopic) {
