@@ -51,9 +51,7 @@ extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataSource[indexPath.row].isChecked.toggle()
         rssFeedTopicsTableView.reloadRows(at: [indexPath], with: .automatic)
-        
         let selectedTopic = dataSource[indexPath.row]
-        
         if let index = selectedTopics.firstIndex(of: selectedTopic) {
             selectedTopics.remove(at: index)
         } else {
