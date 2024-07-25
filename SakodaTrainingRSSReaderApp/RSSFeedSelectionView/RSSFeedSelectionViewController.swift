@@ -7,6 +7,7 @@
 
 import UIKit
 
+// TODO: Topicsが選択されずにsaveボタンが押された場合にエラー出すようにする
 class RSSFeedSelectionViewController: UIViewController {
     
     let rssFeedTopicsData = RSSFeedTopicsData()
