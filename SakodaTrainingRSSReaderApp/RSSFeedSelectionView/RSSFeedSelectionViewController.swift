@@ -14,12 +14,6 @@ class RSSFeedSelectionViewController: UIViewController {
     var selectedTopics: [Topic] = []
     @IBOutlet weak var rssFeedTopicsTableView: UITableView!
     
-    @IBAction func didTapSelectNewsFeedSave(_ sender: Any) {
-        let feedListVC = FeedListViewController()
-        feedListVC.title = "YahooNewsFeed一覧"
-        let navigationViewController = UINavigationController(rootViewController: feedListVC)
-        navigationViewController.pushViewController(navigationViewController, animated: true)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         rssFeedTopicsTableView.dataSource = self
@@ -28,9 +22,18 @@ class RSSFeedSelectionViewController: UIViewController {
             UINib(nibName: RSSFeedSelectionTableViewCell.cellNibName, bundle: nil),
             forCellReuseIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier
         )
+        self.title = "ニュースフィード選択画面"
+        let saveButton = UIBarButtonItem(
+            title: "Save",
+            style: .plain,
+            target: self,
+            action: #selector(saveButtonTapped)
+        )
+        self.navigationItem.rightBarButtonItem = saveButton
         dataSource = rssFeedTopicsData.topicsData
         rssFeedTopicsTableView.reloadData()
     }
+    
 }
 
 extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSource {
@@ -45,16 +48,18 @@ extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let selectedTopic = dataSource[indexPath.row]
-            
-            if let index = selectedTopics.firstIndex(of: selectedTopic) {
-                selectedTopics.remove(at: index)
-            } else {
-                selectedTopics.append(selectedTopic)
-            }
-            for topic in selectedTopics {
-                print("----------------")
-                print("Selected Topic: \(topic.title)")
-            }
+        let selectedTopic = dataSource[indexPath.row]
+        
+        if let index = selectedTopics.firstIndex(of: selectedTopic) {
+            selectedTopics.remove(at: index)
+        } else {
+            selectedTopics.append(selectedTopic)
         }
+    }
+}
+
+extension RSSFeedSelectionViewController {
+    @objc func saveButtonTapped() {
+        
+    }
 }
