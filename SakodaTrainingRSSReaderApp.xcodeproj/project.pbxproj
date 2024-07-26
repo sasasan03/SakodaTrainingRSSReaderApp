@@ -31,6 +31,8 @@
 		692E36CB2C1D758B00B14E0D /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 692E36CA2C1D758B00B14E0D /* GoogleSignInSwift */; };
 		696669E02C4FBD2000AE028A /* TopicEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696669DF2C4FBD2000AE028A /* TopicEntity.swift */; };
 		696669E22C50F1CD00AE028A /* RSSFeedTopicsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696669E12C50F1CD00AE028A /* RSSFeedTopicsData.swift */; };
+		69ABC9782C539A7B000587E2 /* UserDefaultsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABC9772C539A7B000587E2 /* UserDefaultsError.swift */; };
+		69ABC97B2C539BEE000587E2 /* FirebaseClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABC97A2C539BEE000587E2 /* FirebaseClientError.swift */; };
 		69D558592C218D5200684373 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558582C218D5100684373 /* SuccessViewController.swift */; };
 		69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558612C219E4D00684373 /* FirebaseClient.swift */; };
 		69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558672C2448EA00684373 /* GoogleSignInClient.swift */; };
@@ -91,6 +93,8 @@
 		692E36C52C1D716600B14E0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		696669DF2C4FBD2000AE028A /* TopicEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicEntity.swift; sourceTree = "<group>"; };
 		696669E12C50F1CD00AE028A /* RSSFeedTopicsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedTopicsData.swift; sourceTree = "<group>"; };
+		69ABC9772C539A7B000587E2 /* UserDefaultsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsError.swift; sourceTree = "<group>"; };
+		69ABC97A2C539BEE000587E2 /* FirebaseClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClientError.swift; sourceTree = "<group>"; };
 		69D558582C218D5100684373 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
 		69D558612C219E4D00684373 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		69D558672C2448EA00684373 /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
@@ -219,10 +223,20 @@
 		692E35BD2C17144900B14E0D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				692E35BE2C17147200B14E0D /* RSSFeedError.swift */,
+				69ABC9792C539A7E000587E2 /* Error */,
 				692E35BC2C17142600B14E0D /* Data */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		69ABC9792C539A7E000587E2 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				692E35BE2C17147200B14E0D /* RSSFeedError.swift */,
+				69ABC9772C539A7B000587E2 /* UserDefaultsError.swift */,
+				69ABC97A2C539BEE000587E2 /* FirebaseClientError.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		69EA407A2C3932DC000EBB0C /* LoginVIew */ = {
@@ -447,6 +461,7 @@
 			files = (
 				69EA40A62C43A199000EBB0C /* SettingsDetailViewController.swift in Sources */,
 				69EA40872C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift in Sources */,
+				69ABC97B2C539BEE000587E2 /* FirebaseClientError.swift in Sources */,
 				692E35882C170C9F00B14E0D /* ViewController.swift in Sources */,
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
 				69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */,
@@ -462,6 +477,7 @@
 				69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */,
 				6915A7562C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift in Sources */,
 				69D558592C218D5200684373 /* SuccessViewController.swift in Sources */,
+				69ABC9782C539A7B000587E2 /* UserDefaultsError.swift in Sources */,
 				692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */,
 				69EA409B2C43A0F4000EBB0C /* FeedListViewController.swift in Sources */,
 				69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */,
