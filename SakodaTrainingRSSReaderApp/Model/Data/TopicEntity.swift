@@ -11,4 +11,5 @@ struct Topic: Codable, Identifiable, Equatable {
     var id = UUID()
     let title: String
     let url: String
+    var isChecked: Bool
 }

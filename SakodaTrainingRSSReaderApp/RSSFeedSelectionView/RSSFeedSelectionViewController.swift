@@ -7,16 +7,15 @@
 
 import UIKit
 
+// TODO: Topicsが選択されずにsaveボタンが押された場合にエラー出すようにする
 class RSSFeedSelectionViewController: UIViewController {
     
     let rssFeedTopicsData = RSSFeedTopicsData()
+    let userDefaultsManager = UserDefaultsManager.shared
     var dataSource:[Topic] = []
     var selectedTopics: [Topic] = []
     @IBOutlet weak var rssFeedTopicsTableView: UITableView!
     
-    @IBAction func didTapSelectNewsFeedSave(_ sender: Any) {
-        
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         rssFeedTopicsTableView.dataSource = self
@@ -25,9 +24,18 @@ class RSSFeedSelectionViewController: UIViewController {
             UINib(nibName: RSSFeedSelectionTableViewCell.cellNibName, bundle: nil),
             forCellReuseIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier
         )
+        self.title = "ニュースフィード選択画面"
+        let saveButton = UIBarButtonItem(
+            title: "Save",
+            style: .plain,
+            target: self,
+            action: #selector(saveButtonTapped)
+        )
+        self.navigationItem.rightBarButtonItem = saveButton
         dataSource = rssFeedTopicsData.topicsData
         rssFeedTopicsTableView.reloadData()
     }
+    
 }
 
 extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSource {
@@ -37,21 +45,27 @@ extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier, for: indexPath) as! RSSFeedSelectionTableViewCell
-        cell.configureCellContent(title: dataSource[indexPath.row].title)
+        cell.configureCellContent(topic: dataSource[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let selectedTopic = dataSource[indexPath.row]
-            
-            if let index = selectedTopics.firstIndex(of: selectedTopic) {
-                selectedTopics.remove(at: index)
-            } else {
-                selectedTopics.append(selectedTopic)
-            }
-            for topic in selectedTopics {
-                print("----------------")
-                print("Selected Topic: \(topic.title)")
-            }
+        dataSource[indexPath.row].isChecked.toggle()
+        rssFeedTopicsTableView.reloadRows(at: [indexPath], with: .automatic)
+        let selectedTopic = dataSource[indexPath.row]
+        if let index = selectedTopics.firstIndex(of: selectedTopic) {
+            selectedTopics.remove(at: index)
+        } else {
+            selectedTopics.append(selectedTopic)
         }
+    }
+}
+
+extension RSSFeedSelectionViewController {
+    @objc func saveButtonTapped() {
+        // TODO: リファクタリングでFirebaseに保存できるように仕様を変更する
+        userDefaultsManager.register(topic: selectedTopics)
+        let feedListViewController = FeedListViewController(nibName: "FeedListViewController", bundle: nil)
+        navigationController?.pushViewController(feedListViewController, animated: true)
+    }
 }

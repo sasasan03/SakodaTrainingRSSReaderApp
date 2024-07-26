@@ -22,8 +22,8 @@ class RSSFeedSelectionTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    func configureCellContent(title: String){
-        checkMark.image = UIImage(systemName: "checkmark.square")
-        rssTopicText.text = title
+    func configureCellContent(topic: Topic){
+        checkMark.image = UIImage(systemName: topic.isChecked ? "checkmark.square" : "square")
+        rssTopicText.text = topic.title
     }
 }
