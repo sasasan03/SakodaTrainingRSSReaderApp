@@ -32,6 +32,5 @@ struct Channel: Codable {
 struct Item: Codable, Hashable {
     let title: String
     let link: String
-    let description: String
     let pubDate: String
 }
