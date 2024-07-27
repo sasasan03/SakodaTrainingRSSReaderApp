@@ -33,6 +33,8 @@
 		696669E22C50F1CD00AE028A /* RSSFeedTopicsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696669E12C50F1CD00AE028A /* RSSFeedTopicsData.swift */; };
 		69ABC9782C539A7B000587E2 /* UserDefaultsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABC9772C539A7B000587E2 /* UserDefaultsError.swift */; };
 		69ABC97B2C539BEE000587E2 /* FirebaseClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABC97A2C539BEE000587E2 /* FirebaseClientError.swift */; };
+		69ABC97E2C53D1E8000587E2 /* FeedListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69ABC97D2C53D1E8000587E2 /* FeedListTableViewCell.xib */; };
+		69ABC97F2C53D1E8000587E2 /* FeedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABC97C2C53D1E8000587E2 /* FeedListTableViewCell.swift */; };
 		69D558592C218D5200684373 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558582C218D5100684373 /* SuccessViewController.swift */; };
 		69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558612C219E4D00684373 /* FirebaseClient.swift */; };
 		69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558672C2448EA00684373 /* GoogleSignInClient.swift */; };
@@ -95,6 +97,8 @@
 		696669E12C50F1CD00AE028A /* RSSFeedTopicsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedTopicsData.swift; sourceTree = "<group>"; };
 		69ABC9772C539A7B000587E2 /* UserDefaultsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsError.swift; sourceTree = "<group>"; };
 		69ABC97A2C539BEE000587E2 /* FirebaseClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClientError.swift; sourceTree = "<group>"; };
+		69ABC97C2C53D1E8000587E2 /* FeedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListTableViewCell.swift; sourceTree = "<group>"; };
+		69ABC97D2C53D1E8000587E2 /* FeedListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedListTableViewCell.xib; sourceTree = "<group>"; };
 		69D558582C218D5100684373 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
 		69D558612C219E4D00684373 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		69D558672C2448EA00684373 /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
@@ -273,6 +277,8 @@
 			children = (
 				69EA40992C43A0F4000EBB0C /* FeedListViewController.swift */,
 				69EA409A2C43A0F4000EBB0C /* FeedListViewController.xib */,
+				69ABC97C2C53D1E8000587E2 /* FeedListTableViewCell.swift */,
+				69ABC97D2C53D1E8000587E2 /* FeedListTableViewCell.xib */,
 			);
 			path = FeedListView;
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 				69EA409C2C43A0F4000EBB0C /* FeedListViewController.xib in Resources */,
 				69EA40A72C43A199000EBB0C /* SettingsDetailViewController.xib in Resources */,
 				69EA40A32C43A15F000EBB0C /* SettingsViewController.xib in Resources */,
+				69ABC97E2C53D1E8000587E2 /* FeedListTableViewCell.xib in Resources */,
 				692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */,
 				69EA40962C3E84B5000EBB0C /* MailSingUpViewController.xib in Resources */,
 				69EA40AC2C43A1C7000EBB0C /* ArticleViewController.xib in Resources */,
@@ -466,6 +473,7 @@
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
 				69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */,
 				692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */,
+				69ABC97F2C53D1E8000587E2 /* FeedListTableViewCell.swift in Sources */,
 				69EA40972C3E84B5000EBB0C /* MailSingUpViewController.swift in Sources */,
 				692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */,
 				696669E02C4FBD2000AE028A /* TopicEntity.swift in Sources */,
