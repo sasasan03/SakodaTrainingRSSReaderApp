@@ -22,8 +22,9 @@ class FeedListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configureCellContent(rssFeed: RSSFeed){
-        feedText.text = rssFeed.channel.title
+    func configureCellContent(item: Item){
+        let title  = item.title
+        feedText.text = title
     }
     
 }
