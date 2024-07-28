@@ -26,6 +26,7 @@ class ArticleViewController: UIViewController {
 }
 
 extension ArticleViewController {
+    
     private func loadURL() throws {
         guard let urlString = urlString, let url = URL(string: urlString) else {
             throw URLError.invalidURL
@@ -33,6 +34,7 @@ extension ArticleViewController {
         let request = URLRequest(url: url)
         webView.load(request)
     }
+    
 }
 
 extension ArticleViewController: WKUIDelegate, WKNavigationDelegate {
