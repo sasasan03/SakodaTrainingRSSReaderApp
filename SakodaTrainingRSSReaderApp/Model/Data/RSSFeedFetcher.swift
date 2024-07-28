@@ -24,8 +24,12 @@ struct RSSFeedFetcher: RSSFetcherRepositoryProtocol {
                 fetchedFeeds.append(decodedFeed)
             }
             return fetchedFeeds
+        } catch let error as RSSFeedError {
+            throw error
+        } catch let error as DecodingError {
+            throw RSSFeedError.decodeError(error)
         } catch {
-            throw RSSFeedError.rssFetchError
+            throw RSSFeedError.networkError(error)
         }
     }
 }
