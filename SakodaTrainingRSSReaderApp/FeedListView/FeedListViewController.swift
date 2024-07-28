@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class FeedListViewController: UIViewController {
     
     let userDefaultsMangaer = UserDefaultsManager.shared
