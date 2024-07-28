@@ -13,8 +13,6 @@ class FeedListTableViewCell: UITableViewCell {
     static let cellIdentifier = "FeedListCell"
     
     @IBOutlet weak var feedText: UILabel!
-    @IBOutlet weak var favoriteImage: UIImageView!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +22,8 @@ class FeedListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configureCellContent(topic: Topic){
-        favoriteImage.image = UIImage(systemName: topic.isChecked ? "heart.fill" : "heart")
-        feedText.text = topic.title
+    func configureCellContent(rssFeed: RSSFeed){
+        feedText.text = rssFeed.channel.title
     }
     
 }

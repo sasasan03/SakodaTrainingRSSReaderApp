@@ -10,20 +10,48 @@ import UIKit
 class FeedListViewController: UIViewController {
     
     let userDefaultsMangaer = UserDefaultsManager.shared
-    var dataSource:[Topic] = []
-    @IBOutlet weak var feedListTableView: UITableView!
     let yahooRSSFeedRepository = YahooRSSFeedRepository()
+    var dataSource:[RSSFeed] = []
+    
+    @IBOutlet weak var feedListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Task {
-            _ = try await yahooRSSFeedRepository.fetchFeed(url: "https://news.yahoo.co.jp/rss/topics/top-picks.xml")
-        }
-        dataSource = userDefaultsMangaer.registeredTopics ?? []
+        self.title = "ニュースフィード画面"
         feedListTableView.dataSource = self
         feedListTableView.delegate = self
-        self.title = "ニュースフィード画面"
-        feedListTableView.reloadData()
+        feedListTableView.register(
+            UINib(
+                nibName: FeedListTableViewCell.cellNibName,
+                bundle: nil
+            ),
+            forCellReuseIdentifier: FeedListTableViewCell.cellIdentifier
+        )
+        Task {
+            do {
+                let urls = try getFavoriteTopicURLs()
+                let rssFeeds = try await yahooRSSFeedRepository.fetchedRSSFeeds(urls: urls)
+                dataSource = rssFeeds
+                feedListTableView.reloadData()
+            } catch {
+                print("💫","エラー『\(error)』")
+            }
+        }
+        
+    }
+}
+
+extension FeedListViewController {
+    private func getFavoriteTopicURLs() throws -> [String]{
+        guard let topics = userDefaultsMangaer.registeredTopics else {
+            throw UserDefaultsError.noRegisteredTopics
+        }
+        var urls: [String] = []
+        for topic in topics {
+            let url = topic.url
+            urls.append(url)
+        }
+        return urls
     }
 }
 
@@ -34,12 +62,11 @@ extension FeedListViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FeedListTableViewCell.cellIdentifier, for: indexPath) as! FeedListTableViewCell
-        cell.configureCellContent(topic: dataSource[indexPath.row])
+        cell.configureCellContent(rssFeed:dataSource[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        dataSource[indexPath.row].isChecked.toggle()
         feedListTableView.reloadRows(at: [indexPath], with: .automatic)
         let selectedTopic = dataSource[indexPath.row]
     }
