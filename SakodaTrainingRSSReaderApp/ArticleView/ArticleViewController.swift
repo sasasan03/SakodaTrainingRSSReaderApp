@@ -21,13 +21,18 @@ class ArticleViewController: UIViewController {
         super.viewDidLoad()
         webView.uiDelegate = self
         webView.navigationDelegate = self
+        do {
+            _ = try loadURL(urlString: urlString)
+        } catch {
+            print("💫","\(error)")
+        }
     }
     
 }
 
 extension ArticleViewController {
     
-    private func loadURL() throws {
+    private func loadURL(urlString: String?) throws {
         guard let urlString = urlString, let url = URL(string: urlString) else {
             throw URLError.invalidURL
         }
