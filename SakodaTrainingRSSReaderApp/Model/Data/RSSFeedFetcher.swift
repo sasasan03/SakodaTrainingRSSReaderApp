@@ -9,16 +9,21 @@ import Foundation
 import XMLCoder
 
 protocol RSSFetcherRepositoryProtocol {
-    func fetchFeed(url: String) async throws -> RSSFeed?
+    func fetchedRSSFeeds(urls: [String]) async throws -> [RSSFeed]
 }
 
 struct RSSFeedFetcher: RSSFetcherRepositoryProtocol {
-    func fetchFeed(url: String) async throws -> RSSFeed? {
+    
+    func fetchedRSSFeeds(urls: [String]) async throws -> [RSSFeed] {
+        var fetchedFeeds:[RSSFeed] = []
         do {
-            guard let url = URL(string: url) else { throw RSSFeedError.invalidURL }
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let decodedFeed = try XMLDecoder().decode(RSSFeed.self, from: data)
-            return decodedFeed
+            for url in urls {
+                guard let url = URL(string: url) else { throw RSSFeedError.invalidURL }
+                let (data, _) = try await URLSession.shared.data(from: url)
+                let decodedFeed = try XMLDecoder().decode(RSSFeed.self, from: data)
+                fetchedFeeds.append(decodedFeed)
+            }
+            return fetchedFeeds
         } catch {
             throw RSSFeedError.rssFetchError
         }
