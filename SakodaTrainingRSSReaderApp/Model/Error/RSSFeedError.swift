@@ -10,4 +10,6 @@ import Foundation
 enum RSSFeedError: Error {
     case rssFetchError
     case invalidURL
+    case decodeError(Error)
+    case networkError(Error)
 }
