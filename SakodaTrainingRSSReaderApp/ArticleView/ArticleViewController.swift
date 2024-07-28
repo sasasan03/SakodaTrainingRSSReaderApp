@@ -42,6 +42,4 @@ extension ArticleViewController {
     
 }
 
-extension ArticleViewController: WKUIDelegate, WKNavigationDelegate {
-    
-}
+extension ArticleViewController: WKUIDelegate, WKNavigationDelegate {}
