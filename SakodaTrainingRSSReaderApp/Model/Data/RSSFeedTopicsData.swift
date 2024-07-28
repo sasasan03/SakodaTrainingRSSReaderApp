@@ -16,7 +16,8 @@ struct RSSFeedTopicsData {
         Topic(title: "エンタメ", url: "https://news.yahoo.co.jp/rss/topics/entertainment.xml", isChecked: false),
         Topic(title: "スポーツ", url: "https://news.yahoo.co.jp/rss/topics/sports.xml", isChecked: false),
         Topic(title: "IT", url: "https://news.yahoo.co.jp/rss/topics/it.xml", isChecked: false),
-        Topic(title: "科学", url: "https://news.yahoo.co.jp/rss/topics/science.xml", isChecked: false)
+        Topic(title: "科学", url: "https://news.yahoo.co.jp/rss/topics/science.xml", isChecked: false),
+        Topic(title: "地域", url: "https://news.yahoo.co.jp/rss/topics/local.xml", isChecked: false)
     ]
 
 }
