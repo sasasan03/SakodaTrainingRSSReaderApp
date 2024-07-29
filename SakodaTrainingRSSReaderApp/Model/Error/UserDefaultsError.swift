@@ -11,4 +11,5 @@ enum UserDefaultsError: Error {
     case encodingFailed
     case decodingFailed
     case dataNotFound
+    case noRegisteredTopics
 }
