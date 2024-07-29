@@ -6,24 +6,40 @@
 //
 
 import UIKit
+import WebKit
 
 class ArticleViewController: UIViewController {
-
+    
+    enum URLError: Error {
+        case invalidURL
+    }
+    
+    @IBOutlet weak var webView: WKWebView!
+    var urlString: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        do {
+            _ = try loadURL(urlString: urlString)
+        } catch {
+            print("💫","\(error)")
+        }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
+
+extension ArticleViewController {
+    
+    private func loadURL(urlString: String?) throws {
+        guard let urlString = urlString, let url = URL(string: urlString) else {
+            throw URLError.invalidURL
+        }
+        let request = URLRequest(url: url)
+        webView.load(request)
+    }
+    
+}
+
+extension ArticleViewController: WKUIDelegate, WKNavigationDelegate {}
