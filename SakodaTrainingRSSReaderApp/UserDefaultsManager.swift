@@ -20,10 +20,11 @@ struct UserDefaultsManager {
         return userDefaults.string(forKey: UserDefaultsManager.key)
     }
     
-    func register(topic: [Topic]) {
-        if let encoded = try? JSONEncoder().encode(topic) {
-            userDefaults.set(encoded, forKey: UserDefaultsManager.key)
+    func register(topic: [Topic]) throws {
+        guard let encoded = try? JSONEncoder().encode(topic) else {
+            throw UserDefaultsError.encodingFailed
         }
+        userDefaults.set(encoded, forKey: UserDefaultsManager.key)
     }
     
     var registeredTopics: [Topic]? {
