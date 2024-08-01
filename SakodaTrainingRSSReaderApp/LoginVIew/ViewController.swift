@@ -9,24 +9,19 @@ import UIKit
 import GoogleSignIn
 import Firebase
 
-enum FirebaseError: Error {
-    case noID
-    case missTackID
-}
-
 class ViewController: UIViewController {
     static let storyBoardID = "Main"
     let client = FirebaseClient()
-    let userDefaultsManager = UserDefaultsManager()
+    let userDefaultsManager = UserDefaultsManager.shared
     let activityIndicator = UIActivityIndicatorView(style: .large)
-    var userID: String?
+    // TODO: 必要なければ消す
+//    var userID: String?
     
     @IBOutlet weak var inputMailTextField: UITextField!
     @IBOutlet weak var inputPasswordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userID = userDefaultsManager.loadUserId()
         setupGoogleSignInButton()
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
@@ -83,22 +78,19 @@ extension ViewController {
             self.showActivityIndicator()
             Task {
                 do {
-                    let signInResult = try await self.client.googleSignIn()
-                    if signInResult {
-                        if self.userID != nil { // サインアップ時の遷移
-                            guard let successView = self.storyboard?.instantiateViewController(
-                                withIdentifier: SuccessViewController.storyboardID) else {
-                                return print("?? The specified Storyboard cannot be found.(SuccessViewController.storyboardID)")
-                            }
-                            self.hideActivityIndicator()
-                            self.navigationController?.pushViewController(successView, animated: true)
-                        } else { // ログイン時の遷移
-                            let rssFeedSelectionVC = RSSFeedSelectionViewController()
-                            self.hideActivityIndicator()
-                            self.navigationController?.pushViewController(rssFeedSelectionVC, animated: true)
-                        }
-                    } else {
-                        print("#signn  dissmiss")
+                    // UserDefaults内にuidを保持していれば、一覧画面へ
+                    let uid = self.userDefaultsManager.loadUserId()
+                    if uid != nil {
+                        _ = try await self.client.googleSignIn()
+                        let feedListVC = FeedListViewController()
+                        self.hideActivityIndicator()
+                        self.navigationController?.pushViewController(feedListVC, animated: true)
+                    } else { // 選択画面へ
+                        let uid = try await self.client.googleSignIn()
+                        self.userDefaultsManager.saveUserId(userID: uid)
+                        let rssFeedSelectionVC = RSSFeedSelectionViewController()
+                        self.hideActivityIndicator()
+                        self.navigationController?.pushViewController(rssFeedSelectionVC, animated: true)
                     }
                 } catch {
                     print("#error#", error.localizedDescription)
