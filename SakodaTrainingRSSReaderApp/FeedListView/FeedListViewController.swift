@@ -27,6 +27,8 @@ class FeedListViewController: UIViewController {
             ),
             forCellReuseIdentifier: FeedListTableViewCell.cellIdentifier
         )
+        // バックボタンを非表示にする
+        self.navigationItem.hidesBackButton = true
         Task {
             do {
                 let urls = try getFavoriteTopicURLs()
@@ -46,9 +48,7 @@ class FeedListViewController: UIViewController {
 extension FeedListViewController {
     
     private func getFavoriteTopicURLs() throws -> [String]{
-        guard let topics = userDefaultsMangaer.registeredTopics else {
-            throw UserDefaultsError.noRegisteredTopics
-        }
+        let topics = try userDefaultsMangaer.registeredTopics()
         var urls: [String] = []
         for topic in topics {
             let url = topic.url
@@ -93,10 +93,9 @@ extension FeedListViewController: UITableViewDelegate,UITableViewDataSource {
         }
         guard let feed = selectedFeed else { return }
         let articleViewController = ArticleViewController(nibName: "ArticleViewController", bundle: nil)
-        articleViewController.article = feed
+        articleViewController.urlString = feed.link
         navigationController?.pushViewController(articleViewController, animated: true)
     }
-    
     
 }
 
