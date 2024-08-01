@@ -24,6 +24,8 @@ class RSSFeedSelectionViewController: UIViewController {
             UINib(nibName: RSSFeedSelectionTableViewCell.cellNibName, bundle: nil),
             forCellReuseIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier
         )
+        // バックボタンを非表示にする
+        self.navigationItem.hidesBackButton = true
         self.title = "ニュースフィード選択画面"
         let saveButton = UIBarButtonItem(
             title: "Save",
@@ -64,7 +66,11 @@ extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSou
 extension RSSFeedSelectionViewController {
     @objc func saveButtonTapped() {
         // TODO: リファクタリングでFirebaseに保存できるように仕様を変更する
-        userDefaultsManager.register(topic: selectedTopics)
+        do {
+            try userDefaultsManager.register(topic: selectedTopics)
+        } catch {
+            print("💫FeedSelectionView Error：",error.localizedDescription)
+        }
         let feedListViewController = FeedListViewController(nibName: "FeedListViewController", bundle: nil)
         navigationController?.pushViewController(feedListViewController, animated: true)
     }

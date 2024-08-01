@@ -27,11 +27,18 @@ struct UserDefaultsManager {
         userDefaults.set(encoded, forKey: UserDefaultsManager.key)
     }
     
-    var registeredTopics: [Topic]? {
-        if let savedUserData = userDefaults.object(forKey: UserDefaultsManager.key) as? Data {
-            return try? JSONDecoder().decode([Topic].self, from: savedUserData)
+//    var registeredTopics: [Topic]? {
+//        if let savedUserData = userDefaults.object(forKey: UserDefaultsManager.key) as? Data {
+//            return try? JSONDecoder().decode([Topic].self, from: savedUserData)
+//        }
+//            return nil
+//    }
+    
+    func registeredTopics() throws -> [Topic] {
+        guard let data = userDefaults.object(forKey: UserDefaultsManager.key) as? Data else {
+            throw UserDefaultsError.dataNotFound
         }
-            return nil
+        return try JSONDecoder().decode([Topic].self, from: data)
     }
     
     func saveAuthState(authenticationState: AuthenticationState) throws {
