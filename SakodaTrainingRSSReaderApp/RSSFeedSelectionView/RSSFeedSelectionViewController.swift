@@ -14,10 +14,12 @@ class RSSFeedSelectionViewController: UIViewController {
     let userDefaultsManager = UserDefaultsManager.shared
     var dataSource:[Topic] = []
     var selectedTopics: [Topic] = []
+    
     @IBOutlet weak var rssFeedTopicsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("#uid selectVC 🍔",self.userDefaultsManager.loadUserId())
         rssFeedTopicsTableView.dataSource = self
         rssFeedTopicsTableView.delegate = self
         rssFeedTopicsTableView.register(
@@ -67,11 +69,11 @@ extension RSSFeedSelectionViewController {
     @objc func saveButtonTapped() {
         // TODO: リファクタリングでFirebaseに保存できるように仕様を変更する
         do {
-            try userDefaultsManager.register(topic: selectedTopics)
+            try userDefaultsManager.saveTopics(topic: selectedTopics)
         } catch {
             print("💫FeedSelectionView Error：",error.localizedDescription)
         }
-        let feedListViewController = FeedListViewController(nibName: "FeedListViewController", bundle: nil)
+        let feedListViewController = FeedListViewController(topics: selectedTopics)
         navigationController?.pushViewController(feedListViewController, animated: true)
     }
 }

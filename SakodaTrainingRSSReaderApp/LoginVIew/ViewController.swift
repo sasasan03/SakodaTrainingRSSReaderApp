@@ -14,14 +14,22 @@ class ViewController: UIViewController {
     let client = FirebaseClient()
     let userDefaultsManager = UserDefaultsManager.shared
     let activityIndicator = UIActivityIndicatorView(style: .large)
-    // TODO: 必要なければ消す
-//    var userID: String?
+    var topics: [Topic]?
+    var uid: String?
     
     @IBOutlet weak var inputMailTextField: UITextField!
     @IBOutlet weak var inputPasswordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.uid = userDefaultsManager.loadUserId()
+        print("#vc uid viewDid", self.uid)
+        do {
+            self.topics = try userDefaultsManager.loadTopics()
+            print("#vc topics viewDid", self.topics)
+        } catch {
+            print("#VC error",error)
+        }
         setupGoogleSignInButton()
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
@@ -79,15 +87,18 @@ extension ViewController {
             Task {
                 do {
                     // UserDefaults内にuidを保持していれば、一覧画面へ
-                    let uid = self.userDefaultsManager.loadUserId()
-                    if uid != nil {
+//                    let uid = self.userDefaultsManager.loadUserId()
+                    if let topics = self.topics {
+                        let topics = try self.userDefaultsManager.loadTopics()
                         _ = try await self.client.googleSignIn()
-                        let feedListVC = FeedListViewController()
+                        let feedListVC = FeedListViewController(topics: topics)
                         self.hideActivityIndicator()
                         self.navigationController?.pushViewController(feedListVC, animated: true)
                     } else { // 選択画面へ
                         let uid = try await self.client.googleSignIn()
+                        print("#uid VC 🍔",self.userDefaultsManager.loadUserId())
                         self.userDefaultsManager.saveUserId(userID: uid)
+                        print("#uid VC 🍟",self.userDefaultsManager.loadUserId())
                         let rssFeedSelectionVC = RSSFeedSelectionViewController()
                         self.hideActivityIndicator()
                         self.navigationController?.pushViewController(rssFeedSelectionVC, animated: true)
