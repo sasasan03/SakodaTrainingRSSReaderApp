@@ -16,6 +16,7 @@ class FirebaseClient{
     let googleSignInClient = GoogleSignInClient()
     let userDefaultsMangaer = UserDefaultsManager()
     var authenticationState: AuthenticationState = .unauthenticated
+    var uid: UserID?
     private var authStateHandler: AuthStateDidChangeListenerHandle?
     /// ユーザーの認証状態が変わるたびに呼び出される。
     /// ユーザが現在ログインしているかログアウトしているかがわかる。
@@ -26,7 +27,11 @@ class FirebaseClient{
             authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
                 guard let user = user else { return print("🍹 this user is not logged in") }
                 let uid = user.uid
-                self.userDefaultsMangaer.saveUserId(userID: uid)
+//                do {
+//                    try self.userDefaultsMangaer.saveUserId(userID: uid)
+//                } catch {
+//                    print("#error",error.localizedDescription)
+//                }
                 //          self.authenticationState = user == nil ? .unauthenticated : .authenticated
             }
         } else {
@@ -45,7 +50,8 @@ class FirebaseClient{
         }
     }
     
-    func googleSignIn() async throws -> String {
+    // この関数を実行するとuidに値が入る
+    func googleSignIn() async throws {
         do {
             // Googleサインインクライアントからサインイン結果を取得
             let userAuthentication = try await googleSignInClient.googleSignInResult()
@@ -71,8 +77,8 @@ class FirebaseClient{
             
             // サインインしたユーザーのUIDを取得
             let uid = firebaseUser.uid
-            
-            return uid
+            let userID = UserID(id: uid)
+            self.uid = userID
         }
         catch {
             throw FirebaseClientError.signInFailed
