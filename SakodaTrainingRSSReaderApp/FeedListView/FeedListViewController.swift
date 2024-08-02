@@ -28,7 +28,6 @@ class FeedListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("#uid listVC 🍔",self.userDefaultsMangaer.loadUserId())
         self.title = "ニュースフィード画面"
         feedListTableView.dataSource = self
         feedListTableView.delegate = self
@@ -50,10 +49,9 @@ class FeedListViewController: UIViewController {
                 self.items = items
                 feedListTableView.reloadData()
             } catch {
-                print("💫","エラー『\(error)』")
+                print("💫FeedListError","エラー『\(error)』")
             }
         }
-//        feedListTableView.reloadData()
     }
 }
 
