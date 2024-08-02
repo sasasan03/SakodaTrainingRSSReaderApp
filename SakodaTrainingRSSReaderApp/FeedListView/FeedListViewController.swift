@@ -9,7 +9,7 @@ import UIKit
 
 class FeedListViewController: UIViewController {
     
-    let userDefaultsMangaer = UserDefaultsManager.shared
+    let userDefaultsManager = UserDefaultsManager.shared
     let yahooRSSFeedRepository = YahooRSSFeedRepository()
     var rssFeedList:[RSSFeed] = []
     var items:[Item] = []
