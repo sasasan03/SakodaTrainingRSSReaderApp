@@ -13,10 +13,22 @@ class FeedListViewController: UIViewController {
     let yahooRSSFeedRepository = YahooRSSFeedRepository()
     var rssFeedList:[RSSFeed] = []
     var items:[Item] = []
+    var topics:[Topic]
+    
+    init(topics: [Topic]){
+        self.topics = topics
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @IBOutlet weak var feedListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("#uid listVC 🍔",self.userDefaultsMangaer.loadUserId())
         self.title = "ニュースフィード画面"
         feedListTableView.dataSource = self
         feedListTableView.delegate = self
@@ -31,7 +43,7 @@ class FeedListViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         Task {
             do {
-                let urls = try getFavoriteTopicURLs()
+                let urls = try getFavoriteTopicURLs(topics: self.topics)
                 let rssFeeds = try await yahooRSSFeedRepository.fetchedRSSFeeds(urls: urls)
                 rssFeedList = rssFeeds
                 let items = getItems(rssFeeds: rssFeedList)
@@ -41,14 +53,13 @@ class FeedListViewController: UIViewController {
                 print("💫","エラー『\(error)』")
             }
         }
-        
+//        feedListTableView.reloadData()
     }
 }
 
 extension FeedListViewController {
     
-    private func getFavoriteTopicURLs() throws -> [String]{
-        let topics = try userDefaultsMangaer.registeredTopics()
+    private func getFavoriteTopicURLs(topics: [Topic]) throws -> [String]{
         var urls: [String] = []
         for topic in topics {
             let url = topic.url
