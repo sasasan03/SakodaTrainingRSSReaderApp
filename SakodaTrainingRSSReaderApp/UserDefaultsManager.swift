@@ -20,7 +20,7 @@ struct UserDefaultsManager {
         return userDefaults.string(forKey: UserDefaultsManager.key)
     }
     
-    func register(topic: [Topic]) throws {
+    func saveTopics(topic: [Topic]) throws {
         guard let encoded = try? JSONEncoder().encode(topic) else {
             throw UserDefaultsError.encodingFailed
         }
@@ -34,7 +34,7 @@ struct UserDefaultsManager {
 //            return nil
 //    }
     
-    func registeredTopics() throws -> [Topic] {
+    func loadTopics() throws -> [Topic] {
         guard let data = userDefaults.object(forKey: UserDefaultsManager.key) as? Data else {
             throw UserDefaultsError.dataNotFound
         }
