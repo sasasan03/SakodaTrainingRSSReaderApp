@@ -10,25 +10,24 @@ import GoogleSignIn
 import Firebase
 
 class ViewController: UIViewController {
+    
     static let storyBoardID = "Main"
     let client = FirebaseClient()
     let userDefaultsManager = UserDefaultsManager.shared
     let activityIndicator = UIActivityIndicatorView(style: .large)
     var topics: [Topic]?
-    var uid: String?
+    var uid: UserID?
     
     @IBOutlet weak var inputMailTextField: UITextField!
     @IBOutlet weak var inputPasswordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.uid = userDefaultsManager.loadUserId()
-        print("#vc uid viewDid", self.uid)
         do {
+            self.uid = try userDefaultsManager.loadUserId()
             self.topics = try userDefaultsManager.loadTopics()
-            print("#vc topics viewDid", self.topics)
         } catch {
-            print("#VC error",error)
+            print("#VC error#",error.localizedDescription)
         }
         setupGoogleSignInButton()
         activityIndicator.center = view.center
@@ -46,7 +45,7 @@ class ViewController: UIViewController {
                 if signInResult {
                     
                 } else {
-                    print("# ")
+                    print("#")
                 }
             }
             catch {
@@ -67,6 +66,14 @@ class ViewController: UIViewController {
 }
 
 extension ViewController {
+    
+    enum ViewControllerError: Error {
+        case topicsNotFound
+        case userIDNotFound
+    }
+}
+
+extension ViewController {
     // インジケーターを表示にする
     private func showActivityIndicator() {
         activityIndicator.startAnimating()
@@ -79,27 +86,21 @@ extension ViewController {
         view.isUserInteractionEnabled = true
     }
     // Googleアカウントでログイン
-    // サインアップの場合はRSSFeedを選択する画面へ
     // ２回目以降のログインの場合はRSSFeed一覧画面へ遷移する
-    private func setupGoogleSignInButton(){
+    private func setupGoogleSignInButton() {
         GoogleSignInButton.addAction(UIAction { _ in
             self.showActivityIndicator()
             Task {
                 do {
-                    // UserDefaults内にuidを保持していれば、一覧画面へ
-//                    let uid = self.userDefaultsManager.loadUserId()
-                    if let topics = self.topics {
-                        let topics = try self.userDefaultsManager.loadTopics()
-                        _ = try await self.client.googleSignIn()
+                    try await self.client.googleSignIn()
+                    if self.uid != nil { // ニュースフィード一覧へ
+                        guard let topics = self.topics else { throw ViewControllerError.topicsNotFound }
                         let feedListVC = FeedListViewController(topics: topics)
                         self.hideActivityIndicator()
                         self.navigationController?.pushViewController(feedListVC, animated: true)
                     } else { // 選択画面へ
-                        let uid = try await self.client.googleSignIn()
-                        print("#uid VC 🍔",self.userDefaultsManager.loadUserId())
-                        self.userDefaultsManager.saveUserId(userID: uid)
-                        print("#uid VC 🍟",self.userDefaultsManager.loadUserId())
-                        let rssFeedSelectionVC = RSSFeedSelectionViewController()
+                        guard let userID = self.client.uid else { throw ViewControllerError.userIDNotFound }
+                        let rssFeedSelectionVC = RSSFeedSelectionViewController(userID: userID)
                         self.hideActivityIndicator()
                         self.navigationController?.pushViewController(rssFeedSelectionVC, animated: true)
                     }
