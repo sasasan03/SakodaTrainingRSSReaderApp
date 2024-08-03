@@ -38,6 +38,8 @@
 		69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558612C219E4D00684373 /* FirebaseClient.swift */; };
 		69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558672C2448EA00684373 /* GoogleSignInClient.swift */; };
 		69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558692C26C32200684373 /* UserDefaultsManager.swift */; };
+		69E86EAA2C5E129A0097342A /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69E86EA92C5E129A0097342A /* SettingsTableViewCell.xib */; };
+		69E86EAB2C5E129A0097342A /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E86EA82C5E129A0097342A /* SettingsTableViewCell.swift */; };
 		69EA40862C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */; };
 		69EA40872C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40842C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift */; };
 		69EA40912C3A956C000EBB0C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 69EA40902C3A956C000EBB0C /* FirebaseFirestore */; };
@@ -101,6 +103,8 @@
 		69D558612C219E4D00684373 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		69D558672C2448EA00684373 /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
 		69D558692C26C32200684373 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		69E86EA82C5E129A0097342A /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		69E86EA92C5E129A0097342A /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		69EA40842C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSelectionViewController.swift; sourceTree = "<group>"; };
 		69EA40852C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSFeedSelectionViewController.xib; sourceTree = "<group>"; };
 		69EA40942C3E84B5000EBB0C /* MailSingUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailSingUpViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 			children = (
 				69EA40A02C43A15F000EBB0C /* SettingsViewController.swift */,
 				69EA40A12C43A15F000EBB0C /* SettingsViewController.xib */,
+				69E86EA82C5E129A0097342A /* SettingsTableViewCell.swift */,
+				69E86EA92C5E129A0097342A /* SettingsTableViewCell.xib */,
 			);
 			path = SettingsView;
 			sourceTree = "<group>";
@@ -436,6 +442,7 @@
 				692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */,
 				69EA40962C3E84B5000EBB0C /* MailSingUpViewController.xib in Resources */,
 				69EA40AC2C43A1C7000EBB0C /* ArticleViewController.xib in Resources */,
+				69E86EAA2C5E129A0097342A /* SettingsTableViewCell.xib in Resources */,
 				692E35902C170CA000B14E0D /* Base in Resources */,
 				692E358B2C170C9F00B14E0D /* Base in Resources */,
 				6915A7552C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib in Resources */,
@@ -483,6 +490,7 @@
 				6915A7562C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift in Sources */,
 				69ABC9782C539A7B000587E2 /* UserDefaultsError.swift in Sources */,
 				692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */,
+				69E86EAB2C5E129A0097342A /* SettingsTableViewCell.swift in Sources */,
 				69EA409B2C43A0F4000EBB0C /* FeedListViewController.swift in Sources */,
 				69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */,
 			);
