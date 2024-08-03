@@ -7,47 +7,69 @@
 
 import Foundation
 
+struct UserID: Codable {
+    let id: String
+}
+
 struct UserDefaultsManager {
     static let shared = UserDefaultsManager()
-    static let key = "key"
+    static let topicsKey = "topicsKey"
+    static let idKey = "idKey"
     private let userDefaults = UserDefaults.standard
     
-    func saveUserId(userID: String) {
-        userDefaults.set(userID, forKey: UserDefaultsManager.key)
+    func saveUserId(userID: UserID) throws {
+        do {
+            let encoded = try JSONEncoder().encode(userID)
+            userDefaults.set(encoded, forKey: UserDefaultsManager.idKey)
+        } catch {
+            throw UserDefaultsError.encodingFailed
+        }
     }
 
-    func loadUserId() -> String? {
-        return userDefaults.string(forKey: UserDefaultsManager.key)
-    }
-    
-    func register(topic: [Topic]) {
-        if let encoded = try? JSONEncoder().encode(topic) {
-            userDefaults.set(encoded, forKey: UserDefaultsManager.key)
+    func loadUserId() throws -> UserID? {
+        guard let data = userDefaults.object(forKey: UserDefaultsManager.idKey) as? Data else {
+            throw UserDefaultsError.dataNotFound
+        }
+        do {
+            return try JSONDecoder().decode(UserID.self, from: data)
+        } catch {
+            throw UserDefaultsError.decodingFailed
         }
     }
     
-    var registeredTopics: [Topic]? {
-        if let savedUserData = userDefaults.object(forKey: UserDefaultsManager.key) as? Data {
-            return try? JSONDecoder().decode([Topic].self, from: savedUserData)
+    func saveTopics(topic: [Topic]) throws {
+        guard let encoded = try? JSONEncoder().encode(topic) else {
+            throw UserDefaultsError.encodingFailed
         }
-            return nil
+        userDefaults.set(encoded, forKey: UserDefaultsManager.topicsKey)
+    }
+    
+    func loadTopics() throws -> [Topic] {
+        guard let data = userDefaults.object(forKey: UserDefaultsManager.topicsKey) as? Data else {
+            throw UserDefaultsError.dataNotFound
+        }
+        return try JSONDecoder().decode([Topic].self, from: data)
     }
     
     func saveAuthState(authenticationState: AuthenticationState) throws {
         let jsonData = try JSONEncoder().encode(authenticationState)
-        userDefaults.set(jsonData, forKey: UserDefaultsManager.key)
+        userDefaults.set(jsonData, forKey: UserDefaultsManager.topicsKey)
     }
     
     func loadAuthState() throws -> AuthenticationState {
-        guard let jsonData = userDefaults.data(forKey: UserDefaultsManager.key) else {
+        guard let jsonData = userDefaults.data(forKey: UserDefaultsManager.topicsKey) else {
             return AuthenticationState.unauthenticated
         }
         let data = try JSONDecoder().decode(AuthenticationState.self, from: jsonData)
         return data
     }
     
-    func delete() {
-        userDefaults.removeObject(forKey: UserDefaultsManager.key)
+    func topicsDataDelete() {
+        userDefaults.removeObject(forKey: UserDefaultsManager.topicsKey)
+    }
+    
+    func idDataDelete() {
+        userDefaults.removeObject(forKey: UserDefaultsManager.idKey)
     }
     
 }

@@ -14,7 +14,18 @@ class RSSFeedSelectionViewController: UIViewController {
     let userDefaultsManager = UserDefaultsManager.shared
     var dataSource:[Topic] = []
     var selectedTopics: [Topic] = []
+    var userID: UserID?
+    
     @IBOutlet weak var rssFeedTopicsTableView: UITableView!
+    
+    init(userID: UserID){
+        self.userID = userID
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,12 +35,14 @@ class RSSFeedSelectionViewController: UIViewController {
             UINib(nibName: RSSFeedSelectionTableViewCell.cellNibName, bundle: nil),
             forCellReuseIdentifier: RSSFeedSelectionTableViewCell.cellIdentifier
         )
+        // バックボタンを非表示にする
+        self.navigationItem.hidesBackButton = true
         self.title = "ニュースフィード選択画面"
         let saveButton = UIBarButtonItem(
             title: "Save",
             style: .plain,
             target: self,
-            action: #selector(saveButtonTapped)
+            action: #selector(saveAndTransitionButtonTapped)
         )
         self.navigationItem.rightBarButtonItem = saveButton
         dataSource = rssFeedTopicsData.topicsData
@@ -62,10 +75,16 @@ extension RSSFeedSelectionViewController: UITableViewDelegate,UITableViewDataSou
 }
 
 extension RSSFeedSelectionViewController {
-    @objc func saveButtonTapped() {
+    @objc func saveAndTransitionButtonTapped() {
+        guard let userID = self.userID else { return print("#userID nil")}
         // TODO: リファクタリングでFirebaseに保存できるように仕様を変更する
-        userDefaultsManager.register(topic: selectedTopics)
-        let feedListViewController = FeedListViewController(nibName: "FeedListViewController", bundle: nil)
+        do {
+            try userDefaultsManager.saveTopics(topic: selectedTopics)
+            try userDefaultsManager.saveUserId(userID: userID)
+        } catch {
+            print("💫FeedSelectionView Error：",error.localizedDescription)
+        }
+        let feedListViewController = FeedListViewController(topics: selectedTopics)
         navigationController?.pushViewController(feedListViewController, animated: true)
     }
 }

@@ -35,7 +35,6 @@
 		69ABC97B2C539BEE000587E2 /* FirebaseClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABC97A2C539BEE000587E2 /* FirebaseClientError.swift */; };
 		69ABC97E2C53D1E8000587E2 /* FeedListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69ABC97D2C53D1E8000587E2 /* FeedListTableViewCell.xib */; };
 		69ABC97F2C53D1E8000587E2 /* FeedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABC97C2C53D1E8000587E2 /* FeedListTableViewCell.swift */; };
-		69D558592C218D5200684373 /* SuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558582C218D5100684373 /* SuccessViewController.swift */; };
 		69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558612C219E4D00684373 /* FirebaseClient.swift */; };
 		69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558672C2448EA00684373 /* GoogleSignInClient.swift */; };
 		69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D558692C26C32200684373 /* UserDefaultsManager.swift */; };
@@ -99,7 +98,6 @@
 		69ABC97A2C539BEE000587E2 /* FirebaseClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClientError.swift; sourceTree = "<group>"; };
 		69ABC97C2C53D1E8000587E2 /* FeedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListTableViewCell.swift; sourceTree = "<group>"; };
 		69ABC97D2C53D1E8000587E2 /* FeedListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedListTableViewCell.xib; sourceTree = "<group>"; };
-		69D558582C218D5100684373 /* SuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessViewController.swift; sourceTree = "<group>"; };
 		69D558612C219E4D00684373 /* FirebaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
 		69D558672C2448EA00684373 /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
 		69D558692C26C32200684373 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 				69EA409E2C43A129000EBB0C /* SettingsView */,
 				69EA409F2C43A13A000EBB0C /* SettingsDetailView */,
 				69D558612C219E4D00684373 /* FirebaseClient.swift */,
-				69D558582C218D5100684373 /* SuccessViewController.swift */,
 				69D558672C2448EA00684373 /* GoogleSignInClient.swift */,
 				69D558692C26C32200684373 /* UserDefaultsManager.swift */,
 				692E35BD2C17144900B14E0D /* Model */,
@@ -484,7 +481,6 @@
 				69EA40AB2C43A1C7000EBB0C /* ArticleViewController.swift in Sources */,
 				69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */,
 				6915A7562C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift in Sources */,
-				69D558592C218D5200684373 /* SuccessViewController.swift in Sources */,
 				69ABC9782C539A7B000587E2 /* UserDefaultsError.swift in Sources */,
 				692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */,
 				69EA409B2C43A0F4000EBB0C /* FeedListViewController.swift in Sources */,

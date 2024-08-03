@@ -10,24 +10,14 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
-enum AuthenticationState: String, Codable {
-    case unauthenticated
-    case authenticated
-}
-
-enum AuthenticationFlow {
-  case login
-  case signUp
-}
-
 @MainActor
 class FirebaseClient{
     //TODO: 書き換える。依存を解消させる。
     let googleSignInClient = GoogleSignInClient()
     let userDefaultsMangaer = UserDefaultsManager()
     var authenticationState: AuthenticationState = .unauthenticated
+    var uid: UserID?
     private var authStateHandler: AuthStateDidChangeListenerHandle?
-    
     /// ユーザーの認証状態が変わるたびに呼び出される。
     /// ユーザが現在ログインしているかログアウトしているかがわかる。
     /// ログアウトしていれば　『user』はnilを返す。
@@ -37,7 +27,11 @@ class FirebaseClient{
             authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
                 guard let user = user else { return print("🍹 this user is not logged in") }
                 let uid = user.uid
-                self.userDefaultsMangaer.saveUserId(userID: uid)
+//                do {
+//                    try self.userDefaultsMangaer.saveUserId(userID: uid)
+//                } catch {
+//                    print("#error",error.localizedDescription)
+//                }
                 //          self.authenticationState = user == nil ? .unauthenticated : .authenticated
             }
         } else {
@@ -56,29 +50,38 @@ class FirebaseClient{
         }
     }
     
-    func googleSignIn() async throws -> Bool {
+    // この関数を実行するとuidに値が入る
+    func googleSignIn() async throws {
         do {
+            // Googleサインインクライアントからサインイン結果を取得
             let userAuthentication = try await googleSignInClient.googleSignInResult()
             let user = userAuthentication.user
+            
+            // ユーザーのIDトークンを取得
             guard let  idToken = user.idToken else {
-                throw FirebaseError.missTackID
+                throw FirebaseClientError.noID
             }
+            
+            // ユーザーのアクセストークンを取得
             let accessToken = user.accessToken
+            
+            // Googleの資格情報を作成
             let credential = GoogleAuthProvider.credential(
                 withIDToken: idToken.tokenString,
                 accessToken: accessToken.tokenString
             )
+            
+            // Firebaseでサインイン
             let result = try await Auth.auth().signIn(with: credential)
-            let fUser = result.user
-            let userID = fUser.uid
-            //TODO: 後に書き換え。ここでIDを保存
-            userDefaultsMangaer.saveUserId(userID: userID)
-            print("##user『\(userID)』 signed in with email 『\(userID ?? "unknown")』")
-            return true
+            let firebaseUser = result.user
+            
+            // サインインしたユーザーのUIDを取得
+            let uid = firebaseUser.uid
+            let userID = UserID(id: uid)
+            self.uid = userID
         }
         catch {
-            print("##sign in error",error.localizedDescription)
-            return false
+            throw FirebaseClientError.signInFailed
         }
     }
     

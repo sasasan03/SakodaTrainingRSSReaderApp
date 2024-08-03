@@ -9,10 +9,21 @@ import UIKit
 
 class FeedListViewController: UIViewController {
     
-    let userDefaultsMangaer = UserDefaultsManager.shared
+    let userDefaultsManager = UserDefaultsManager.shared
     let yahooRSSFeedRepository = YahooRSSFeedRepository()
     var rssFeedList:[RSSFeed] = []
     var items:[Item] = []
+    var topics:[Topic]
+    
+    init(topics: [Topic]){
+        self.topics = topics
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @IBOutlet weak var feedListTableView: UITableView!
     
     override func viewDidLoad() {
@@ -27,28 +38,26 @@ class FeedListViewController: UIViewController {
             ),
             forCellReuseIdentifier: FeedListTableViewCell.cellIdentifier
         )
+        // バックボタンを非表示にする
+        self.navigationItem.hidesBackButton = true
         Task {
             do {
-                let urls = try getFavoriteTopicURLs()
+                let urls = try getFavoriteTopicURLs(topics: self.topics)
                 let rssFeeds = try await yahooRSSFeedRepository.fetchedRSSFeeds(urls: urls)
                 rssFeedList = rssFeeds
                 let items = getItems(rssFeeds: rssFeedList)
                 self.items = items
                 feedListTableView.reloadData()
             } catch {
-                print("💫","エラー『\(error)』")
+                print("💫FeedListError","エラー『\(error)』")
             }
         }
-        
     }
 }
 
 extension FeedListViewController {
     
-    private func getFavoriteTopicURLs() throws -> [String]{
-        guard let topics = userDefaultsMangaer.registeredTopics else {
-            throw UserDefaultsError.noRegisteredTopics
-        }
+    private func getFavoriteTopicURLs(topics: [Topic]) throws -> [String]{
         var urls: [String] = []
         for topic in topics {
             let url = topic.url
@@ -93,10 +102,9 @@ extension FeedListViewController: UITableViewDelegate,UITableViewDataSource {
         }
         guard let feed = selectedFeed else { return }
         let articleViewController = ArticleViewController(nibName: "ArticleViewController", bundle: nil)
-        articleViewController.article = feed
+        articleViewController.urlString = feed.link
         navigationController?.pushViewController(articleViewController, animated: true)
     }
-    
     
 }
 
