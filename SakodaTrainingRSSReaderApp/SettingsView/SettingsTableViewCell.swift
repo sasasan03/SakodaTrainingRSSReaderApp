@@ -9,7 +9,7 @@ import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
 
-    static let Identifier = "SettingsfViewCell"
+    static let identifier = "SettingsfViewCell"
     
     override func awakeFromNib() {
         super.awakeFromNib()
