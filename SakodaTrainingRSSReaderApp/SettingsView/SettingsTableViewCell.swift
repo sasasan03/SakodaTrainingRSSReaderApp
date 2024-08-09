@@ -9,7 +9,10 @@ import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
 
-    static let identifier = "SettingsfViewCell"
+    static let cellNibName = "SettingsTableViewCell"
+    static let cellIdentifier = "SettingsViewCell"
+    
+    @IBOutlet weak var itemText: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,6 +20,10 @@ class SettingsTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configureCellContent(text: String){
+        itemText.text = text
     }
     
 }
