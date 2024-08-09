@@ -50,10 +50,18 @@
 		69EA409C2C43A0F4000EBB0C /* FeedListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA409A2C43A0F4000EBB0C /* FeedListViewController.xib */; };
 		69EA40A22C43A15F000EBB0C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40A02C43A15F000EBB0C /* SettingsViewController.swift */; };
 		69EA40A32C43A15F000EBB0C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40A12C43A15F000EBB0C /* SettingsViewController.xib */; };
-		69EA40A62C43A199000EBB0C /* SettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40A42C43A199000EBB0C /* SettingsDetailViewController.swift */; };
-		69EA40A72C43A199000EBB0C /* SettingsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40A52C43A199000EBB0C /* SettingsDetailViewController.xib */; };
 		69EA40AB2C43A1C7000EBB0C /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA40A92C43A1C7000EBB0C /* ArticleViewController.swift */; };
 		69EA40AC2C43A1C7000EBB0C /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69EA40AA2C43A1C7000EBB0C /* ArticleViewController.xib */; };
+		69F61C1E2C65BF8D005421CA /* ToggleListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69F61C1D2C65BF8D005421CA /* ToggleListViewController.xib */; };
+		69F61C1F2C65BF8D005421CA /* ToggleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F61C1C2C65BF8D005421CA /* ToggleListViewController.swift */; };
+		69F61C222C65BFAA005421CA /* RssIntervalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69F61C212C65BFAA005421CA /* RssIntervalViewController.xib */; };
+		69F61C232C65BFAA005421CA /* RssIntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F61C202C65BFAA005421CA /* RssIntervalViewController.swift */; };
+		69F61C262C65BFBC005421CA /* ManageRssViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69F61C252C65BFBC005421CA /* ManageRssViewController.xib */; };
+		69F61C272C65BFBC005421CA /* ManageRssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F61C242C65BFBC005421CA /* ManageRssViewController.swift */; };
+		69F61C2A2C65C01A005421CA /* FontSizeChangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69F61C292C65C01A005421CA /* FontSizeChangeViewController.xib */; };
+		69F61C2B2C65C01A005421CA /* FontSizeChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F61C282C65C01A005421CA /* FontSizeChangeViewController.swift */; };
+		69F61C382C66109B005421CA /* DarkModeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69F61C372C66109B005421CA /* DarkModeViewController.xib */; };
+		69F61C392C66109B005421CA /* DarkModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F61C362C66109B005421CA /* DarkModeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,10 +121,18 @@
 		69EA409A2C43A0F4000EBB0C /* FeedListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedListViewController.xib; sourceTree = "<group>"; };
 		69EA40A02C43A15F000EBB0C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		69EA40A12C43A15F000EBB0C /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
-		69EA40A42C43A199000EBB0C /* SettingsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailViewController.swift; sourceTree = "<group>"; };
-		69EA40A52C43A199000EBB0C /* SettingsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsDetailViewController.xib; sourceTree = "<group>"; };
 		69EA40A92C43A1C7000EBB0C /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		69EA40AA2C43A1C7000EBB0C /* ArticleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
+		69F61C1C2C65BF8D005421CA /* ToggleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleListViewController.swift; sourceTree = "<group>"; };
+		69F61C1D2C65BF8D005421CA /* ToggleListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToggleListViewController.xib; sourceTree = "<group>"; };
+		69F61C202C65BFAA005421CA /* RssIntervalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssIntervalViewController.swift; sourceTree = "<group>"; };
+		69F61C212C65BFAA005421CA /* RssIntervalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RssIntervalViewController.xib; sourceTree = "<group>"; };
+		69F61C242C65BFBC005421CA /* ManageRssViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageRssViewController.swift; sourceTree = "<group>"; };
+		69F61C252C65BFBC005421CA /* ManageRssViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManageRssViewController.xib; sourceTree = "<group>"; };
+		69F61C282C65C01A005421CA /* FontSizeChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSizeChangeViewController.swift; sourceTree = "<group>"; };
+		69F61C292C65C01A005421CA /* FontSizeChangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FontSizeChangeViewController.xib; sourceTree = "<group>"; };
+		69F61C362C66109B005421CA /* DarkModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeViewController.swift; sourceTree = "<group>"; };
+		69F61C372C66109B005421CA /* DarkModeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DarkModeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,8 +314,16 @@
 		69EA409F2C43A13A000EBB0C /* SettingsDetailView */ = {
 			isa = PBXGroup;
 			children = (
-				69EA40A42C43A199000EBB0C /* SettingsDetailViewController.swift */,
-				69EA40A52C43A199000EBB0C /* SettingsDetailViewController.xib */,
+				69F61C1C2C65BF8D005421CA /* ToggleListViewController.swift */,
+				69F61C1D2C65BF8D005421CA /* ToggleListViewController.xib */,
+				69F61C202C65BFAA005421CA /* RssIntervalViewController.swift */,
+				69F61C212C65BFAA005421CA /* RssIntervalViewController.xib */,
+				69F61C242C65BFBC005421CA /* ManageRssViewController.swift */,
+				69F61C252C65BFBC005421CA /* ManageRssViewController.xib */,
+				69F61C282C65C01A005421CA /* FontSizeChangeViewController.swift */,
+				69F61C292C65C01A005421CA /* FontSizeChangeViewController.xib */,
+				69F61C362C66109B005421CA /* DarkModeViewController.swift */,
+				69F61C372C66109B005421CA /* DarkModeViewController.xib */,
 			);
 			path = SettingsDetailView;
 			sourceTree = "<group>";
@@ -436,15 +460,19 @@
 				69EA40862C3A5CED000EBB0C /* RSSFeedSelectionViewController.xib in Resources */,
 				692E358D2C170CA000B14E0D /* Assets.xcassets in Resources */,
 				69EA409C2C43A0F4000EBB0C /* FeedListViewController.xib in Resources */,
-				69EA40A72C43A199000EBB0C /* SettingsDetailViewController.xib in Resources */,
 				69EA40A32C43A15F000EBB0C /* SettingsViewController.xib in Resources */,
 				69ABC97E2C53D1E8000587E2 /* FeedListTableViewCell.xib in Resources */,
+				69F61C382C66109B005421CA /* DarkModeViewController.xib in Resources */,
+				69F61C222C65BFAA005421CA /* RssIntervalViewController.xib in Resources */,
 				692E36C62C1D716600B14E0D /* GoogleService-Info.plist in Resources */,
 				69EA40962C3E84B5000EBB0C /* MailSingUpViewController.xib in Resources */,
 				69EA40AC2C43A1C7000EBB0C /* ArticleViewController.xib in Resources */,
 				69E86EAA2C5E129A0097342A /* SettingsTableViewCell.xib in Resources */,
 				692E35902C170CA000B14E0D /* Base in Resources */,
+				69F61C262C65BFBC005421CA /* ManageRssViewController.xib in Resources */,
 				692E358B2C170C9F00B14E0D /* Base in Resources */,
+				69F61C2A2C65C01A005421CA /* FontSizeChangeViewController.xib in Resources */,
+				69F61C1E2C65BF8D005421CA /* ToggleListViewController.xib in Resources */,
 				6915A7552C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,7 +498,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69EA40A62C43A199000EBB0C /* SettingsDetailViewController.swift in Sources */,
 				69EA40872C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift in Sources */,
 				69ABC97B2C539BEE000587E2 /* FirebaseClientError.swift in Sources */,
 				692E35882C170C9F00B14E0D /* ViewController.swift in Sources */,
@@ -479,11 +506,15 @@
 				692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */,
 				69ABC97F2C53D1E8000587E2 /* FeedListTableViewCell.swift in Sources */,
 				69EA40972C3E84B5000EBB0C /* MailSingUpViewController.swift in Sources */,
+				69F61C2B2C65C01A005421CA /* FontSizeChangeViewController.swift in Sources */,
 				692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */,
+				69F61C272C65BFBC005421CA /* ManageRssViewController.swift in Sources */,
+				69F61C392C66109B005421CA /* DarkModeViewController.swift in Sources */,
 				696669E02C4FBD2000AE028A /* TopicEntity.swift in Sources */,
 				692E35862C170C9F00B14E0D /* SceneDelegate.swift in Sources */,
 				696669E22C50F1CD00AE028A /* RSSFeedTopicsData.swift in Sources */,
 				69EA40A22C43A15F000EBB0C /* SettingsViewController.swift in Sources */,
+				69F61C1F2C65BF8D005421CA /* ToggleListViewController.swift in Sources */,
 				692E35B62C1713A100B14E0D /* RSSFeedFetcher.swift in Sources */,
 				69EA40AB2C43A1C7000EBB0C /* ArticleViewController.swift in Sources */,
 				69D558622C219E4D00684373 /* FirebaseClient.swift in Sources */,
@@ -491,6 +522,7 @@
 				69ABC9782C539A7B000587E2 /* UserDefaultsError.swift in Sources */,
 				692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */,
 				69E86EAB2C5E129A0097342A /* SettingsTableViewCell.swift in Sources */,
+				69F61C232C65BFAA005421CA /* RssIntervalViewController.swift in Sources */,
 				69EA409B2C43A0F4000EBB0C /* FeedListViewController.swift in Sources */,
 				69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */,
 			);
