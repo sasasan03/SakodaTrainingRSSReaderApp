@@ -16,6 +16,7 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    let userDefaults = UserDefaultsManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -43,15 +44,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
 
+// UserDefaultsに保存されている背景色(ダークモード・ライトモード)の取り出しの処理を記述
 extension AppDelegate {
+    func loadAndApplyAppearance() {
+        do {
+            if let style = try userDefaults.loadDarkModePreference() {
+                setAppAppearance(to: style)
+            } else {
+                // スタイルが存在しないデフォルトの背景色
+                setAppAppearance(to: .light)
+            }
+            
+        } catch UserDefaultsError.styleKeyNotFound {
+            print("UserDefaultsにスタイルキーが見つかりませんでした。")
+            setAppAppearance(to: .light)
+        } catch UserDefaultsError.invalidStyleValue {
+            print("無効なスタイル値が見つかりました。")
+            setAppAppearance(to: .light)
+        } catch {
+            print("その他のエラーが発生しました: \(error)")
+            setAppAppearance(to: .light)
+        }
+    }
     
     func setAppAppearance(to style: UIUserInterfaceStyle) {
         // UIWindowSceneを取得
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return print("💫UIWindowScene is nil.") }
         
         // すべてのウィンドウに対して外観を適用
         windowScene.windows.forEach { window in
