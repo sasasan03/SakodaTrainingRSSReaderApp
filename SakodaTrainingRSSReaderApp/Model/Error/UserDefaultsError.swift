@@ -12,4 +12,6 @@ enum UserDefaultsError: Error {
     case decodingFailed
     case dataNotFound
     case noRegisteredTopics
+    case styleKeyNotFound
+    case invalidStyleValue
 }

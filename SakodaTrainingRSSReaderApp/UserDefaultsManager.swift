@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct UserID: Codable {
     let id: String
@@ -15,6 +16,7 @@ struct UserDefaultsManager {
     static let shared = UserDefaultsManager()
     static let topicsKey = "topicsKey"
     static let idKey = "idKey"
+    static let styleKey = "styleKey"
     private let userDefaults = UserDefaults.standard
     
     func saveUserId(userID: UserID) throws {
@@ -25,7 +27,7 @@ struct UserDefaultsManager {
             throw UserDefaultsError.encodingFailed
         }
     }
-
+    
     func loadUserId() throws -> UserID? {
         guard let data = userDefaults.object(forKey: UserDefaultsManager.idKey) as? Data else {
             throw UserDefaultsError.dataNotFound
@@ -49,6 +51,23 @@ struct UserDefaultsManager {
             throw UserDefaultsError.dataNotFound
         }
         return try JSONDecoder().decode([Topic].self, from: data)
+    }
+    
+    func saveDarkModePreference(isDarkMode: Bool){
+        let style = isDarkMode ? UIUserInterfaceStyle.dark : UIUserInterfaceStyle.light
+        userDefaults.set(style.rawValue, forKey: UserDefaultsManager.styleKey)
+    }
+    
+    func loadDarkModePreference() throws -> UIUserInterfaceStyle? {
+        guard let saveStyle = userDefaults.value(forKey: UserDefaultsManager.styleKey) as? Int else {
+            throw UserDefaultsError.styleKeyNotFound
+        }
+        
+        guard let style =  UIUserInterfaceStyle(rawValue: saveStyle) else {
+            throw UserDefaultsError.invalidStyleValue
+        }
+        
+        return style
     }
     
     func saveAuthState(authenticationState: AuthenticationState) throws {
