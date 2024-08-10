@@ -14,6 +14,8 @@ import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -43,5 +45,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate {
+    
+    func setAppAppearance(to style: UIUserInterfaceStyle) {
+        // UIWindowSceneを取得
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        
+        // すべてのウィンドウに対して外観を適用
+        windowScene.windows.forEach { window in
+            window.overrideUserInterfaceStyle = style
+        }
+    }
 }
 
