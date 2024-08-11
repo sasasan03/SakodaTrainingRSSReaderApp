@@ -44,6 +44,7 @@ class FeedListViewController: UIViewController {
         )
         // 左上バックボタンを非表示
         self.navigationItem.hidesBackButton = true
+        // セレクト画面で選択されたニュースフィードを取得してくる。
         Task {
             do {
                 let urls = try getFavoriteTopicURLs(topics: self.topics)
@@ -56,6 +57,9 @@ class FeedListViewController: UIViewController {
                 print("💫FeedListError","エラー『\(error)』")
             }
         }
+        // Cellのオートレイアウト
+        self.feedListTableView.estimatedRowHeight = 50
+        self.feedListTableView.rowHeight = UITableView.automaticDimension
     }
     
 }
