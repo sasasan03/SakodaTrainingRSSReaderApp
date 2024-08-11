@@ -28,7 +28,11 @@ class FeedListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "ニュースフィード画面"
+        self.navigationItem.title = "ニュースフィード一覧"
+        // 『edit』ボタン
+        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
+        self.navigationItem.rightBarButtonItem = editButton
+        // tableViewとcellの設定
         feedListTableView.dataSource = self
         feedListTableView.delegate = self
         feedListTableView.register(
@@ -38,7 +42,7 @@ class FeedListViewController: UIViewController {
             ),
             forCellReuseIdentifier: FeedListTableViewCell.cellIdentifier
         )
-        // バックボタンを非表示にする
+        // 左上バックボタンを非表示
         self.navigationItem.hidesBackButton = true
         Task {
             do {
@@ -53,6 +57,7 @@ class FeedListViewController: UIViewController {
             }
         }
     }
+    
 }
 
 extension FeedListViewController {
@@ -74,6 +79,13 @@ extension FeedListViewController {
             }
         }
         return items
+    }
+    
+    @objc func editButtonTapped() {
+        let settingsVC = SettingsViewController()
+        let navigationViewController = UINavigationController(rootViewController: settingsVC)
+        navigationViewController.modalPresentationStyle = .automatic
+        self.present(navigationViewController, animated: true)
     }
     
 }
