@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         let mailSignUpVC = MailSingUpViewController()
         mailSignUpVC.title = "新規登録画面"
         let navigationViewController = UINavigationController(rootViewController: mailSignUpVC)
-        navigationViewController.modalPresentationStyle = .automatic
+        navigationViewController.modalPresentationStyle = .fullScreen
         self.present(navigationViewController, animated: true)
     }
 }
