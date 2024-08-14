@@ -12,7 +12,7 @@ import Firebase
 class ViewController: UIViewController {
     
     static let storyBoardID = "Main"
-    let client = FirebaseClient()
+    let firebaseClient = FirebaseClient()
     let userDefaultsManager = UserDefaultsManager.shared
     let activityIndicator = UIActivityIndicatorView(style: .large)
     var topics: [Topic]?
@@ -38,15 +38,13 @@ class ViewController: UIViewController {
     @IBAction func didTapMailPasswordSignInButton(_ sender: Any) {
         Task {
             do {
-                let signInResult = try await client.mailPasswordSingIn(
+                try await firebaseClient.mailPasswordSingIn(
                     mail: inputMailTextField.text,
                     password: inputPasswordTextField.text
                 )
-                if signInResult {
-                    
-                } else {
-                    print("#")
-                }
+                guard let topics = self.topics else { throw ViewControllerError.topicsNotFound }
+                let feedListVC = FeedListViewController(topics: topics)
+                self.navigationController?.pushViewController(feedListVC, animated: true)
             }
             catch {
                 print("🍹The email or password is incorrect.")
@@ -92,14 +90,14 @@ extension ViewController {
             self.showActivityIndicator()
             Task {
                 do {
-                    try await self.client.googleSignIn()
+                    try await self.firebaseClient.googleSignIn()
                     if self.uid != nil { // ニュースフィード一覧へ
                         guard let topics = self.topics else { throw ViewControllerError.topicsNotFound }
                         let feedListVC = FeedListViewController(topics: topics)
                         self.hideActivityIndicator()
                         self.navigationController?.pushViewController(feedListVC, animated: true)
                     } else { // 選択画面へ
-                        guard let userID = self.client.uid else { throw ViewControllerError.userIDNotFound }
+                        guard let userID = self.firebaseClient.uid else { throw ViewControllerError.userIDNotFound }
                         let rssFeedSelectionVC = RSSFeedSelectionViewController(userID: userID)
                         self.hideActivityIndicator()
                         self.navigationController?.pushViewController(rssFeedSelectionVC, animated: true)

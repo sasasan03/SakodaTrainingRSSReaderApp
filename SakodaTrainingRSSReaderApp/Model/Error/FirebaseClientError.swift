@@ -11,12 +11,14 @@ enum FirebaseClientError: Error, LocalizedError {
     case noID
     case userNotLoggedIn
     case missingCredentials
-    case signInFailed
+    case signInFailed(String)
     case invalidEmailOrPassword
     case signOutFailed
     case authStateListenerAlreadyRegistered
+    case invalidMail(String)
+    case invalidPassword(String)
     case unknownError
-
+    
     var errorDescription: String? {
         switch self {
         case .noID:
@@ -25,14 +27,18 @@ enum FirebaseClientError: Error, LocalizedError {
             return "ユーザーがログインしていません。"
         case .missingCredentials:
             return "資格情報が見つかりません。"
-        case .signInFailed:
-            return "サインインに失敗しました。"
+        case .signInFailed(let message):
+            return "\(message)"
         case .invalidEmailOrPassword:
             return "無効なメールアドレスまたはパスワードです。"
         case .signOutFailed:
             return "サインアウトに失敗しました。"
         case .authStateListenerAlreadyRegistered:
             return "認証状態リスナーは既に登録されています。"
+        case .invalidMail(let message):
+            return "\(message)"
+        case .invalidPassword(let message):
+            return "\(message)"
         case .unknownError:
             return "不明なエラーが発生しました。"
         }
