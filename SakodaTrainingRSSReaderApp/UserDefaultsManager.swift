@@ -17,6 +17,7 @@ struct UserDefaultsManager {
     static let topicsKey = "topicsKey"
     static let idKey = "idKey"
     static let styleKey = "styleKey"
+    static let isOnDarkMode = "isOnDarkModeKey"
     private let userDefaults = UserDefaults.standard
     
     func saveUserId(userID: UserID) throws {
@@ -53,9 +54,8 @@ struct UserDefaultsManager {
         return try JSONDecoder().decode([Topic].self, from: data)
     }
     
-    func saveDarkModePreference(isDarkMode: Bool){
-        let style = isDarkMode ? UIUserInterfaceStyle.dark : UIUserInterfaceStyle.light
-        userDefaults.set(style.rawValue, forKey: UserDefaultsManager.styleKey)
+    func saveDarkModePreference(style: Int){
+        userDefaults.set(style, forKey: UserDefaultsManager.styleKey)
     }
     
     func loadDarkModePreference() throws -> UIUserInterfaceStyle? {
@@ -68,6 +68,14 @@ struct UserDefaultsManager {
         }
         
         return style
+    }
+    
+    func saveInterfaceStyle(isOn: Bool) {
+        userDefaults.set(isOn, forKey: UserDefaultsManager.isOnDarkMode)
+    }
+    
+    func loadInterfaceStyle() -> Bool {
+        userDefaults.bool(forKey: UserDefaultsManager.isOnDarkMode)
     }
     
     func saveAuthState(authenticationState: AuthenticationState) throws {
