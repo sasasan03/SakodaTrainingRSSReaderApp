@@ -8,7 +8,7 @@
 import Foundation
 
 enum FirebaseClientError: Error, LocalizedError {
-    case noID
+    case notFoundUserID
     case userNotLoggedIn
     case missingCredentials
     case signInFailed(String)
@@ -21,8 +21,8 @@ enum FirebaseClientError: Error, LocalizedError {
     
     var errorDescription: String? {
         switch self {
-        case .noID:
-            return "IDが存在しません。"
+        case .notFoundUserID:
+            return "userIDを見つけることができませんでした。"
         case .userNotLoggedIn:
             return "ユーザーがログインしていません。"
         case .missingCredentials:

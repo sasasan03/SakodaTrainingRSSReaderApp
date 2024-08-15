@@ -59,7 +59,7 @@ class FirebaseClient{
             
             // ユーザーのIDトークンを取得
             guard let  idToken = user.idToken else {
-                throw FirebaseClientError.noID
+                throw FirebaseClientError.notFoundUserID
             }
             
             // ユーザーのアクセストークンを取得
@@ -113,9 +113,27 @@ class FirebaseClient{
         }
     }
     
-    func mailPasswordSignUp(mail: String, password: String, completion: () -> Void){
-        Auth.auth().createUser(withEmail: mail, password: password)
-        completion()
+    func mailPasswordSignUp(mail: String?, password: String?) async throws {
+        guard let mail, !mail.isEmpty else {
+            throw FirebaseClientError.invalidMail("メールアドレスを入力してください。")
+        }
+        
+        guard let password, !password.isEmpty else {
+            throw FirebaseClientError.invalidPassword("パスワードを入力してください。")
+        }
+        
+        guard isValidEmail(mail) else {
+            throw FirebaseClientError.invalidMail("有効なメールアドレスを入力してください。")
+        }
+        
+        guard isValidPassword(password) else {
+            throw  FirebaseClientError.invalidPassword("有効なパスワードを入力してください。")
+        }
+        let authDataResult = try await Auth.auth().createUser(withEmail: mail, password: password)
+        let user = authDataResult.user
+        let uid = user.uid
+        let userID = UserID(id: uid)
+        self.uid = userID
     }
     
     func signOut() throws {
