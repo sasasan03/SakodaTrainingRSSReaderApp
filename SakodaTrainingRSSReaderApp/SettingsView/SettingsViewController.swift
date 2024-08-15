@@ -9,6 +9,8 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
+    let firebaseClient = FirebaseClient()
+    
     enum SettingsOption: String, CaseIterable {
         case toggleListView = "一覧画面の表示切り替え"
         case rssInterval = "RSS取得間隔"
@@ -62,15 +64,33 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case .darkMode:
             destinationVC = DarkModeViewController()
         case .logout:
-            //TODO: このセルをタップしたら、即ログアウトさせる関数を作成する
-            logout()
+            do {
+                try firebaseClient.signOut()
+                if self.presentingViewController != nil {
+                    self.dismiss(animated: true) {
+                        self.popToLoginViewController()
+                    }
+                }
+            } catch {
+                print("# firebaseClient.signOut error is : \(error)")
+            }
             return
         }
-        
         navigationController?.pushViewController(destinationVC, animated: true)
     }
+}
+
+extension SettingsViewController {
     
-    func logout(){
-        print("#ログアウトしました。（実際はされていない。後に実装）")
+    func popToLoginViewController(){
+        guard let  windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return print("SettingsViewController：windowScene is nil")
+        }
+        guard let navigationController = window.rootViewController as? UINavigationController else {
+            return print("SettingsViewController：rootViewcontroller is nil.")
+        }
+        navigationController.popToRootViewController(animated: true)
     }
+    
 }

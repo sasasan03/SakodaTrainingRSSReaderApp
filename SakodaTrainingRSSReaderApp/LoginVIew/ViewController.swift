@@ -91,6 +91,14 @@ extension ViewController {
             Task {
                 do {
                     try await self.firebaseClient.googleSignIn()
+                    
+                    if let topVC = self.navigationController?.topViewController, 
+                        topVC.isKind(of: FeedListViewController.self) ||
+                        topVC.isKind(of: RSSFeedSelectionViewController.self) {
+                        self.hideActivityIndicator()
+                        print("VC: 意図しない重複遷移や、同じViewControllerを複数回表示しようとしています。")
+                        return
+                    }
                     if self.uid != nil { // ニュースフィード一覧へ
                         guard let topics = self.topics else { throw ViewControllerError.topicsNotFound }
                         let feedListVC = FeedListViewController(topics: topics)
