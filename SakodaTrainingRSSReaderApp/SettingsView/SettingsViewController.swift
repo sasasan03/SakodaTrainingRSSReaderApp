@@ -66,7 +66,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case .logout:
             do {
                 try firebaseClient.signOut()
-                if let presentingVC = self.presentingViewController {
+                if self.presentingViewController != nil {
                     self.dismiss(animated: true) {
                         self.popToLoginViewController()
                     }
