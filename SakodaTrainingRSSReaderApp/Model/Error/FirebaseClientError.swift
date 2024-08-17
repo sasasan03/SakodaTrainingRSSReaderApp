@@ -15,8 +15,7 @@ enum FirebaseClientError: Error, LocalizedError {
     case invalidEmailOrPassword
     case signOutFailed
     case authStateListenerAlreadyRegistered
-    case invalidMail(String)
-    case invalidPassword(String)
+
     case unknownError
     
     var errorDescription: String? {
@@ -35,10 +34,6 @@ enum FirebaseClientError: Error, LocalizedError {
             return "サインアウトに失敗しました。"
         case .authStateListenerAlreadyRegistered:
             return "認証状態リスナーは既に登録されています。"
-        case .invalidMail(let message):
-            return "\(message)"
-        case .invalidPassword(let message):
-            return "\(message)"
         case .unknownError:
             return "不明なエラーが発生しました。"
         }
