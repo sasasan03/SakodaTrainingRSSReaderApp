@@ -4,11 +4,13 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MailSingUpViewController" customModule="SakodaTrainingRSSReaderApp" customModuleProvider="target">
             <connections>
+                <outlet property="createUserButton" destination="gCb-ED-jMa" id="TCf-2G-iLH"/>
                 <outlet property="inputMailTextField" destination="vwf-sd-lP6" id="C97-TG-ELi"/>
                 <outlet property="inputPasswordTextField" destination="mo7-ku-9jZ" id="4qq-mn-wlu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -52,19 +54,19 @@
                     </subviews>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCb-ED-jMa">
-                    <rect key="frame" x="185" y="307" width="60" height="34.333333333333314"/>
+                    <rect key="frame" x="155" y="307" width="120" height="14"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="60" id="ewb-Km-eID"/>
+                        <constraint firstAttribute="width" constant="120" id="ewb-Km-eID"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="登録"/>
+                    <buttonConfiguration key="configuration" style="filled"/>
                     <connections>
                         <action selector="didTapCreatUserButton:" destination="-1" eventType="touchUpInside" id="adI-WW-2yO"/>
                     </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" red="0.47072002391315815" green="0.70083648989898983" blue="0.36880472114461138" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" systemColor="systemGreenColor"/>
             <constraints>
                 <constraint firstItem="F7F-5T-uK7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="2ml-2c-9yo"/>
                 <constraint firstItem="gCb-ED-jMa" firstAttribute="top" secondItem="mo7-ku-9jZ" secondAttribute="bottom" constant="50" id="Hza-sd-12L"/>
@@ -78,4 +80,9 @@
             <point key="canvasLocation" x="139.69465648854961" y="19.718309859154932"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
