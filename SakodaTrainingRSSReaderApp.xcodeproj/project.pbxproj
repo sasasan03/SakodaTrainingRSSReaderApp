@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69112A642C70591F0094816E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69112A632C70591F0094816E /* Validation.swift */; };
 		6915A7552C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6915A7542C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib */; };
 		6915A7562C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6915A7532C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift */; };
 		692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35832C170C9F00B14E0D /* AppDelegate.swift */; };
@@ -82,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		69112A632C70591F0094816E /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		6915A7532C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		6915A7542C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSFeedSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		692E35802C170C9F00B14E0D /* SakodaTrainingRSSReaderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SakodaTrainingRSSReaderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69112A652C70592C0094816E /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				69112A632C70591F0094816E /* Validation.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
 		692E35772C170C9F00B14E0D = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +213,7 @@
 				69D558612C219E4D00684373 /* FirebaseClient.swift */,
 				69D558672C2448EA00684373 /* GoogleSignInClient.swift */,
 				69D558692C26C32200684373 /* UserDefaultsManager.swift */,
+				69112A652C70592C0094816E /* Validation */,
 				692E35BD2C17144900B14E0D /* Model */,
 				692E358C2C170CA000B14E0D /* Assets.xcassets */,
 				692E358E2C170CA000B14E0D /* LaunchScreen.storyboard */,
@@ -504,6 +515,7 @@
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
 				69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */,
 				692E35BB2C17140600B14E0D /* RSSFeedEntity.swift in Sources */,
+				69112A642C70591F0094816E /* Validation.swift in Sources */,
 				69ABC97F2C53D1E8000587E2 /* FeedListTableViewCell.swift in Sources */,
 				69EA40972C3E84B5000EBB0C /* MailSingUpViewController.swift in Sources */,
 				69F61C2B2C65C01A005421CA /* FontSizeChangeViewController.swift in Sources */,

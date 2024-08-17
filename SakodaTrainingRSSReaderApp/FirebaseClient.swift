@@ -85,22 +85,7 @@ class FirebaseClient{
         }
     }
     
-    func mailPasswordSingIn(mail: String?, password: String?) async throws {
-        guard let mail, !mail.isEmpty else {
-            throw FirebaseClientError.invalidMail("メールアドレスを入力してください。")
-        }
-        
-        guard let password, !password.isEmpty else {
-            throw FirebaseClientError.invalidPassword("パスワードを入力してください。")
-        }
-        
-        guard isValidEmail(mail) else {
-            throw FirebaseClientError.invalidMail("有効なメールアドレスを入力してください。")
-        }
-        
-        guard isValidPassword(password) else {
-            throw  FirebaseClientError.invalidPassword("有効なパスワードを入力してください。")
-        }
+    func mailPasswordSingIn(mail: String, password: String) async throws {
         
         do {
             let authDataResult = try await Auth.auth().signIn(withEmail: mail, password: password)
@@ -111,29 +96,17 @@ class FirebaseClient{
         catch {
             throw FirebaseClientError.signInFailed("メールログインに失敗しました。")
         }
+        
     }
     
-    func mailPasswordSignUp(mail: String?, password: String?) async throws {
-        guard let mail, !mail.isEmpty else {
-            throw FirebaseClientError.invalidMail("メールアドレスを入力してください。")
-        }
+    func mailPasswordSignUp(mail: String, password: String) async throws {
         
-        guard let password, !password.isEmpty else {
-            throw FirebaseClientError.invalidPassword("パスワードを入力してください。")
-        }
-        
-        guard isValidEmail(mail) else {
-            throw FirebaseClientError.invalidMail("有効なメールアドレスを入力してください。")
-        }
-        
-        guard isValidPassword(password) else {
-            throw  FirebaseClientError.invalidPassword("有効なパスワードを入力してください。")
-        }
         let authDataResult = try await Auth.auth().createUser(withEmail: mail, password: password)
         let user = authDataResult.user
         let uid = user.uid
         let userID = UserID(id: uid)
         self.uid = userID
+        
     }
     
     func signOut() throws {
@@ -147,24 +120,6 @@ class FirebaseClient{
     
     func deleteAccount() async -> Bool {
         return true
-    }
-    
-    // メールアドレスのバリデーション
-    //『＠』前は英数字（大小文字）、ドット（.）、アンダースコア（_）、パーセント（%）、プラス（+）、ハイフン（-）のいずれかが1文字以上続く。
-    //『＠』後は英数字（大小文字）、ドット（.）、ハイフン（-）が1文字以上続くことを許可。
-    // 『.』以降、com: 「.com」 「.co.jp」「.jp」のドメインを許可。
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.(com|co\\.jp|jp)"
-        let emailTest = NSPredicate(format:  "SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: email)
-    }
-    
-    
-    // パスワードのバリデーション(６文字以上であることを確認する)
-    func isValidPassword(_ password: String) -> Bool {
-        let passwordRegEx = "^.{6,}$"
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegEx)
-        return passwordTest.evaluate(with: password)
     }
     
 }
