@@ -27,12 +27,6 @@ class FirebaseClient{
             authStateHandler = Auth.auth().addStateDidChangeListener { auth, user in
                 guard let user = user else { return print("🍹 this user is not logged in") }
                 let uid = user.uid
-                //                do {
-                //                    try self.userDefaultsMangaer.saveUserId(userID: uid)
-                //                } catch {
-                //                    print("#error",error.localizedDescription)
-                //                }
-                //          self.authenticationState = user == nil ? .unauthenticated : .authenticated
             }
         } else {
             print("# authStateHandler has Listener")
@@ -80,33 +74,35 @@ class FirebaseClient{
             let userID = UserID(id: uid)
             self.uid = userID
         }
-        catch {
-            throw FirebaseClientError.signInFailed("googleログインに失敗しました。")
+        catch let firebaseError as NSError {
+            throw firebaseError
         }
     }
     
     func mailPasswordSingIn(mail: String, password: String) async throws {
-        
         do {
             let authDataResult = try await Auth.auth().signIn(withEmail: mail, password: password)
             let user = authDataResult.user
             let userID = UserID(id: user.uid)
             self.uid = userID
         }
-        catch {
-            throw FirebaseClientError.signInFailed("メールログインに失敗しました。")
+        catch let firebaseError as NSError {
+            throw firebaseError
         }
         
     }
     
     func mailPasswordSignUp(mail: String, password: String) async throws {
-        
-        let authDataResult = try await Auth.auth().createUser(withEmail: mail, password: password)
-        let user = authDataResult.user
-        let uid = user.uid
-        let userID = UserID(id: uid)
-        self.uid = userID
-        
+        do {
+            let authDataResult = try await Auth.auth().createUser(withEmail: mail, password: password)
+            let user = authDataResult.user
+            let uid = user.uid
+            let userID = UserID(id: uid)
+            self.uid = userID
+        }
+        catch let firebaseError as NSError {
+            throw firebaseError
+        }
     }
     
     func signOut() throws {

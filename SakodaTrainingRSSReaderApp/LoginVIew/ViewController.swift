@@ -57,9 +57,13 @@ class ViewController: UIViewController {
     @IBAction func didTapMailPasswordSignInButton(_ sender: Any) {
         Task {
             do {
+                let mail = inputMailTextField.text ?? ""
+                let pass = inputPasswordTextField.text ?? ""
+                _ = try validation.isValidEmail(mail)
+                _ = try validation.isValidPassword(pass)
                 try await firebaseClient.mailPasswordSingIn(
-                    mail: inputMailTextField.text ?? "",
-                    password: inputPasswordTextField.text ?? ""
+                    mail: mail,
+                    password: pass
                 )
                 guard let topics = self.topics else { 
                     throw ViewControllerError.topicsNotFound
@@ -67,8 +71,24 @@ class ViewController: UIViewController {
                 let feedListVC = FeedListViewController(topics: topics)
                 self.navigationController?.pushViewController(feedListVC, animated: true)
             }
+            catch let error as MailAndPasswordError {
+                if let errorDescription = error.errorDescription {
+                    AlertHelper.showAlert(
+                        on: self,
+                        message: errorDescription
+                    )
+                } else {
+                    print("#unknown error.")
+                }
+            }
+            catch let error as AuthErrorCode {
+                print("Error code: \(error.code)")
+                print("Error description: \(error.localizedDescription)")
+                let errorMessage = AlertHelper.handleAuthError(error)
+                AlertHelper.showAlert(on: self, message: errorMessage)
+            }
             catch {
-                print("🍹The email or password is incorrect.")
+                print("#unknown error.")
             }
         }
     }
@@ -114,11 +134,11 @@ extension ViewController {
     @objc func mailAndPasswordTextFieldDidChange() {
         let mailText = inputMailTextField.text ?? ""
         let passText = inputPasswordTextField.text ?? ""
-        do {
-            isFormValid = try validation.isValidEmail(mailText) && validation.isValidPassword(passText)
-        } catch {
-            print("#ViewController error", error.localizedDescription)
-        }
+        isFormValid = checkMailAndPasswordTextFieldCount(mailText: mailText, passText: passText)
+    }
+    
+    private func checkMailAndPasswordTextFieldCount(mailText: String, passText: String) -> Bool {
+        return (0 < mailText.count) && (0 < passText.count)
     }
     
 }
