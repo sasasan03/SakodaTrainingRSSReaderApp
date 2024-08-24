@@ -82,8 +82,6 @@ class ViewController: UIViewController {
                 }
             }
             catch let error as AuthErrorCode {
-                print("Error code: \(error.code)")
-                print("Error description: \(error.localizedDescription)")
                 let errorMessage = AlertHelper.handleAuthError(error)
                 AlertHelper.showAlert(on: self, message: errorMessage)
             }
@@ -189,8 +187,10 @@ extension ViewController {
                         self.hideActivityIndicator()
                         self.navigationController?.pushViewController(rssFeedSelectionVC, animated: true)
                     }
-                } catch {
-                    print("#error#", error.localizedDescription)
+                }
+                catch {
+                    self.hideActivityIndicator()
+                    print("#google login error:", error.localizedDescription)
                 }
             }
         }, for: .touchUpInside)

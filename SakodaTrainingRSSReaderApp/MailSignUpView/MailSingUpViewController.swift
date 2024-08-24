@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MailSingUpViewController: UIViewController {
     
@@ -61,8 +62,26 @@ class MailSingUpViewController: UIViewController {
                 let selectedVC = RSSFeedSelectionViewController(userID: uid)
                 self.hideActivityIndicator()
                 self.navigationController?.pushViewController(selectedVC, animated: true)
-            } catch {
-                print("💫MailSingUpViewController signUp error：",error.localizedDescription)
+            }
+            catch let error as MailAndPasswordError {
+                self.hideActivityIndicator()
+                if let errorDescription = error.errorDescription {
+                    AlertHelper.showAlert(
+                        on: self,
+                        message: errorDescription
+                    )
+                } else {
+                    print("#unknown error.")
+                }
+            }
+            catch let error as AuthErrorCode {
+                self.hideActivityIndicator()
+                let errorMessage = AlertHelper.handleAuthError(error)
+                AlertHelper.showAlert(on: self, message: errorMessage)
+            }
+            catch {
+                self.hideActivityIndicator()
+                print("#unknown error.")
             }
         }
     }
