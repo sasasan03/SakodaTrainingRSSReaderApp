@@ -45,7 +45,7 @@ struct AlertHelper {
         case .wrongPassword:
             return "パスワードが間違っています。再試行してください。"
         case .tooManyRequests:
-            return "リクエストが多すぎます。しばらくしてから再試行してください。"
+            return "ログインに何度も失敗したため、このアカウントへのアクセスは一時的に無効になっています。"
         case .userNotFound:
             return "ユーザーが見つかりませんでした。"
         case .accountExistsWithDifferentCredential:
