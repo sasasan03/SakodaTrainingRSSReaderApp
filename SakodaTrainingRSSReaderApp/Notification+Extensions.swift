@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+extension Notification.Name {
+    
+    static let fontSizeDidChange = Notification.Name("fontSizeDidChange")
+    
+}
