@@ -79,15 +79,13 @@ struct UserDefaultsManager {
         userDefaults.bool(forKey: UserDefaultsManager.isOnDarkModeKey)
     }
     
-    func saveFontSize(selectedSize: CGFloat) {
-        userDefaults.set(selectedSize, forKey: UserDefaultsManager.fontSizeKey)
-    }
-    
-    func loadFontSize() throws -> CGFloat {
-        guard let cGFloatData = userDefaults.object(forKey: UserDefaultsManager.fontSizeKey) as? CGFloat else {
-            throw UserDefaultsError.invalidData
+    var fontSize: CGFloat {
+        get {
+            return userDefaults.object(forKey: UserDefaultsManager.fontSizeKey) as? CGFloat ?? 16.0
         }
-        return cGFloatData
+        set {
+            userDefaults.set(newValue, forKey: UserDefaultsManager.fontSizeKey)
+        }
     }
     
     
