@@ -8,22 +8,42 @@
 import UIKit
 
 class FontSizeChangeViewController: UIViewController {
-
+    
+    var userDefaultsManager = UserDefaultsManager.shared
+    let fontSizes: [CGFloat] = [12, 14, 16, 18, 20, 24, 28, 30]
+    
+    @IBOutlet weak var fontSizeLabel: UILabel!
+    @IBOutlet weak var fontSizePickerView: UIPickerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        fontSizePickerView.delegate = self
+        fontSizePickerView.dataSource = self
+        fontSizeLabel.text = "文字のサイズ"
+        fontSizeLabel.font = fontSizeLabel.font.withSize(userDefaultsManager.fontSize)
     }
 
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension FontSizeChangeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
-    */
-
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return fontSizes.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return "\(Int(fontSizes[row]))pt"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedFontSize = fontSizes[row]
+        userDefaultsManager.fontSize = selectedFontSize
+        fontSizeLabel.font = fontSizeLabel.font.withSize(selectedFontSize)
+        NotificationCenter.default.post(name: .fontSizeDidChange, object: nil)
+    }
+    
 }
