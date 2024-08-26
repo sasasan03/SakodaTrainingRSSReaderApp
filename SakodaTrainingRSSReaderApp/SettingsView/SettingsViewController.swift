@@ -24,6 +24,9 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "設定画面"
+        let closeButton = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(didTapCloseButton))
+            navigationItem.rightBarButtonItem = closeButton
         settingsTableView.dataSource = self
         settingsTableView.delegate = self
         settingsTableView.register(
@@ -80,6 +83,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+
+// ログアウトの処理
 extension SettingsViewController {
     
     func popToLoginViewController(){
@@ -91,6 +96,15 @@ extension SettingsViewController {
             return print("SettingsViewController：rootViewcontroller is nil.")
         }
         navigationController.popToRootViewController(animated: true)
+    }
+    
+}
+
+// 右上閉じるボタンの処理
+extension SettingsViewController {
+    
+    @objc func didTapCloseButton() {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
