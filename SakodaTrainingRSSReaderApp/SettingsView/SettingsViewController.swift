@@ -33,6 +33,17 @@ class SettingsViewController: UIViewController {
             UINib(nibName: SettingsTableViewCell.cellNibName, bundle: nil),
             forCellReuseIdentifier: SettingsTableViewCell.cellIdentifier
         )
+        //.fontSizeDidChangeの変更を通知してもらえるよう設定
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadTableView),
+            name: .fontSizeDidChange,
+            object: nil
+        )
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .fontSizeDidChange, object: nil)
     }
     
 }
@@ -107,4 +118,11 @@ extension SettingsViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension SettingsViewController {
+    //通知を受けるとtableViewがリロードされる。これがないと、文字サイズが変更されていても、Cellのオートレイアウトが効かない。
+    @objc func reloadTableView() {
+        settingsTableView.reloadData()
+    }
 }
