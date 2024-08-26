@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		69112A642C70591F0094816E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69112A632C70591F0094816E /* Validation.swift */; };
+		69112AA32C71D1220094816E /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69112AA22C71D1220094816E /* AlertHelper.swift */; };
+		69112AA52C71EE6F0094816E /* MailAndPasswordError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69112AA42C71EE6F0094816E /* MailAndPasswordError.swift */; };
 		6915A7552C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6915A7542C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib */; };
 		6915A7562C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6915A7532C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift */; };
 		692E35842C170C9F00B14E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E35832C170C9F00B14E0D /* AppDelegate.swift */; };
@@ -84,6 +86,8 @@
 
 /* Begin PBXFileReference section */
 		69112A632C70591F0094816E /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
+		69112AA22C71D1220094816E /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		69112AA42C71EE6F0094816E /* MailAndPasswordError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailAndPasswordError.swift; sourceTree = "<group>"; };
 		6915A7532C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		6915A7542C4923BC00518FA3 /* RSSFeedSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RSSFeedSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		692E35802C170C9F00B14E0D /* SakodaTrainingRSSReaderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SakodaTrainingRSSReaderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				69112A632C70591F0094816E /* Validation.swift */,
+				69112AA22C71D1220094816E /* AlertHelper.swift */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				692E35BE2C17147200B14E0D /* RSSFeedError.swift */,
 				69ABC9772C539A7B000587E2 /* UserDefaultsError.swift */,
 				69ABC97A2C539BEE000587E2 /* FirebaseClientError.swift */,
+				69112AA42C71EE6F0094816E /* MailAndPasswordError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -511,6 +517,7 @@
 			files = (
 				69EA40872C3A5CED000EBB0C /* RSSFeedSelectionViewController.swift in Sources */,
 				69ABC97B2C539BEE000587E2 /* FirebaseClientError.swift in Sources */,
+				69112AA32C71D1220094816E /* AlertHelper.swift in Sources */,
 				692E35882C170C9F00B14E0D /* ViewController.swift in Sources */,
 				692E35BF2C17147200B14E0D /* RSSFeedError.swift in Sources */,
 				69D5586A2C26C32200684373 /* UserDefaultsManager.swift in Sources */,
@@ -534,6 +541,7 @@
 				69ABC9782C539A7B000587E2 /* UserDefaultsError.swift in Sources */,
 				692E35B42C17137300B14E0D /* YahooRSSFeedRepository.swift in Sources */,
 				69E86EAB2C5E129A0097342A /* SettingsTableViewCell.swift in Sources */,
+				69112AA52C71EE6F0094816E /* MailAndPasswordError.swift in Sources */,
 				69F61C232C65BFAA005421CA /* RssIntervalViewController.swift in Sources */,
 				69EA409B2C43A0F4000EBB0C /* FeedListViewController.swift in Sources */,
 				69D558682C2448EA00684373 /* GoogleSignInClient.swift in Sources */,
