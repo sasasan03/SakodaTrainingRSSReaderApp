@@ -17,7 +17,8 @@ struct UserDefaultsManager {
     static let topicsKey = "topicsKey"
     static let idKey = "idKey"
     static let styleKey = "styleKey"
-    static let isOnDarkMode = "isOnDarkModeKey"
+    static let isOnDarkModeKey = "isOnDarkModeKey"
+    static let fontSizeKey = "fontSizeKey"
     private let userDefaults = UserDefaults.standard
     
     func saveUserId(userID: UserID) throws {
@@ -71,12 +72,22 @@ struct UserDefaultsManager {
     }
     
     func saveInterfaceStyle(isOn: Bool) {
-        userDefaults.set(isOn, forKey: UserDefaultsManager.isOnDarkMode)
+        userDefaults.set(isOn, forKey: UserDefaultsManager.isOnDarkModeKey)
     }
     
     func loadInterfaceStyle() -> Bool {
-        userDefaults.bool(forKey: UserDefaultsManager.isOnDarkMode)
+        userDefaults.bool(forKey: UserDefaultsManager.isOnDarkModeKey)
     }
+    
+    var fontSize: CGFloat {
+        get {
+            return userDefaults.object(forKey: UserDefaultsManager.fontSizeKey) as? CGFloat ?? 16.0
+        }
+        set {
+            userDefaults.set(newValue, forKey: UserDefaultsManager.fontSizeKey)
+        }
+    }
+    
     
     func saveAuthState(authenticationState: AuthenticationState) throws {
         let jsonData = try JSONEncoder().encode(authenticationState)

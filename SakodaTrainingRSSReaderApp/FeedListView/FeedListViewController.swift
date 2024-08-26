@@ -57,11 +57,25 @@ class FeedListViewController: UIViewController {
                 print("💫FeedListError","エラー『\(error)』")
             }
         }
+        //.fontSizeDidChangeの変更を通知してもらえるよう設定
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadTableView),
+            name: .fontSizeDidChange,
+            object: nil
+        )
         // Cellのオートレイアウト
         self.feedListTableView.estimatedRowHeight = 50
         self.feedListTableView.rowHeight = UITableView.automaticDimension
     }
     
+}
+
+extension FeedListViewController {
+    //通知を受けるとtableViewがリロードされる。これがないと、文字サイズが変更されていても、Cellのオートレイアウトが効かない。
+    @objc func reloadTableView() {
+        feedListTableView.reloadData()
+    }
 }
 
 extension FeedListViewController {
@@ -95,6 +109,7 @@ extension FeedListViewController {
 }
 
 extension FeedListViewController: UITableViewDelegate,UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }

@@ -14,4 +14,5 @@ enum UserDefaultsError: Error {
     case noRegisteredTopics
     case styleKeyNotFound
     case invalidStyleValue
+    case invalidData
 }
