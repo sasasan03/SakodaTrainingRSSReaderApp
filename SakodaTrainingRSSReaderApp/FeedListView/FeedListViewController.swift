@@ -29,8 +29,8 @@ class FeedListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "ニュースフィード一覧"
-        // 『edit』ボタン
-        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
+        // 『編集』ボタン
+        let editButton = UIBarButtonItem(title: "編集", style: .plain, target: self, action: #selector(editButtonTapped))
         self.navigationItem.rightBarButtonItem = editButton
         // tableViewとcellの設定
         feedListTableView.dataSource = self
@@ -67,6 +67,10 @@ class FeedListViewController: UIViewController {
         // Cellのオートレイアウト
         self.feedListTableView.estimatedRowHeight = 50
         self.feedListTableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .fontSizeDidChange, object: nil)
     }
     
 }

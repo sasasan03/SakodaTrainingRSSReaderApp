@@ -11,11 +11,25 @@ class SettingsTableViewCell: UITableViewCell {
 
     static let cellNibName = "SettingsTableViewCell"
     static let cellIdentifier = "SettingsViewCell"
+    var userDefaultsManager = UserDefaultsManager.shared
     
     @IBOutlet weak var itemText: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        //.fontSizeDidChangeの変更を通知してもらえるよう設定
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(updateFontSize),
+            name: .fontSizeDidChange,
+            object: nil
+        )
+        // 保存されている文字サイズに合わせて文字の大きさが変更される
+        itemText.font = itemText.font.withSize(userDefaultsManager.fontSize)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .fontSizeDidChange, object: nil)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,6 +38,15 @@ class SettingsTableViewCell: UITableViewCell {
     
     func configureCellContent(text: String){
         itemText.text = text
+    }
+    
+}
+
+extension SettingsTableViewCell {
+    // 保存されている文字のサイズをラベルに反映させる
+    @objc func updateFontSize() {
+        let updatedFontSize = userDefaultsManager.fontSize
+        itemText.font = itemText.font.withSize(updatedFontSize)
     }
     
 }
