@@ -19,12 +19,13 @@ class ToggleListViewController: UIViewController {
         
         collectionView = UICollectionView(
             frame: .zero,
-            collectionViewLayout: makeCollectionViewLayout()
+            collectionViewLayout: makeCollectionViewLayout()//flowLayoutを使ってViewを作成することができる。
         )
+        //FlowLayoutは縦・横方向のスクロールも可能
         
-        setupConstraints()
+        setupConstraints()// 制約をかける
         
-        dataSource = SomeCollectionViewDatasource(repository: repository)
+        dataSource = SomeCollectionViewDatasource(repository: repository) //UICollectionViewDataSourceプロトコルに適合させる。
         
         collectionView.dataSource = dataSource
         collectionView.reloadData()
@@ -104,32 +105,32 @@ final class SomeCollectionViewDatasource: NSObject, UICollectionViewDataSource {
         self.repository = repository
     }
     
-    //リポジトリーが保持するItemの数を返す
+    // リポジトリーが保持するItemの数を返す
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         repository.numberOfItems()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //indexPath.item：コレクションビュー内で『特定のセクション』の『特定のアイテム』を指すインデックス
+        // indexPath.item：コレクションビュー内で『特定のセクション』の『特定のアイテム』を指すインデックス
         let item = repository.item(at: indexPath.item)
         return collectionView.dequeueConfiguredReusableCell(
-            using: cellRegistration,
+            using: cellRegistration, // セルの外観や動作を設定
             for: indexPath,
             item: item
         )
     }
-                            //セルの外観や動作を設定           （<>内）セルのクラスとそのセルにバインドするデータ型
+                          // セルの外観や動作を設定          （<>内）セルのクラスとそのセルにバインドするデータ型
     let cellRegistration = UICollectionView.CellRegistration<SomeCollectionViewCell,SomeItem>{ cell, index, item in
-        cell.name = item.name//SomeCollectionViewCellのプロパティを指す
-        //index：セルの位置に応じて異なる処理を行う
+        cell.name = item.name// SomeCollectionViewCellのプロパティを指す
+        // index：セルの位置に応じて異なる処理を行う
         if index.item % 2 == 0 { //indexに応じて、cellの背景色を変更する。
             cell.backgroundColor = .green
         } else {
             cell.backgroundColor = .white
         }
-        //item：データモデルに含まれるプロパティを使ってセルの内容を設定
+        // item：データモデルに含まれるプロパティを使ってセルの内容を設定
         if item.isFavorit {
-            cell.icon = "car"
+            cell.icon = "figure.baseball"
         } else {
             cell.icon = "apple.meditate"
         }
@@ -142,7 +143,7 @@ final class SomeCollectionViewCell: UICollectionViewCell {
     private let nameLabel = UILabel()
     private var iconImage = UIImageView()
     
-    //nameに変更を加えたタイミングでLabelへ値が代入する
+    // nameに変更を加えたタイミングでLabelへ値が代入する
     var name: String? {
         didSet {
             nameLabel.text = name
@@ -152,7 +153,7 @@ final class SomeCollectionViewCell: UICollectionViewCell {
     // iconの変更を検知し、UIImageのnamedへ代入する
     var icon: String = "" {
         didSet {
-            iconImage.image = UIImage(systemName: icon )
+            iconImage.image = UIImage(systemName: icon)
         }
     }
     
@@ -162,12 +163,13 @@ final class SomeCollectionViewCell: UICollectionViewCell {
         setupConstraints()
     }
     
-    
     @available(*,unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //セルが再利用される直前に、セルの状態を初期化するために使われる。
+    //この初期化により、セルが再利用される際に、前のデータが残ったまま表示されることを防ぐ。
     override func prepareForReuse() {
         super.prepareForReuse()
         name = nil
