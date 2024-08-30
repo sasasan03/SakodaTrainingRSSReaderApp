@@ -269,6 +269,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		69379BE02C7F3E1A00A8B342 /* ToggleListView */ = {
+			isa = PBXGroup;
+			children = (
+				69F61C1C2C65BF8D005421CA /* ToggleListViewController.swift */,
+				69F61C1D2C65BF8D005421CA /* ToggleListViewController.xib */,
+			);
+			path = ToggleListView;
+			sourceTree = "<group>";
+		};
 		69ABC9792C539A7E000587E2 /* Error */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,8 +343,7 @@
 		69EA409F2C43A13A000EBB0C /* SettingsDetailView */ = {
 			isa = PBXGroup;
 			children = (
-				69F61C1C2C65BF8D005421CA /* ToggleListViewController.swift */,
-				69F61C1D2C65BF8D005421CA /* ToggleListViewController.xib */,
+				69379BE02C7F3E1A00A8B342 /* ToggleListView */,
 				69F61C202C65BFAA005421CA /* RssIntervalViewController.swift */,
 				69F61C212C65BFAA005421CA /* RssIntervalViewController.xib */,
 				69F61C242C65BFBC005421CA /* ManageRssViewController.swift */,
