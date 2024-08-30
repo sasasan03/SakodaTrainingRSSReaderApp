@@ -74,11 +74,17 @@ extension ToggleListViewController {
 
 struct SomeItem {
     let name: String
+    let isFavorit: Bool
 }
 
 final class SomeListItemRepository {
     
-    private var items = (0..<30).map({ SomeItem(name: "item num: \($0)") })
+    private var items = (0..<30).map({
+        SomeItem(
+            name: "item num: \($0)",
+            isFavorit: $0 % 2 != 0
+            )
+    })
     
     func numberOfItems() -> Int {
         items.count
@@ -116,24 +122,43 @@ final class SomeCollectionViewDatasource: NSObject, UICollectionViewDataSource {
     let cellRegistration = UICollectionView.CellRegistration<SomeCollectionViewCell,SomeItem>{ cell, index, item in
         cell.name = item.name//SomeCollectionViewCellのプロパティを指す
         //index：セルの位置に応じて異なる処理を行う
+        if index.item % 2 == 0 { //indexに応じて、cellの背景色を変更する。
+            cell.backgroundColor = .green
+        } else {
+            cell.backgroundColor = .white
+        }
         //item：データモデルに含まれるプロパティを使ってセルの内容を設定
+        if item.isFavorit {
+            cell.icon = "car"
+        } else {
+            cell.icon = "apple.meditate"
+        }
     }
-    
 }
 
 
 final class SomeCollectionViewCell: UICollectionViewCell {
     
     private let nameLabel = UILabel()
+    private var iconImage = UIImageView()
     
+    //nameに変更を加えたタイミングでLabelへ値が代入する
     var name: String? {
         didSet {
             nameLabel.text = name
         }
     }
     
+    // iconの変更を検知し、UIImageのnamedへ代入する
+    var icon: String = "" {
+        didSet {
+            iconImage.image = UIImage(systemName: icon )
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        iconImage.contentMode = .scaleAspectFit
         setupConstraints()
     }
     
@@ -148,16 +173,24 @@ final class SomeCollectionViewCell: UICollectionViewCell {
         name = nil
     }
     
-    // 制約を設定
+    // 制約を設定。nameとiconの位置を調整
     private func setupConstraints(){
         contentView.addSubview(nameLabel)
+        contentView.addSubview(iconImage)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        iconImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [
+                // nameLabel の制約
                 nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
                 nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
                 nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                nameLabel.trailingAnchor.constraint(equalTo: iconImage.leadingAnchor, constant: -8),
+                // iconImage の制約
+                iconImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+                iconImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+                iconImage.widthAnchor.constraint(equalToConstant: 24),
+                iconImage.heightAnchor.constraint(equalToConstant: 24)
             ]
         )
     }
