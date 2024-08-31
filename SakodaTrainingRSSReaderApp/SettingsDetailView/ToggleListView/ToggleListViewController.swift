@@ -8,7 +8,6 @@
 import UIKit
 
 class ToggleListViewController: UIViewController {
-
     
     private let repository = SomeListItemRepository()
     private var collectionView: UICollectionView!
@@ -72,12 +71,13 @@ extension ToggleListViewController {
     }
 }
 
-
+// MARK: - エンティティ
 struct SomeItem {
     let name: String
     let isFavorit: Bool
 }
 
+// MARK: - リポジトリー
 final class SomeListItemRepository {
     
     private var items = (0..<30).map({
@@ -87,13 +87,40 @@ final class SomeListItemRepository {
             )
     })
     
-    func numberOfItems() -> Int {
-        items.count
+    private var fruits = (0..<30).map({
+        SomeItem(
+            name: "fruits num ：\($0)",
+            isFavorit: $0 % 2 == 0
+        )
+    })
+    
+    //🟦複数セクションを扱う場合
+    func numberOfSection() -> Int { // 🟦
+        2
+    }
+    func numberOfItems(inSection section: Int) -> Int { // 🟦
+        switch section {
+        case 0: return items.count
+        case 1: return fruits.count
+        default: return 0
+        }
     }
     
-    func item(at index: Int) -> SomeItem {
-        return items[index]
+    func item(at indexPath: IndexPath) -> SomeItem? { // 🟦
+        switch indexPath.section {
+        case 0: return items[indexPath.item]
+        case 1: return fruits[indexPath.item]
+        default: return nil
+        }
     }
+    // 🟥一つのセクションの場合に使用
+//    func numberOfItems() -> Int { //🟥サンプルコード１で使用
+//        items.count
+//    }
+    
+//    func item(at index: Int) -> SomeItem { //🟥サンプルコード１で使用
+//        return items[index]
+//    }
     
 }
 
@@ -104,37 +131,77 @@ final class SomeCollectionViewDatasource: NSObject, UICollectionViewDataSource {
     init(repository: SomeListItemRepository!) {
         self.repository = repository
     }
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>🟦複数セクション（セクションを縦に並べる）
     
-    // リポジトリーが保持するItemの数を返す
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        repository.numberOfSection()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        repository.numberOfItems()
+        repository.numberOfItems(inSection: section)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // indexPath.item：コレクションビュー内で『特定のセクション』の『特定のアイテム』を指すインデックス
-        let item = repository.item(at: indexPath.item)
+        let item = repository.item(at: indexPath)
         return collectionView.dequeueConfiguredReusableCell(
-            using: cellRegistration, // セルの外観や動作を設定
+            using: cellRegistration,
             for: indexPath,
             item: item
         )
     }
+    
+//        dataSourceの初期化で値を代入するパターン cell.set(with:~~)
+//                               セルの外観や動作を設定          （<>内）セルのクラスとそのセルにバインドするデータ型
+        let cellRegistration = UICollectionView.CellRegistration<SomeCollectionViewCell,SomeItem>{ cell, index, item in
+            cell.name = item.name// SomeCollectionViewCellのプロパティを指す
+            // index：セルの位置に応じて異なる処理を行う
+            if index.item % 2 == 0 { //indexに応じて、cellの背景色を変更する。
+                cell.backgroundColor = .green
+            } else {
+                cell.backgroundColor = .white
+            }
+            // item：データモデルに含まれるプロパティを使ってセルの内容を設定
+            if item.isFavorit {
+                cell.icon = "figure.baseball"
+            } else {
+                cell.icon = "apple.meditate"
+            }
+        }
+    
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>🟦複数セクション
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>🟥一つのセクション
+    // リポジトリーが保持するItemの数を返す
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        repository.numberOfItems()
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        // indexPath.item：コレクションビュー内で『特定のセクション』の『特定のアイテム』を指すインデックス
+//        let item = repository.item(at: indexPath.item)
+//        return collectionView.dequeueConfiguredReusableCell( // 設定されたCellを取り出す。
+//            using: cellRegistration, //cellRegistrationで設定されたLayout情報を設定する。
+//            for: indexPath,
+//            item: item
+//        )
+//    }
+//    dataSourceの初期化で値を代入するパターン cell.set(with:~~)
                           // セルの外観や動作を設定          （<>内）セルのクラスとそのセルにバインドするデータ型
-    let cellRegistration = UICollectionView.CellRegistration<SomeCollectionViewCell,SomeItem>{ cell, index, item in
-        cell.name = item.name// SomeCollectionViewCellのプロパティを指す
-        // index：セルの位置に応じて異なる処理を行う
-        if index.item % 2 == 0 { //indexに応じて、cellの背景色を変更する。
-            cell.backgroundColor = .green
-        } else {
-            cell.backgroundColor = .white
-        }
-        // item：データモデルに含まれるプロパティを使ってセルの内容を設定
-        if item.isFavorit {
-            cell.icon = "figure.baseball"
-        } else {
-            cell.icon = "apple.meditate"
-        }
-    }
+//    let cellRegistration = UICollectionView.CellRegistration<SomeCollectionViewCell,SomeItem>{ cell, index, item in
+//        cell.name = item.name// SomeCollectionViewCellのプロパティを指す
+//        // index：セルの位置に応じて異なる処理を行う
+//        if index.item % 2 == 0 { //indexに応じて、cellの背景色を変更する。
+//            cell.backgroundColor = .green
+//        } else {
+//            cell.backgroundColor = .white
+//        }
+//        // item：データモデルに含まれるプロパティを使ってセルの内容を設定
+//        if item.isFavorit {
+//            cell.icon = "figure.baseball"
+//        } else {
+//            cell.icon = "apple.meditate"
+//        }
+//    }
+//    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>🟥一つのセクション
 }
 
 
@@ -143,7 +210,7 @@ final class SomeCollectionViewCell: UICollectionViewCell {
     private let nameLabel = UILabel()
     private var iconImage = UIImageView()
     
-    // nameに変更を加えたタイミングでLabelへ値が代入する
+    // nameに変更を検知し、nameLabelへnameの値を代入する
     var name: String? {
         didSet {
             nameLabel.text = name
