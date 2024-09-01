@@ -7,31 +7,137 @@
 
 import UIKit
 
+// MARK: - ViewController
 class ToggleListViewController: UIViewController {
     
     private let repository = SomeListItemRepository()
     private var collectionView: UICollectionView!
-    private var dataSource: SomeCollectionViewDatasource!
+//    private var dataSource: SomeCollectionViewDatasource!//🟥🟦
+//    private var dataSource: UICollectionViewDiffableDataSource<Int, SomeItem.ID>!//🟨DiffableDataSource
+    private var dataSource: UICollectionViewDiffableDataSource<SomeSection, SomeItem.ID>!//🟨🟨DiffableDataSourceで複数のセクション対応
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         collectionView = UICollectionView(
             frame: .zero,
-            collectionViewLayout: makeCollectionViewLayout()//flowLayoutを使ってViewを作成することができる。
+            collectionViewLayout: makeCollectionViewLayout()//flowLayoutを使ってViewを作成することができる。FlowLayoutは縦・横方向のスクロールも可能
         )
-        //FlowLayoutは縦・横方向のスクロールも可能
-        
-        setupConstraints()// 制約をかける
-        
-        dataSource = SomeCollectionViewDatasource(repository: repository) //UICollectionViewDataSourceプロトコルに適合させる。
-        
-        collectionView.dataSource = dataSource
-        collectionView.reloadData()
+        setupConstraints()// 制約をかけ、場所も指定する
+//        dataSource = SomeCollectionViewDatasource(repository: repository)//🟥🟦１つのセクション
+        dataSource = makeDataSource(for: collectionView,repository: repository)//🟨
+        applySnapshot()//🟨
+//        collectionView.dataSource = dataSource//🟥🟦
+//        collectionView.reloadData()//🟥🟦
     }
 }
 
+
+extension ToggleListViewController {//🟨
+    
+    func makeDataSource(//🟨🟨複数のCellの登録
+        for collectionView: UICollectionView,
+        repository: SomeListItemRepository
+    ) -> UICollectionViewDiffableDataSource<SomeSection,SomeItem.ID> { //🟪
+        let mainCellRegistration = UICollectionView.CellRegistration<UICollectionViewCell,SomeItem> { cell,indexPath,item in
+            cell.contentConfiguration = MyContentConfiguration(name: item.name)
+        }
+        let secondaryCellRegistration = UICollectionView.CellRegistration<UICollectionViewCell,SomeItem> { cell,indexPath,item in
+            cell.contentConfiguration = MyContentConfiguration(name: item.name)
+        }
+        return UICollectionViewDiffableDataSource<SomeSection,SomeItem.ID>(
+            collectionView: collectionView
+        ) { [weak repository] collectionView, indexPath, id in
+            let item = repository?.item(id: id)
+            switch indexPath.section {
+            case 0:
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: mainCellRegistration,
+                    for: indexPath,
+                    item: item
+                )
+            case 1:
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: secondaryCellRegistration, 
+                    for: indexPath,
+                    item: item
+                )
+            default: fatalError()
+            }
+        }
+    }
+    
+    
+//    func makeDataSource(//🟨🟨
+//        for collectionView: UICollectionView,
+//        repository: SomeListItemRepository
+//    ) -> UICollectionViewDiffableDataSource<SomeSection, SomeItem.ID>  {
+//        let cellRegstration = UICollectionView.CellRegistration<SomeCollectionViewCell,SomeItem> {
+//            cell, indexPath, item in
+//            cell.name = item.name
+//        }
+//        
+//        return UICollectionViewDiffableDataSource<SomeSection, SomeItem.ID>(
+//            collectionView: collectionView
+//        ){
+//            [weak repository] collectionView, indexPath, id in
+//            let item = repository?.item(id: id)
+//            return collectionView.dequeueConfiguredReusableCell(
+//                using: cellRegstration,//セルの設定方法（たとえば、セルにどのデータを表示するかなど）を定義するためのもの
+//                for: indexPath,//どの位置にこのセルが表示されるかを指定
+//                item: item
+//            )
+//        }
+//        
+//    }
+    
+//    func makeDataSource( //🟨
+//        for collectionView: UICollectionView,
+//        repository: SomeListItemRepository
+//    ) -> UICollectionViewDiffableDataSource<Int, SomeItem.ID> {
+//        
+//        let cellRegstration = UICollectionView.CellRegistration<SomeCollectionViewCell,SomeItem> {
+//             cell, indexPath, item in
+//            cell.name = item.name
+//        }
+//        
+//        return UICollectionViewDiffableDataSource<Int, SomeItem.ID>(//『Int』はセクションを表す
+//            collectionView: collectionView
+//        ) {// 以下：cellに対して、ID検索し、一致したもの入れる
+//            [weak repository] collectionView, indexPath, id in
+//            let item = repository?.item(id: id)
+//            return collectionView.dequeueConfiguredReusableCell(
+//                using: cellRegstration,
+//                for: indexPath,
+//                item: item
+//            )
+//        }
+//    }
+    
+}
+
 extension ToggleListViewController {
+    
+//    private func applySnapshot(){// 🟨
+//        var snapShot = NSDiffableDataSourceSnapshot<Int,SomeItem.ID>()
+//        snapShot.appendSections([0])// セクションの識別子として『0』を追加し、このセクションに対してアイテムを設定する準備を行う。
+//        snapShot.appendItems(repository.ids())// セクション 『0』 に対して、repository.ids() から取得したアイテムを追加する。
+//        dataSource.apply(snapShot)
+//    }
+
+    private func applySnapshot(){// 🟨🟨
+        var snapShot = NSDiffableDataSourceSnapshot<SomeSection,SomeItem.ID>()
+        let sections = repository.sections()
+        snapShot.appendSections(sections)
+        sections.forEach { sectoin in
+            snapShot.appendItems(repository.ids(in: sectoin), toSection: sectoin)
+        }
+        dataSource.apply(snapShot)
+    }
+    
+}
+
+
+extension ToggleListViewController {//🟥🟦🟨
     func makeCollectionViewLayout() -> UICollectionViewLayout {
         //Itemの高さ44P、幅横幅いっぱい
         let itemSize = NSCollectionLayoutSize(
@@ -71,104 +177,140 @@ extension ToggleListViewController {
     }
 }
 
-// MARK: - エンティティ
-struct SomeItem {
+// MARK: - ⭐️⭐️エンティティ⭐️⭐️
+struct SomeItem: Identifiable {
+    let id = UUID()// 🟨DiffableDataSourceから使用
     let name: String
-    let isFavorit: Bool
+    let isFavorite: Bool
 }
 
-// MARK: - リポジトリー
+// MARK: - ⭐️⭐️セクションのEnum
+
+enum SomeSection: CaseIterable {
+    case mian
+    case secondary
+}
+
+// MARK: - ⭐️⭐️リポジトリー⭐️⭐️
 final class SomeListItemRepository {
     
-    private var items = (0..<30).map({
+    private var items0 = (0..<30).map({
         SomeItem(
             name: "item num: \($0)",
-            isFavorit: $0 % 2 != 0
-            )
-    })
-    
-    private var fruits = (0..<30).map({
-        SomeItem(
-            name: "fruits num ：\($0)",
-            isFavorit: $0 % 2 == 0
+            isFavorite: $0 % 2 != 0
         )
     })
     
-    //🟦複数セクションを扱う場合
-    func numberOfSection() -> Int { // 🟦
-        2
+    private var items1 = (0..<30).map({
+        SomeItem(
+            name: "fruits num ：\($0)",
+            isFavorite: $0 % 2 == 0
+        )
+    })
+    
+    private var items: [SomeItem] { items0 + items1 }//🟨🟨
+    
+    func sections() -> [SomeSection] { //🟨🟨
+        SomeSection.allCases
     }
-    func numberOfItems(inSection section: Int) -> Int { // 🟦
+    
+    func ids(in section: SomeSection) -> [SomeItem.ID] {//🟨🟨
         switch section {
-        case 0: return items.count
-        case 1: return fruits.count
-        default: return 0
+        case .mian:
+            return items0.map({ $0.id })
+        case .secondary:
+            return items1.map({ $0.id })
         }
     }
     
-    func item(at indexPath: IndexPath) -> SomeItem? { // 🟦
-        switch indexPath.section {
-        case 0: return items[indexPath.item]
-        case 1: return fruits[indexPath.item]
-        default: return nil
-        }
+    func item(id: SomeItem.ID) -> SomeItem? {//🟨🟨
+        items.first{ $0.id == id }
     }
+    
+    //🟨 アイテムの数ではなく、IDの配列を返すようにする
+//    func ids() -> [SomeItem.ID] {
+//        items0.map({ $0.id })
+//    }
+    
+    //🟨 アイテムをID検索で取得してくるようにする
+//    func item(id: SomeItem.ID) -> SomeItem? {
+//        items0.first { $0.id == id }
+//    }
+    
+    //🟦複数セクションを扱う場合
+//    func numberOfSection() -> Int { // 🟦
+//        2
+//    }
+    //🟦
+//    func numberOfItems(inSection section: Int) -> Int { // 🟦
+//        switch section {
+//        case 0: return items0.count
+//        case 1: return items1.count
+//        default: return 0
+//        }
+//    }
+//    
+//    //🟦
+//    func item(at indexPath: IndexPath) -> SomeItem? { // 🟦
+//        switch indexPath.section {
+//        case 0: return items0[indexPath.item]
+//        case 1: return items1[indexPath.item]
+//        default: return nil
+//        }
+//    }
     // 🟥一つのセクションの場合に使用
 //    func numberOfItems() -> Int { //🟥サンプルコード１で使用
 //        items.count
 //    }
-    
+    // 🟥
 //    func item(at index: Int) -> SomeItem { //🟥サンプルコード１で使用
 //        return items[index]
 //    }
     
 }
 
-final class SomeCollectionViewDatasource: NSObject, UICollectionViewDataSource {
-    
-    private weak var repository: SomeListItemRepository!
-    
-    init(repository: SomeListItemRepository!) {
-        self.repository = repository
-    }
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>🟦複数セクション（セクションを縦に並べる）
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        repository.numberOfSection()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        repository.numberOfItems(inSection: section)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = repository.item(at: indexPath)
-        return collectionView.dequeueConfiguredReusableCell(
-            using: cellRegistration,
-            for: indexPath,
-            item: item
-        )
-    }
-    
-//        dataSourceの初期化で値を代入するパターン cell.set(with:~~)
-//                               セルの外観や動作を設定          （<>内）セルのクラスとそのセルにバインドするデータ型
-        let cellRegistration = UICollectionView.CellRegistration<SomeCollectionViewCell,SomeItem>{ cell, index, item in
-            cell.name = item.name// SomeCollectionViewCellのプロパティを指す
-            // index：セルの位置に応じて異なる処理を行う
-            if index.item % 2 == 0 { //indexに応じて、cellの背景色を変更する。
-                cell.backgroundColor = .green
-            } else {
-                cell.backgroundColor = .white
-            }
-            // item：データモデルに含まれるプロパティを使ってセルの内容を設定
-            if item.isFavorit {
-                cell.icon = "figure.baseball"
-            } else {
-                cell.icon = "apple.meditate"
-            }
-        }
-    
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>🟦複数セクション
+
+// MARK: - ⭐️⭐️データソース⭐️⭐️DifableDataSourceでは使用しない❌
+//final class SomeCollectionViewDatasource: NSObject, UICollectionViewDataSource {//🟥🟦
+//    
+//    private weak var repository: SomeListItemRepository!
+//    
+//    init(repository: SomeListItemRepository!) {
+//        self.repository = repository
+//    }
+////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>🟦複数セクション（セクションを縦に並べる）
+//    
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        repository.numberOfSection()
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        repository.numberOfItems(inSection: section)
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let item = repository.item(at: indexPath)
+//        return collectionView.dequeueConfiguredReusableCell(
+//            using: cellRegistration,
+//            for: indexPath,
+//            item: item
+//        )
+//    }
+//
+//        let cellRegistration = UICollectionView.CellRegistration<SomeCollectionViewCell,SomeItem>{ cell, index, item in
+//            cell.name = item.name
+//            if index.item % 2 == 0 {
+//                cell.backgroundColor = .green
+//            } else {
+//                cell.backgroundColor = .white
+//            }
+//            if item.isFavorite {
+//                cell.icon = "figure.baseball"
+//            } else {
+//                cell.icon = "apple.meditate"
+//            }
+//        }
+//    
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>🟥一つのセクション
     // リポジトリーが保持するItemの数を返す
 //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -202,9 +344,9 @@ final class SomeCollectionViewDatasource: NSObject, UICollectionViewDataSource {
 //        }
 //    }
 //    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>🟥一つのセクション
-}
+//}
 
-
+//MARK: - ⭐️⭐️セル⭐️⭐️
 final class SomeCollectionViewCell: UICollectionViewCell {
     
     private let nameLabel = UILabel()
@@ -264,4 +406,84 @@ final class SomeCollectionViewCell: UICollectionViewCell {
         )
     }
     
+}
+
+
+//MARK: - ⭐️⭐️ContentConfiguration⭐️⭐️🟪
+//UICollectionViewCellをそのまま使用。サブクラス化は不要。UICollectionViewCell自身がUIContentConfigurationの仕組みに対応しています
+
+// DataSourceからCellに渡したい情報を保持している
+struct MyContentConfiguration: UIContentConfiguration {//🟪
+    let name: String
+    
+    
+    private let cellRegistration = UICollectionView.CellRegistration<UICollectionViewCell,SomeItem> { cell, indexPath, item in
+        cell.contentConfiguration = MyContentConfiguration(name: item.name)//MyContentConfiguration のインスタンスをセット。
+    }
+    
+    // このメソッドがUICollectionViewCellのcontentViewとなる
+    func makeContentView() -> any UIView & UIContentView {
+        MyContentView(configuration: self)//下
+    }
+    
+    func updated(for state: any UIConfigurationState) -> MyContentConfiguration {
+        self//セルの状態（選択された状態、ハイライトされた状態など）に基づいて、コンテンツ構成を更新するために使用されます。
+    }
+    
+}
+
+
+struct MySecondaryContentConfiguration: UIContentConfiguration {
+    
+    let name2: String
+    
+    private let cellRegistration = UICollectionView.CellRegistration<UICollectionViewCell,SomeItem> { cell, indexPath, item in
+        cell.contentConfiguration = MyContentConfiguration(name: item.name)//MyContentConfiguration のインスタンスをセット。
+    }
+    
+    // このメソッドがUICollectionViewCellのcontentViewとなる
+    func makeContentView() -> any UIView & UIContentView {
+        MyContentView(configuration: self)
+    }
+    
+    func updated(for state: any UIConfigurationState) -> MySecondaryContentConfiguration {
+        self//セルの状態（選択された状態、ハイライトされた状態など）に基づいて、コンテンツ構成を更新するために使用されます。
+    }
+    
+}
+
+
+
+//UIView：MyContentViewはUIViewのサブクラス
+//UIContentView：DataSourceからconfigurationインスタンスとして表示データが渡され、それをビューに反映することがに期待されている
+final class MyContentView: UIView, UIContentView {//🟪
+    
+    private let nameLabel = UILabel()
+    
+    var configuration: UIContentConfiguration {//🍔stubとして持つことを強要される
+        didSet {
+            guard let configuration = configuration as? MyContentConfiguration else { return }
+            nameLabel.text = configuration.name
+        }
+    }
+    
+    init(configuration: UIContentConfiguration) {//🟨UIContentConfigurationプロトコル型にして差し替え可能
+        self.configuration = configuration
+        super.init(frame: .zero)
+        setupConstraints()
+    }
+    
+    @available(*, unavailable) required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented") }
+    
+    private func setupConstraints() {
+        addSubview(nameLabel)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: topAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
+        ])
+    }
 }
